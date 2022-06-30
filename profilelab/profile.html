@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+        }
+        ul{
+            margin: auto;
+            width: 900px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        li{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            border: 5px solid #faa;
+            margin: 20px 0px;
+        }
+        h3{
+            width: 100%;
+            margin: 0;
+            line-height: 2;
+        }
+        #profile{
+            width: 50%;
+            margin: auto;
+        }
+        img{
+            width: 30%;
+        }
+        li:nth-of-type(2){
+            padding-left: 20px;
+        }
+        li:nth-of-type(3){
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <img id="profile" src="" alt="">
+        </li>
+        <li>
+            <h3 id="name"></h3>
+            <h3 id="email"></h3>
+            <h3 id="school"></h3>
+            <h3 id="habbit"></h3>
+        </li>
+        <li>
+            <img id="img1" src="" alt="">
+            <img id="img2" src="" alt="">
+            <img id="img3" src="" alt="">
+        </li>
+    </ul>
+
+<script>
+
+        const mainpic = "./不二馬鼠.jpg";
+        let image = document.getElementById("profile");
+        image.setAttribute("src",mainpic);
+        let person ={
+            name : "寧寧",
+            email: "ning@gmail.com",
+            school:"Build School",
+            habbits:"DOG"
+        }
+         const imageArray =[
+            "https://cf.shopee.tw/file/a81b2a5a998980c5a52276a153734cf6_tn", 
+            "https://cf.shopee.tw/file/3036083b0288bc600036d4d6cfdd6535",
+            "https://cf.shopee.tw/file/beb0bac702258c690be684bd3e925322"
+            
+        ];
+
+        let name = document.getElementById("name");
+        name.innerText = `NAME: ${person.name}`;
+        let email = document.getElementById("email");
+        email.innerText = `EMAIL: ${person.email}`;
+        let school = document.getElementById("school");
+        school.innerText = `SCHOOL: ${person.school}`;
+        let habbit = document.getElementById("habbit");
+        habbit.innerText = `HABBITS: ${person.habbits}`;
+
+        let imgarray1 = document.getElementById("img1");
+        imgarray1.setAttribute("src",imageArray[0]);
+        let imgarray2 = document.getElementById("img2");
+        imgarray2.setAttribute("src",imageArray[1]);
+        let imgarray3 = document.getElementById("img3");
+        imgarray3.setAttribute("src",imageArray[2]);
+
+</script>
+
+</body>
+</html>

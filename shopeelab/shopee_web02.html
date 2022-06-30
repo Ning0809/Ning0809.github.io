@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{  margin: 0px;
+            padding: 0;
+            font-size: 0px;
+            color:#d0011b;
+            text-align: center;
+            font-family: Helvetica Neue,Helvetica,Arial,文泉驛正黑,WenQuanYi Zen Hei,Hiragino Sans GB,儷黑 Pro,LiHei Pro,Heiti TC,微軟正黑體,Microsoft JhengHei UI,Microsoft JhengHei,sans-serif;;
+        }
+        a{ text-decoration: none;}
+        .group{
+            width: 1200px;
+            position: relative;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .banner{
+            width: 1160px;
+            height: 20px;
+            padding: 20px;
+            position: relative;
+            flex-wrap: wrap;
+            display: flex;
+            border-bottom:1px solid rgba(0,0,0,.05);
+        }
+        .logo{
+            display: flex;
+            position: relative;
+            line-height: 20px;
+            margin: 0px 15px 0px 0px;
+        }
+        .logo p{
+            position: relative;
+            top:1px;
+            font-size: 17px;
+        }
+        .promise{
+            display:flex;
+            position:relative;
+            border-left: 1px solid #d8d8d8;
+            flex-wrap: wrap;
+        }
+        .promise-item{
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0px 0px 0px 15px ;
+        }
+        .promise-item img{
+            position: relative;
+            top: 2.5px;
+            height: 16px;
+        }
+        .promise-item p{
+            position: relative;
+            top: 1px;
+            padding: 0px 0px 0px 6px;
+            font-size: 16px;
+            line-height: 20px;
+            color: #333333;
+        }
+        .more{
+            display: flex;
+            position: absolute;
+            right: 20px;
+        }
+        .more a{
+            display: flex;
+            position: relative;
+        }
+        .more p{
+            display: flex;
+            font-size: 14px;
+            position: relative;
+            top:1px;
+        }
+        .more-icon{
+            background-color: #d0011b;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin: 0px 0px 0px 8px;
+        }
+        .icon{
+            stroke:white;
+            margin: 6px;
+        }
+        .ad{
+            width: 380px;
+            padding: 10px 0px 0px 10px;
+            position: relative;
+        }
+        .ad img{
+            size: 100%;
+        }
+        .list{
+            width: 800px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item{
+            position: relative;
+            padding: 10px;
+            width: 180px;
+            height: 211px;
+        }
+        .item img{
+            width: 180px;
+        }
+        .item p{
+            font-size: 18px;
+            text-align: center;
+            position: relative;
+            bottom: 36px;
+        }
+        #justify{
+            position: relative;
+            top: 9px;
+        }
+        #justifyword{
+            position: relative;
+            bottom: 29px;
+        }
+    </style>
+</head>
+<body>
+    <div class="group">
+        <div class="banner">
+            <div class="logo">
+                <a href="https://shopee.tw/mall">
+                    <p>蝦皮商城</p>
+                </a>
+            </div>
+            <div class="promise">
+                <div class="promise-item">
+                    <img src="./shopee/back.png" alt="15天鑑賞期">
+                    <p>15天鑑賞期</p>
+                </div>
+                <div class="promise-item">
+                    <img src="./shopee/cart.png" alt="蝦皮安心退">
+                    <p>蝦皮安心退</p>
+                </div>
+                <div class="promise-item">
+                    <img src="./shopee/promise.png" alt="正品保障">
+                    <p>正品保障</p>
+                </div>
+            </div>
+            <div class="more">
+                <a href="https://shopee.tw/mall">
+                    <p>查看全部</p>
+                    <div class="more-icon">
+                        <svg enable-background="new 0 0 11 11" viewBox="0 0 11 11" x="0" y="0" class="icon">
+                            <path d="m2.5 11c .1 0 .2 0 .3-.1l6-5c .1-.1.2-.3.2-.4s-.1-.3-.2-.4l-6-5c-.2-.2-.5-.1-.7.1s-.1.5.1.7l5.5 4.6-5.5 4.6c-.2.2-.2.5-.1.7.1.1.3.2.4.2z"></path>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <aside class="ad">
+            <a href="https://shopee.tw/m/AMART2022JUN06DAY">
+                <img src="./shopee/left.png" alt="全館最低4折起">
+            </a>
+        </aside>
+
+        <ul class="list">
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2.jpg" alt="全館5折up">
+                </a>
+                <p>全館5折up</p>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2-2.png" alt="滿$299折$50">
+                </a>
+                <p>滿$299折$50</p>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2-3.jpg" alt="全館47折up">
+                </a>
+                <p>全館47折up</p>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2-4.png" alt="國際書展領券85折">
+                </a>
+                <p>國際書展領券85折</p>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2-5.png" alt="最強3C領券再折" id="justify">
+                </a>
+                <p id="justifyword">最強3C領券再折</p>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2-6.jpg" alt="蝦幣最高30倍送">
+                </a>
+                <p>蝦幣最高30倍送</p>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2-7.jpg" alt="全店超商99免運">
+                </a>
+                <p>全店超商99免運</p>
+            </li>
+            <li class="item">
+                <a href="#">
+                    <img src="./shopee/2-8.jpg" alt="盛大進駐關注領券">
+                </a>
+                <p>盛大進駐關注領券</p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

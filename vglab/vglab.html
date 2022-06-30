@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="normalize.css">
+    <script src="https://kit.fontawesome.com/81c2f83ad1.js" crossorigin="anonymous"></script>
+    <style>
+        p,
+        span,
+        button,
+        input,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        a {
+            font-family: Roboto, sans-serif;
+        }
+        button {
+            border: none;
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        header,
+        header button,
+        header a{
+            color: #717171;
+            text-decoration: none;
+            background-color: #ffff
+        }
+        .header-function,
+        .header-nav {
+            width: 1180px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-function {
+            font-size: 16px;
+            padding: 5px 0px;
+        }
+        .info-phone {
+            font-size: 14px;
+            padding: 5px 9px 5px 0px;
+            display: flex;
+        }
+        .info-phone button:hover {
+            color: #ffb4b4;
+        }
+        .info-open {
+            font-size: 14px;
+            padding: 5px 9px 5px 0px;
+        }
+        .info-open span {
+            padding-left: 9px;
+            border-left: 1px solid rgba(0, 0, 0, 0.3);
+        }
+        .info-space {
+            flex-grow: 1;
+        }
+        .currency,
+        .cart,
+        .login {
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+        }
+        .currency button,
+        .cart button,
+        .login button {
+            width: 100px;
+            height: 40px;
+            background-color: #ffff
+        }
+        .btn-currency:hover,
+        .btn-cart:hover,
+        .btn-login:hover {
+            border-bottom: 3px solid#ffb4b4;            
+        }
+        .currency span {
+            margin-right: 5px;
+        }
+        .btn-cart {
+            position: relative;
+        }
+        .notice {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 0;
+            right: 15px;
+            background-color: #ffb4b4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #f6f6f6;
+        }
+        .searchbar {
+            display: flex;
+            justify-content: center;
+            height: 40px;
+            padding: 0px 30px;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .searchbar input {
+            width: 100px;
+            border: none;
+        }
+        .searchbar input:focus {
+            outline: none;
+        }
+        .searchbar i:hover{
+            color: #ffb4b4;
+        }
+        .header-nav {
+            padding: 20px 0px ;
+        }
+        .nav-logo {
+            display: flex;
+            justify-content: center;
+        }
+        .nav-logo h1 {
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .nav-logo img {
+            display: flex;
+        }
+        .nav-main {
+            display: flex;
+            flex-wrap: wrap;
+            flex-grow: 1;
+        }
+        .header-nav ul {
+            list-style: none;
+            margin: auto;
+        }
+        .nav-main ul li {
+            display: inline-block;
+            margin: 15px;
+        }
+        .nav-main span {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000000;
+            transition: 0.5s;
+        }
+        .nav-main-first span{
+            color:#ffb4b4;
+        }
+        .nav-main span:hover {
+            color: #ffb4b4;
+        }
+        .nav-social ul li {
+            font-size: 18px;
+            display: inline-block;
+            margin: 9px;
+            color: #717171;
+            transition: 0.5s;
+        }
+        .nav-social ul li a:hover {
+            color: #000000;
+        }
+        .container {
+            margin: auto;
+            text-align: center;
+            color: #232222;
+        }
+        .container a {
+            text-decoration: none;
+            color: #232222;
+        }
+        .event {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            font-size: 16px;
+        }
+        .event-bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+        }
+        .event-main {
+            width: 1180px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .main-view {
+            width: 1180px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            flex: 1 1 100%;
+        }
+        .event-info {
+            width: 100%;
+            padding: 130px 80px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        .event-sale {
+            height: 20px;
+            background-color: #000000;
+            color: #ffff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+        .event-title {
+            width: 100%;
+            margin: 30px 0px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            color: #000000;
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .event-title h2 {
+            margin: 0;
+        }
+        .event-space {
+            width: 40px;
+            height: 3px;
+            background-color: #000000;
+        }
+        .event-text {
+            width: 100%;
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: left;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            color: #717171;
+        }
+        .event-link a {
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: 0.5s;
+        }
+        .event-link a:hover {
+            color: #ffb4b4
+        }
+        .event-page {
+            z-index: 1;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            right: 0;
+        }
+        .event-page button {
+            width: 80px;
+            background-color: rgba(0, 0, 0, 0);
+            margin: 10px 0px;
+            font-size: 20px;
+            text-align: right;
+            transition: 0.5s;
+        }
+        .event-page button:first-child {
+            border-bottom: 5px solid #000000;
+        }
+        .event-page button:hover {
+            border-bottom: 5px solid #232222;
+        }
+        .event-saleinfo-bg {
+            width: 100%;
+            background-color: #fbfbfc;
+        }
+        .event-saleinfo {
+            width: 1180px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px 0px;
+            margin: auto;
+        }
+        .saleinfo-delivery {
+            background-color: #ffe5e5;
+            ;
+            margin: 10px 10px 10px 0px;
+            flex: 1 1 350px;
+        }
+        .saleinfo-cupon {
+            background-color: #ffece5;
+            ;
+            margin: 10px 10px 10px 0px;
+            flex: 1 1 350px;
+        }
+        .saleinfo-student {
+            background-color: #fff5e5;
+            ;
+            margin: 10px 0px;
+            flex: 1 1 350px;
+        }
+        .event-saleinfo h3 {
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin: 10px 0px 5px;
+        }
+        .event-saleinfo span {
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .categories {
+            display: flex;
+            position: relative;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .categories-list {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            background-image: url(./bg_cat.jpg);
+        }
+        .categories-content {
+            width: 1180px;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .categories-list h2 {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .categories-list ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0px;
+        }
+        .categories-list ul li {
+            width: 25%;
+        }
+        .categories-list ul li a {
+            flex: 1 1 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .categories-list .space {
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            margin: 0px 10px;
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background-color: #000000;
+            transition: 0.5s;
+        }
+        .categories-list h3 {
+            display: inline-block;
+            margin: 20px 0px 0px 60px;
+            font-size: 16px;
+            font-weight: 400;
+            transition: 0.5s;
+            flex: 1 1 100%;
+            text-align: left;
+        }
+        .categories-list .space:hover {
+            background-color: #ffb4b4;
+        }
+        .categories-list h3:hover {
+            color: #ffb4b4;
+        }
+        .categories-promote {
+            width: 1180px;
+            display: flex;
+            justify-content: center;
+            padding-top: 150px;
+            padding-bottom: 100px;
+        }
+        .promote-view {
+            width: 590px;
+            height: 100%;
+            background-color: #ffb4b4;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .promote-view img {
+            width: 590px;
+        }
+        .promote-view-bg {
+            width: 100%;
+            height: 100%;
+            background-color: #717171;
+            opacity: 0.1;
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            z-index: -1;
+        }
+        .promote-text {
+            width: 590px;
+            text-align: left;
+            padding-left: 100px;
+        }
+        .promote-text h3 {
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 1.5px;
+            margin-top: 100px;
+        }
+        .promote-text p {
+            width: 60%;
+            font-size: 14px;
+            color: #717171;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+        .shop-link {
+            background-color: #000000;
+            width: 120px;
+            height: 40px;         
+            transition: 0.5s;
+        }
+        .shop-link a{
+            width: 100%;
+            height: 100%; 
+        }
+        .shop-link a span{
+            display: flex;
+            align-items: center;
+            justify-content: center;           
+            width: 100%;
+            height: 100%;
+            color:#f6f6f6;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .shop-link:hover {
+            background-color: #ffb4b4;
+            cursor: pointer;
+        }
+        .categories-accessories {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;       
+        }
+        .belt,
+        .bag,
+        .sunglass {
+            flex: 1 1 33%;
+            display: flex;
+            position: relative;
+        }
+        .belt img,
+        .bag img,
+        .sunglass img {
+            width: 100%;
+        }
+        .categories-accessories h3 {
+            width: 300px;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            position:relative;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 100px;
+            text-transform:uppercase;
+            padding: 20px;
+            
+        }
+        .categories-accessories span {
+            font-size: 12px;
+            letter-spacing: 1px;
+            position:relative;
+            left: 0;
+            right: 0;
+            bottom: 60px;
+            text-transform:uppercase;
+        }
+        .categories-accessories h3:hover{
+            border-bottom: 3px solid white;
+        }        
+        .products{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;   
+            text-transform:uppercase;
+        }
+        .products-popular{
+            width: 1180px;
+            margin-top: 80px;
+        }
+        .products-popular h2{
+            width: 100%;
+            font-size: 25px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            margin-bottom: 50px;
+        }
+        .popular-list{
+            width: 1180px;
+        }
+        .popular-list ul{
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;
+        }
+        .popular-list ul li{
+            /* height: 500px; */
+            width: 25%;
+        }
+        .popular-item{
+            margin: 10px;
+        }
+        .popular-item img{
+            width: 100%;
+            height: 100%;
+        }
+        .popular-item-link{
+            width: 100%;
+            height: 100%;
+        }
+        .popular-item-view{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            position: relative;
+        }
+        .featuretag{
+            width: 80px;
+            height: 20px;
+            position: absolute;
+            right: 0;
+            top:20px;
+            background-color:#febf01;
+            z-index: 3;
+        }
+        .featuretag span{
+            font-size: 10px;
+            color: #ffffff;
+        }
+        .popular-item-view-detail{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            display: none;
+        }
+        .popular-item-view-bg{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        .popular-item-view-bg-icon{
+            display: flex;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        .popular-item-view-bg-icon i{
+            color:#f6f6f6;
+            font-size: 14px;
+            margin: 5px;
+        }
+        .popular-item-info{
+            text-align: left;
+            position: relative;
+            margin-top: 10px;
+        }
+        .popular-item-info span{
+            font-size: 12px;
+            color: #adaaaa;
+            display: block;
+        }
+        .popular-item-info h3{
+            margin-top: 5px;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;            
+        }
+        .price{
+            text-align: left;
+            font-weight: 600;
+            margin-bottom: 5px;            
+        }
+        .price span{
+            display: block;
+        }
+        .popular-item-cart-link{
+            display: none;
+            position: absolute;
+            top: 10px;
+            width: 120px;
+            height: 40px;            
+            background-color:#000000;
+        }
+        .cart-link{
+            width: 100%;
+            height: 100%;
+            display:flex;
+            align-items: center;
+            justify-content: center;  
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            transform: translateX(0);
+            transition: 0.5s;           
+        }
+        .cart-link a{
+            width: 100%;
+            height: 100%;
+        }
+        .cart-link span{
+            margin-top: 0px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color:#f6f6f6;
+        }
+        .score{
+            text-align: left;
+            color: #ffd71b;
+        }
+        .popular-item:hover .popular-item-view-detail{
+            display: flex;        
+        }
+        .popular-item:hover .popular-item-view-bg{
+            display:flex;            
+        }
+        .popular-item:hover .item-info,
+        .popular-item:hover .price,
+        .popular-item:hover .score{
+            opacity:0;
+            /* display: none; */
+        }
+        .popular-item:hover .popular-item-cart-link{
+            display:flex;                      
+        }
+        .popular-item-cart-link:hover{
+            background-color:#ffb4b4;
+            transition: 0.5s;
+        }
+        .products-casual{
+            margin-top: 100px;
+            margin-bottom: 100px;
+            width: 100%;
+            background-image: url(./banner4.jpg);
+            background-size: cover;
+        }
+        .products-casual-info{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            color:#f6f6f6;
+        }
+        .products-casual-info span{
+            width: 100%;
+            font-size: 18px;
+            margin-top: 150px;
+            letter-spacing: 3px;
+        }
+        .products-casual-info h3{
+            margin-top: 30px;
+            width: 100%;
+            font-size: 50px;
+            font-weight: normal;
+            letter-spacing: 5px;
+        }
+        .products-casual .shop-link{
+            margin-bottom: 100px;
+        }
+        .products-casual .shop-link span{
+            margin: 0;
+        }
+        .blog{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .blog-list{
+            width: 1180px;
+        }
+        .blog-list h2{
+            font-size: 26px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+        }
+        .blog-list ul{
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+        }
+        .blog-item{
+            font-size: 0;
+            margin: 20px;
+            width: 550px;;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;   
+        }
+        .blog-item img{
+            width: 100%;
+        }
+        .blog-item-info{
+            width: 510px;
+            padding:20px 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: left;
+            background-color:#f6f6f6;
+            position: relative;
+            right: -50px;
+            bottom: 100px;
+        }
+        .blog-item-info h3{
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            word-spacing: 2px;
+            transition: 0.5s;
+        }
+        .blog-item-intro{
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            color:#717171;           
+        }
+        .blog-item-time{
+            font-size: 14px;
+            color:#b2b2b2;
+        }
+        .blog-item:hover .blog-item-info h3{
+            color:#ffb4b4;
+        }
+        
+        .subscribe{
+            width: 1180px;
+            margin: auto;
+            padding: 30px 0px;
+            background-color: #ffece5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 150px;
+        }
+        .subscribe span{
+            font-size: 26px;
+            letter-spacing: 1.2px;
+            color:#232222;
+            margin-right: 80px;
+        }
+        .subscribe .text{
+            border: none;
+            width: 300px;
+            height: 50px;
+            padding-left: 20px;
+        }
+        .subscribe .text:focus{
+            outline: none;
+        }
+        .subscribe .submit{
+            background-color: #000000;
+            color: #f6f6f6;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            width: 150px;
+            height: 50px;
+        }
+        .subscribe .submit:hover{
+            background-color: #ffb4b4;
+            cursor: pointer;
+            border: none;
+        }
+
+        .footer, .footer a{
+            width: 100%;
+            background-color: #000000;
+            color:#ffffff;
+            text-decoration: none;
+        }
+        .footer ul{
+            list-style: none;
+            padding-left: 0;
+        }
+        .footer-nav{
+            width: 1180px;
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        .footer-nav div{
+            flex: 1 1 25%;
+        }
+        .footer-nav h2{
+            margin-top: 60px;
+            font-size: 16px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        .footer-nav a, .footer-nav p{
+            font-size: 14px;
+            font-weight: 300;
+            color:#949494;
+            line-height: 2.5;
+            transition: 0.5s;
+        }
+        .footer-nav p{
+            line-height: 2;
+        }
+        .footer-nav a:hover{
+            color:#ffb4b4;
+        }
+        .footer-bottom-line{
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-bottom{
+            width: 1180px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            padding: 30px 0px;
+            position: relative;
+        }
+        .footer-copyright{
+            font-size: 14px;
+            font-weight: 300;
+            color:#949494;
+        }
+        .footer-social{
+            position: absolute;
+            right: 0px;
+        }
+        .footer-social ul{
+            display: flex;
+        }
+        .footer-social ul li{
+            margin: 10px;
+        }
+        .footer-social a{
+            transition: 0.5s;
+        }
+        .footer-social a:hover{
+            color:#ffb4b4;
+        }
+        .returntop{
+            width: 50px;
+            height: 50px;
+            background-color: #000000;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .returntop a{
+            color:#f6f6f6;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-function">
+            <div class="info-phone">
+                <span>Call us:</span>
+                <button class="btn-phone">+3(800)2345-6789</button>
+            </div>
+            <div class="info-open">
+                <span>7 Days a week from 9:00 am to 7:00 pm</span>
+            </div>
+            <div class="info-space"></div>
+            <div class="currency">
+                <button class="btn-currency">
+                    <span>USD, $</span>
+                    <i class="fa-solid fa-angle-down"></i>
+                </button>
+            </div>
+            <div class="cart">
+                <button class="btn-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="notice">0</div>
+                </button>
+            </div>
+            <div class="login">
+                <button class="btn-login">
+                    <span>Login</span>
+                </button>
+            </div>
+            <div class="searchbar">
+                <input type="search" placeholder="Search...">
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+
+        </div>
+        <div class="header-nav">
+            <a class="nav-logo" href="#">
+                <h1>VARIE GATED</h1>
+                <img src="./logo.png" alt="VARIE GATED">
+            </a>
+            <div class="nav-main">
+                <ul>
+                    <li class="nav-main-first">
+                        <a href="#">
+                            <span >HOME</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>ABOUT</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button>
+                            <span>FEATURES</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <span>BLOG</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <span>SHOP</span>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>CONTACTS</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-social">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-g"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="event">
+            <img class="event-bg" src="./bg_slider.jpg" alt="背景圖">
+            <div class="event-main">
+                <img class="main-view" src="./slider1.jpg" alt="ON SALE">
+                <div class="event-info">
+                    <div class="event-sale">
+                        <span>-20% SALE</span>
+                    </div>
+                    <div class="event-title">
+                        <h2>BE A CHERRY ON PIE<br>
+                            IN ANY SITUATION
+                        </h2>
+                    </div>
+                    <div class="event-space"></div>
+                    <div class="event-text">
+                        <p>Experiment, mix and showcase colors, textures and styles!<br>Be yourself and impress others!
+                        </p>
+                    </div>
+                    <div class="event-link">
+                        <a href="#">
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                            <span>Read More</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="event-page">
+                    <button>
+                        <span>01</span>
+                    </button>
+                    <button>
+                        <span>02</span>
+                    </button>
+                    <button>
+                        <span>03</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="event-saleinfo-bg">
+            <div class="event-saleinfo">
+                <div class="saleinfo-delivery">
+                    <h3>FREE STANDARD DELIVERY</h3>
+                    <span>on order over $49</span>
+                </div>
+                <div class="saleinfo-cupon">
+                    <h3>30% OFF 100’S PANTYS</h3>
+                    <span>use code: pantyup 30</span>
+                </div>
+                <div class="saleinfo-student">
+                    <h3>20% STUDENT DISCOUNT PLUS</h3>
+                    <span>free next day delivey, excludes sale.</span>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="categories">
+            <div class="categories-list">
+                <div class="categories-content">
+                    <h2>SHOP CATEGORIES</h2>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img src="./cat5-275x376.jpg" alt="Blazers">
+                                <div class="space"></div>
+                                <h3>Blazers</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./cat4-275x376.jpg" alt="Dresses">
+                                <div class="space"></div>
+                                <h3>Dresses</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./cat3-275x376.jpg" alt="Jumpsuits">
+                                <div class="space"></div>
+                                <h3>Jumpsuits</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./cat2-275x376.jpg" alt="New Arrival">
+                                <div class="space"></div>
+                                <h3>New Arrival</h3>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="categories-promote">
+                <div class="promote-view">
+                    <img src="./image.jpg" alt="Blouses">
+                    <div class="promote-view-bg"></div>
+                </div>
+                <div class="promote-text">
+                    <h3>FAVOURITE <br>BLOUSES</h3>
+                    <p>Our new favourite blouses are defined by great all-over patterns and special details. Our new
+                        favourite blouses are defined by great all-over patterns and special details.</p>
+                    <div class="shop-link">
+                        <a href="#">
+                            <span>SHOP NOW</span>                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="categories-accessories">
+                <div class="belt">
+                    <a class="belt-link" href="#">
+                        <h3>LEATHER BELT</h3>
+                        <img src="./banner11.png" alt="Belt">
+                        <span>Our whole range of cotton, woolen and<br>leather wristbands </span>
+                    </a>
+                </div>
+                <div class="bag">
+                    <a class="bag-link" href="#">
+                        <h3>leather bags</h3>
+                        <img src="./banner12.png" alt="bag">
+                        <span>All of our leather made card holders<br>come now at a greatly reduced price. </span>
+                    </a>
+                </div>
+                <div class="sunglass">
+                    <a class="sunglass-link" href="#">
+                        <h3>SUNGLASSES</h3>
+                        <img src="./banner13.png" alt="sunglass">
+                        <span>Buy a brand new, handmade leather belt<br> today and get a 15% discount!</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="products-popular">
+                <h2>MOST RECENT POPULARS MODELS</h2>
+                <div class="popular-list">
+                    <ul>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Buttoned-shirt_2-370x470.jpg" alt="recent popular models">                                        
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">BLAZERS JUMPSUITS</span>
+                                        <h3 class="item-info">BUTTONED SHIRT</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>                                    
+                                    <div class="price">
+                                        <span>59.00$</span>
+                                    </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Checked-tunic_1-370x470.jpg" alt="recent popular models">
+                                        <div class="featuretag">
+                                            <span>Featured</span>
+                                        </div>
+                                        <div class="popular-item-view-detail">
+                                            <img src="./Checked-tunic_3-370x470.jpg" alt="recent popular models">
+                                        </div>
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">Trousers-Shorts Blazers dresses</span>
+                                        <h3 class="item-info">Checked tunic</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>                                    
+                                    <div class="price">
+                                        <span>69.00$</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Embroidered-shirt_1-370x470.jpg" alt="recent popular models">
+                                        <div class="featuretag">
+                                            <span>Featured</span>
+                                        </div>
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">Trousers-Shorts Blazers dressed jumpsuits new arrival</span>
+                                        <h3 class="item-info">Embroidered shirt</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>                                    
+                                    <div class="price">
+                                        <span>36.00$</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Faux-leather-jacket-with-flowing-lapels_1-370x470.jpg" alt="recent popular models">
+                                        <div class="popular-item-view-detail">
+                                            <img src="./Faux-leather-jacket-with-flowing-lapels_2-370x470.jpg" alt="recent popular models">
+                                        </div>
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">Trousers-Shorts Blazers new arrival</span>
+                                        <h3 class="item-info">Faux leather jacket with flowing lapels</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="price">
+                                        <span>96.00$</span>
+                                    </div>
+                                    <div class="score">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Lightweight-puffer-jacket_2-370x470.jpg" alt="recent popular models">
+                                        <div class="featuretag">
+                                            <span>Featured</span>
+                                        </div>
+                                        <div class="popular-item-view-detail">
+                                            <img src="./Lightweight-puffer-jacket_1-370x470.jpg" alt="recent popular models">
+                                        </div>
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">Trousers-Shorts Dresses Jumpsuits</span>
+                                        <h3 class="item-info">Lightweight puffer jacket</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>                                    
+                                    <div class="price">
+                                        <span>54.00$</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Polka-dot-shirt-dress_2-370x470.jpg" alt="recent popular models">
+                                        <div class="popular-item-view-detail">
+                                            <img src="./Polka-dot-shirt-dress_1-370x470.jpg" alt="recent popular models">
+                                        </div>
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">Trousers-Shorts Dresses</span>
+                                        <h3 class="item-info">Polka dot shirt dress</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="price">
+                                        <span>66.00$</span>
+                                    </div>
+                                    <div class="score">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Ripped-denim-jacket_2-370x470.jpg" alt="recent popular models">
+                                        <div class="popular-item-view-detail">
+                                            <img src="./Ripped-denim-jacket_1-370x470.jpg" alt="recent popular models">
+                                        </div>
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">Trousers-Shorts Dresses jumpsuits</span>
+                                        <h3 class="item-info">Ripped denim jacket</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>                                    
+                                    <div class="price">
+                                        <span>35.00$</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="popular-item">
+                                <a class="popular-item-link" href="#">
+                                    <div class="popular-item-view">
+                                        <img src="./Suede-effect-dress_1-370x470.jpg" alt="recent popular models">
+                                        <div class="featuretag">
+                                            <span>Featured</span>
+                                        </div>
+                                        <div class="popular-item-view-bg">
+                                            <div class="popular-item-view-bg-icon">
+                                                <i class="fa-solid fa-heart"></i>
+                                                <i class="fa-solid fa-scale-balanced"></i>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>                           
+                                        </div>
+                                    </div>
+                                    <div class="popular-item-info">
+                                        <span class="item-info">Trousers-Shorts Dresses jumpsuits</span>
+                                        <h3 class="item-info">Suede effect dress</h3>
+                                        <div class="popular-item-cart-link">
+                                            <a href="#">
+                                                <div class="cart-link">
+                                                    <span>ADD TO CART</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="price">
+                                        <span>89.00$</span>
+                                    </div>
+                                    <div class="score">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>                            
+                    </ul>
+                </div>
+            </div>
+            <div class="products-casual">
+                <div class="products-casual-info">
+                    <span>DEALY DEALS</span>
+                    <h3>MODERN CASUAL<br>
+                        ESSENTIALS</h3>
+                    <div class="shop-link">
+                        <a href="#">
+                            <span>SHOP NOW</span>
+                        </a>
+                    </div>
+                </div>                
+                
+            </div>
+        </section>
+
+        <section class="blog">
+            <div class="blog-list">
+                <h2>LASTEST FROM BLOG</h2>
+                <ul>
+                    <li>
+                        <div class="blog-item">
+                            <a href="#">
+                                <img src="./image11-565x382.jpg" alt="">
+                                <div class="blog-item-info">
+                                    <h3>WHEN IN DOUBT, WEAR ROSE PUMPS</h3>
+                                    <p class="blog-item-intro">It’s always a good idea to invest in a good pair of nude pumps. It’s a timeless wardrobe staple just…</p>
+                                    <span class="blog-item-time">22 February, 2018post by admin</span>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="blog-item">
+                            <a href="#">
+                                <img src="./image12-565x382.jpg" alt="">
+                                <div class="blog-item-info">
+                                    <h3>HEM YOUR PANTS FOR A SHOE HEIGHT</h3>
+                                    <p class="blog-item-intro">A mistake many people make is wearing pants (or dresses) that are too long or too short for their shoes.…</p>
+                                    <span class="blog-item-time">22 February, 2018post by admin</span>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+        </section>
+
+        <div class="subscribe">
+            <span>GET THE LATEST NEWS DELIVERED DAILY!</span>
+            <input class="text" type="text" placeholder="Enter please your email">
+            <input class="submit" type="submit" value="SUBSCRIBE">
+        </div>
+    </main>
+    <div class="returntop">
+        <a href="#">
+            <i class="fa-solid fa-angle-up"></i>
+        </a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-nav">
+            <div class="footer-nav-categories">
+                <h2>CATEGORIES</h2>
+                <ul>
+                    <li>
+                        <a href="#">Help & Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="#">Returns & Refunds</a>
+                    </li>
+                    <li>
+                        <a href="#">Online Stores</a>
+                    </li>
+                    <li>
+                        <a href="#">Terms & Conditions</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-nav-store">
+                <h2>OUR STORE</h2>
+                <ul>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#">Shop</a>
+                    </li>
+                    <li>
+                        <a href="#">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-nav-protfile">
+                <h2>PROTFILE</h2>
+                <ul>
+                    <li>
+                        <a href="#">Checkout</a>
+                    </li>
+                    <li>
+                        <a href="#">My account</a>
+                    </li>
+                    <li>
+                        <a href="#">Order tracking</a>
+                    </li>
+                    <li>
+                        <a href="#">Help & support</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-nav-aboutus">
+                <h2>ABOUT US</h2>
+                <p>Variegated is the place where everyone can is able to find some clothing called to highlight one’s individuality! We are waiting right for you!</p>
+            </div>
+
+        </div>
+        <div class="footer-bottom-line">
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <span> © 2022 Variegated. All Rights Reserved.</span>
+                </div>
+                <div class="footer-social">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa-solid fa-g"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+        
+    </footer>
+
+
+
+
+
+
+    
+</body>
+
+</html>

@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/81c2f83ad1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../grid.css">
+    <!-- 秉澄這邊給你加持2 -->
+    <style>
+        html{
+            scroll-behavior:smooth;
+        }
+        :root{
+            width: 100%;
+            --dark:#333;
+            --green:#518432;
+            --gray:#949494;
+            --blue:#48c8fd;
+            --red:#dc3545;
+            --bgc:#222;
+            line-height: 1;
+            text-align: center;
+            font-family: BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+        a,label{
+            text-decoration: none;
+            cursor: pointer;
+            color:#000;
+        }
+        .row{
+            width: 100%;
+        }
+        ul{
+            list-style: none;
+            margin: auto;
+            padding-left: 0px;
+            box-sizing: border-box;
+        }
+        input{
+                display: none;
+            }
+        header{
+            color:var(--dark);
+            padding: 20px 20px;
+            box-sizing: border-box;
+            position: sticky;
+            top:0;
+            background-color: #fff;
+            z-index: 6;
+        }
+        header h1{
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        header .logo{
+            display: flex;
+            justify-content: center;
+        }
+        .logo a{
+            max-width: 30%;
+            display: flex;
+        }
+        header .logo img{
+            max-width: 100%;
+            vertical-align: middle;
+        }
+        header .func-nav{
+            display: flex;
+            align-items: center;
+            justify-content:flex-end;
+        }
+        header .func-nav label{
+            padding: 0px 10px;
+            font-size: 24px;
+        }
+        header .func-nav .cart{
+            position: relative;
+        }
+        header .func-nav .cart .cart-info{
+            position: absolute;
+            right: -1px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        header .func-nav .cart:hover .cart-info{
+            color:var(--green);
+        }
+        main{
+            flex-direction: column;
+        }
+        .main-view{
+            padding-top: 60px;
+            padding-bottom: 40px;
+            width: 100%;
+            background-image: url(./bg-slide10.webp);
+        }
+        .main-view-text{
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            padding-left: 10%;;
+        }
+        .main-view-text h2{
+            font-size: 35px;
+            font-weight: 400;
+            margin-bottom: 3%;
+            line-height: 1.3;
+            display: block;
+        }
+        .main-view-text p{
+            font-size: 20px;
+            display: block;
+            margin-top: 0px;
+            margin-bottom: 5%;
+        }
+        .main-view-pic{
+            display: flex;
+            justify-content: flex-start;
+        }
+        .main-view img{
+            width: 80%;
+        }
+        .main-view .shop-link{            
+            background-color: #000;
+            color:#fff;
+            height: 50px;
+            width: 150px;
+            font-size: 10px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 50px;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            transition: 0.5s;
+        }
+        .main-view .shop-link:hover{
+            background-color: var(--blue);
+        }
+
+        .intro h2{
+            margin-top: 80px;
+            margin-bottom: 60px;
+            font-size: 30px;
+            font-weight: 600;
+            color:var(--green);
+        }
+        .intro span{
+            color: var(--gray);
+            font-style: italic;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .intro-content{
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        .intro-content-text{
+            box-sizing: border-box;
+            display:block;
+            text-align: left;
+            margin:auto;
+            padding-left: 20px;
+        }
+        .intro-content-text div + div{
+            margin-top: 40px;
+        }
+        .intro-content-text div h3{
+            font-size: 20px;
+            color: var(--dark);
+            margin-bottom: 0px;
+            letter-spacing: 0.8px;
+        }
+        .intro-content-text div p{
+            color:var(--gray);
+            line-height: 1.5;
+        }
+        .shoplist{
+            margin-top: 60px;
+        }
+        .shoplist h2{
+            font-size: 36px;
+            font-weight: 500;
+            color:var(--green);
+        }   
+        .item{
+            box-sizing: border-box;
+            padding: 15px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .item a{
+            display: flex;
+            width: 100%;
+            position: relative;
+        }
+        .item img{
+            width: 100%;
+        }
+        .item .detail{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            opacity: 0;
+            transition: 0.5s;
+            z-index: 1;
+        }
+        .white{
+            position:absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color:rgba(255,255,255,0.5);
+            z-index: 2;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .item-title{
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom:  20px;;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+            transition: 0.5s;
+        }
+        .item span{
+            font-weight: 700;
+        }
+        .item-func{
+            width: 200px;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--dark);
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 3;
+            opacity: 0;
+            transition:0.5s;
+        }
+        .item-func a{
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            background-color: #fff;
+            border-radius: 50%;
+            font-size: 16px;
+            color:var(--green);
+            box-shadow: 0px 0px 5px var(--gray);
+            transition: 0.5s;
+        }
+        .item-func a + a{
+            margin-left: 20px;
+        }
+        .item:hover .detail{
+            opacity: 1;
+        }
+        .item:hover .white{
+            opacity: 1;
+        }
+        .item:hover .item-func{
+            opacity: 1;
+            transition:0.5s 0.5s;
+        }
+        .item-func a:hover{
+            background-color:var(--green);
+            color:#fff;
+        }
+        .item-func a:hover::before{
+            background-color: #000;
+            color:#fff;
+            height: 26px;
+            line-height: 26px;
+            position: absolute;
+            top:-30px;
+            border-radius: 5px;
+            width: 100px;
+        }
+        .item-func a:nth-child(1):hover::before{
+            content: 'Add to wishlist';
+            width: 120px;
+        }
+        .item-func a:nth-child(2):hover::before{
+            content: 'Add to cart';
+        }
+        .item-func a:nth-child(3):hover::before{
+            content: 'Quickview';
+        }
+        .item-title:hover{
+            color:var(--green);
+        }
+        .tag-sale,.tag-soldout{
+            background-color: var(--green);
+            color: #fff;
+            position: absolute;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 4;
+        }
+        .tag-sale{
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            right: 0;
+            border-radius: 20px 0px 20px 0px;
+        }
+        .tag-soldout{
+            width: 80px;
+            height: 20px;
+            line-height: 20px;
+            top:40px;
+        }
+        .shoplist-block :nth-child(2) span::before{
+            content: '$200.00';
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        .shoplist-block :nth-child(3) span::before{
+            content: '$200.00';
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        .shoplist-block :nth-child(7) span::before{
+            content: '$200.00';
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        .shoplist-block :nth-child(8) span::before{
+            content: '$200.00';
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+        
+        .product{
+            margin-top: 20px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-image: url(./bg-video1.webp);
+        }
+        .product-text{
+            display: block;
+            margin: auto;
+            padding: 0px 20px;
+            text-align: left;
+        }
+        .product h2{
+            font-size: 30px;
+            color:var(--green);
+        }
+        .product p{
+            color: var(--dark);
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        .product .shop-link{
+            display: inline-block;
+            position: relative;
+            border: 1px solid #000;
+            height: 40px;
+            width: 150px;
+            font-size: 10px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 40px;
+            letter-spacing: 2px;
+            overflow: hidden;
+        }
+        .product .shop-link:before{
+            color:#fff;
+            content: 'SHOP NOW';
+            position: absolute;
+            width: 152px;
+            height: 40px;
+            top:-42px;
+            left: 0;
+            transition: 0.5s;
+            background-color: var(--green);
+        }
+        .product .shop-link:hover::before{
+            transform: translateY(42px);
+        }
+        .product-iframe-block{
+            margin: auto;
+        }
+        .product-iframe{
+            box-sizing: border-box;
+            padding: 0px 20px;
+            margin-top: 20px;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            display: flex;
+        }
+        .product-iframe img{
+            width: 100%;
+        }
+        .tag-play{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            color:#fff;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            font-size: 16px;
+            text-align: center;
+            line-height: 50px;
+            padding: 0;
+        }
+        .product-video{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 560/315;
+            z-index: 7;
+        }
+        .product-video iframe{
+            width: 100%;
+            height: 50%;
+            vertical-align: middle;
+        }
+        .close{
+            background-color: #000;
+            color:#fff;
+            position: fixed;
+            right: 0;
+            top:0;
+            width: 50px;
+            height: 40px;
+            z-index: 1;
+            display: block;
+            line-height: 40px;
+        }
+        #video-switch:checked ~ main .product-video{
+            display: flex;
+        }
+        #video-switch{display: none;}
+        
+        .social{
+            margin-top: 60px;
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        .social i{
+            font-size: 60px;
+        }
+        .social span{
+            margin-top: 30px;
+            margin-bottom: 60px;
+            font-size: 35px;
+            font-weight: 600;
+            color: var(--dark);
+            letter-spacing: 1.5px;
+        }
+        .social-link .col{
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .social-link .col a{
+            position: relative;
+            display: block;
+        }
+        .social-link .col:nth-child(4){
+            display: none;
+        }
+        .social a img{
+            width: 100%;
+            vertical-align: middle;
+        }     
+        .social-bg{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .social-link a:hover .social-bg{
+            opacity: 1;
+        }
+
+        footer{
+            background-color: #f4f4f4;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        footer .logo{
+            margin: auto;
+            width: 150px;
+            margin-bottom: 30px;
+        }
+        footer .logo img{
+            width: 100%;
+            vertical-align: middle;
+        }
+        footer .contact{
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+        footer .contact :nth-child(2)::before{
+            content: '';
+            width: 20px;
+            height: 1px;
+            background-color:rgba(0,0,0,0.3);
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+        footer .contact :nth-child(3)::before{
+            content: '';
+            width: 20px;
+            height: 1px;
+            background-color:rgba(0,0,0,0.3);
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+        .footer-social{
+            width: 200px;
+            margin: auto;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .footer-social .col{
+            background-color: #000;
+            color:#fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            line-height: 36px;
+            font-size: 14px;
+            border: 2px solid #000;
+            transition: 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-social .col i{
+            position: absolute;
+            line-height: 36px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 7;
+        }
+        .footer-social .col::after{
+            content:'';
+            color:#fff;
+            position: absolute;
+            bottom: -46px;
+            left: -2px;
+            background-color: var(--green);
+            width: 44px;
+            height: 44px;
+            transition: 0.3s;
+            z-index: 5;
+        }
+        .footer-social .col:hover::after{
+            transform: translateY(-44px);
+        }
+        .copyright{
+            font-size: 12px;
+            color:var(--gray);
+            letter-spacing: 0.5px;
+        }
+
+        .search-block{
+            position: fixed;
+            background-color: #fff;
+            width: 100%;
+            height: 50%;
+            z-index: 7;
+            box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+            opacity: 0;
+            top:-100%;
+            transition: 0.5s;
+        }
+        .search-block p{
+            font-size: 46px;
+            font-weight: 700;
+        }
+        .search-box{
+            border-bottom: 3px solid rgba(151, 151, 151, 0.5);
+            max-width: 1000px;
+            width: 80%;
+            flex-grow: 1;
+            height: 80px;
+            margin-top: 50px;
+            margin: auto;
+            font-size: 26px;
+            padding: 5px 20px;
+            display: flex;
+        }
+        .search-input{
+            display: block;
+            margin: auto;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        .search-input:focus{
+            outline: none;
+        }
+        .search-block button{
+            cursor: pointer;
+            border: none;
+            background-color: #fff;
+        }
+        .search-block label{
+            position: absolute;
+            top:10px;
+            right: 20px;
+            font-size: 30px;
+        }
+        #search-switch:checked ~ .search-block{
+            opacity: 1;
+            top:0;
+            transition: 0.5s;
+        }
+        .cart-block{
+            display: block;
+            position: fixed;
+            z-index: 8;
+            width: 350px;
+            height: 100%;
+            background-color: #fff;;
+            right:-100%;
+            transition: 0.5s;
+        }
+        .cart-block-nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .cart-block-nav label,.cart-block-nav .cart-info{
+            width: 50px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            border: 1px solid rgba(151, 151, 151, 0.5);
+            display: inline-block;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        .cart-block-nav p{
+            width: 50px;
+            height: 40px;
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 14px;
+            flex-grow: 1;
+            display: inline-block;
+            border: 1px solid rgba(151, 151, 151, 0.5);
+            margin-top: 0;
+        }
+        .cart-msg {
+            font-size: 22px;
+            font-weight: 600;
+            position: relative;
+            top:35%
+        }
+        .cart-block .shop-link{
+            display: block;
+            margin: auto;
+            width: 180px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #000;
+            color:#fff;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            position: relative;
+            top:35%;
+            transition: 0.5s;
+        }
+        .cart-block .shop-link:hover{
+            background-color: var(--green)   ;
+        }
+        #cart-switch:checked ~ .cart-block{
+            opacity: 1;
+            right: 0;
+            transition: 0.5s;
+        }
+        .cart-page-bg{
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            position: fixed;
+            z-index: 7;
+        }
+        #cart-switch:checked ~ .cart-page-bg{
+            display: block;
+        }
+        .gotop{
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            line-height: 50px;
+            color:var(--green);
+            font-size: 20px;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+        }      
+        .user-page{
+            background-color: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            z-index: 7;
+            position: fixed;
+            align-items: center;
+            display: none;
+        }
+        .user-block{
+            background-color: #fff;
+            width: 400px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            padding: 0px 80px;
+        }
+        .user-block-close{
+            position: absolute;
+            top:-30px;
+            right:0px;
+            color:#fff;
+            font-size: 26px;
+        }
+        .user-block img{
+            width: 40%;
+            margin-top: 40px;
+        }
+        .user-block p{
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            border-top: 1px solid rgba(151, 151, 151, 0.5);
+            box-sizing: border-box;
+            font-size: 22px;
+            font-weight: 500;
+            margin: 20px 0px 0px 0px ;
+        }
+        .user-block input{
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            border: 1px solid rgba(151, 151, 151, 0.5);
+            margin-top: 0;
+            margin: 8px 0px;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        .user-block a{
+            width: 100%;
+            color:var(--gray);
+            font-size: 16px;
+            text-align: left;
+            margin: 10px 0px;
+            transition: 0.5s;
+        }
+        .user-block a:hover{
+            color:var(--green);
+        }
+        .user-block .login{
+            background-color: #000;
+            color:#fff;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            margin: 10px 0px;
+            transition: 0.5s;
+        }
+        .user-block .login:hover{
+            background-color:var(--green);
+        }
+        .register{
+            background-color: #ddd;
+            width: 100%;
+            margin-top: 20px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+        }
+        .register a{
+            margin: 0px 10px ;
+        }
+        #user-switch:checked ~ .user-page{
+            display: block;
+        }
+
+        @media screen and (max-width:767.89px) {
+            header{
+                padding: 20px 15px;
+            }
+            header .container{
+                width: 100%;
+                position: relative;
+            }
+            .logo a{
+                max-width: 70%;
+            }
+            header .func-nav{
+                color:var(--green);
+            }
+            header .func-nav .cart .cart-info{
+                position: absolute;
+                right: 0;
+                left: 0;
+                top:-15px;
+            }
+            .func-nav .login{
+                display: none;
+            }
+            .hb{
+                width:40px;
+                height: 40px;
+                order: -1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;                
+            }
+            .hb span{
+                background-color: var(--green);
+                height: 2px;
+                width: 30px;
+            }
+            .hb span:nth-child(2){
+                width: 20px;
+            }
+            .hb span:nth-child(3){
+                width: 15px;
+            }
+            .main-nav{
+                opacity: 0;
+                left: -100%;
+                position:fixed;
+            }
+            #main-nav-switch:checked ~ header .main-nav{
+                width: 100%;
+                height: 100%;
+                top:0;
+                bottom:0;
+                left:0;
+                right: 0;
+                margin: auto;
+                background-color: rgba(0,0,0,0.5);
+                text-align: left;
+                opacity: 1;
+                transition: 0.5s;
+            }
+            .main-nav ul{
+                display: flex;
+                flex-wrap: wrap;
+                /* flex-direction: column; */
+                align-content: flex-start;
+                background-color: #fff;
+                width: 400px;
+                height: 100%;
+                margin-left: 0;
+                overflow: auto;
+            }
+            .mobile-banner{
+                width: 400px;
+                display: flex;
+                position: fixed;
+            }
+            .mobile-menu,.mobile-login{
+                width: 50%;
+                height: 50px;
+                border-bottom: 1px solid rgba(0,0,0,0.3);
+                box-sizing: border-box;
+                text-align: center;
+                font-size: 16px;
+            }
+            .mobile-menu{
+                background-color: #000;
+            }
+            .mobile-menu a{
+                line-height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color:#fff;
+            }
+            .mobile-menu-icon{
+                align-self:center;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                padding-right: 10px;
+            }            
+            .mobile-menu span{
+                width: 20px;
+                height: 2px;
+                background-color: #fff;
+            }
+            .mobile-menu span:nth-child(2){
+                width: 10px;
+            }
+
+            .mobile-login{
+                line-height: 50px;
+            }
+            .mobile-login i{
+                padding-right: 10px;
+                font-size: 20px;
+            }
+            .main-nav .col{
+                width: 100%;
+            }
+            .main-nav li{
+                background-color: #fff;
+                width: 100%;
+                box-sizing: border-box;
+                display: flex;
+                flex-wrap: wrap;
+                font-size: 18px;
+                font-weight: 500;
+                color:var(--dark);
+                transition: 0.5s;
+                justify-content: space-between;   
+            }
+            .home{
+                margin-top: 50px;
+            }
+            .home-menu,.pages-menu{
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            .home-menu a,.pages-menu a{
+                width: 100%;
+                margin: 5px 0px;
+            }
+            .home-menu img{
+                display: none;
+            }
+            .main-nav li a:hover{
+                color:var(--green);
+            }
+            .menu-lv1{
+                width: 400px;
+                justify-content: space-between;
+                padding-left:20px;
+                padding: 20px 20px;
+                font-size: 22px;
+            }
+            .menu-lv1 li{
+                padding: 15px 0px 0px 10px ;
+            }
+            .menu-lv1 li:last-child{
+                padding-bottom: 0px;
+            }
+            .menu-lv1 label{
+                font-size: 24px;
+            }
+            .menu-lv2 a{
+                width: 100%;
+                display: block;
+                padding: 10px 0px ;
+                letter-spacing: 1.5px;
+                font-size: 16px;
+                line-height: 1;
+            }
+            .menu-lv2 a:first-child{
+                font-size: 18px;
+            }
+            .menu-lv2 a:first-child::after{
+                content: '';
+                display:block;
+                width: 80px;
+                height: 2px;
+                background-color: var(--green);
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .menu-lv1 ul{
+            display: none;
+            }
+            .menu-lv1 label{
+                transition: 0.5s;
+            }
+            #mobile-subhome-switch:checked ~ header .home label{
+                transform: rotate(180deg);
+            }
+            #mobile-subshop-switch:checked ~ header .shop label{
+                transform: rotate(180deg);
+            }
+            #mobile-subfeatured-switch:checked ~ header .featured label{
+                transform: rotate(180deg);
+            }
+            #mobile-subpages-switch:checked ~ header .pages label{
+                transform: rotate(180deg);
+            }
+            #mobile-subelement-switch:checked ~ header .element label{
+                transform: rotate(180deg);
+            }
+            #mobile-subhome-switch:checked ~ header  .home-menu{
+                display: flex;
+            }
+            #mobile-subshop-switch:checked ~ header  .shop-menu{
+                display: flex;
+            }
+            #mobile-subfeatured-switch:checked ~ header  .featured-menu{
+                display: flex;
+            }
+            #mobile-subpages-switch:checked ~ header  .pages-menu{
+                display: flex;
+            }
+            #mobile-subelement-switch:checked ~ header  .element-menu{
+                display: flex;
+            }
+            .mobile-close{
+                background-color: var(--green);
+                width: 400px;
+                height: 50px;
+                position: fixed;
+                bottom: 0;
+                color:#fff;
+                line-height: 50px;
+                text-align: center;
+                font-size: 20px;
+            }
+            .featured,.element{
+                position: relative;
+            }
+            .featured::after,.element::after{
+                content:'NEW';
+                background-color: var(--blue);
+                color:#fff;
+                width: 60px;
+                height: 18px;
+                line-height: 18px;
+                font-size: 16px;
+                position: absolute;
+                right:60px;
+                text-align: center;
+            }
+            .shop-menu :nth-child(2) :nth-child(3n+2){position: relative;}
+            .shop-menu :nth-child(2) :nth-child(3n+2)::after{
+                content:'HOT';
+                background-color: var(--red);
+                color:#fff;
+                width: 60px;
+                height: 18px;
+                line-height: 18px;
+                font-size: 13px;
+                font-weight: 600;
+                position: absolute;
+                top: -5px;
+                left:60px;
+                text-align: center;
+            }
+
+
+        }
+        @media screen and (min-width:768px) {
+            .mobile-banner,.mobile-menu,.main-nav label,.mobile-menu-icon,.mobile-login,.mobile-close{display: none;}
+            header .main-nav{
+                display: flex;
+                flex-direction: row;
+            }
+            header .main-nav .col{
+                display: inline-block;
+            }
+            header .main-nav a{
+                padding-top: 10px;
+                padding-bottom: 10px;
+                transition: 0.3s;
+            }
+            header .main-nav a:hover{
+                color:var(--green);
+            }
+            .menu-lv1{
+                position: relative;
+                font-weight: 600;
+                font-size: 18px;
+            }
+            .menu-lv1 ul,.pages-menu,.home-menu{
+                background-color: #fff;
+                box-shadow: 0px 0px 3px #000;
+                position: absolute;
+                top:30px;
+                left: 0px;
+                display: none;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: space-around;
+                padding:20px 20px;
+            }
+            .home-menu{
+                left:0px;
+            }
+            .menu-lv1:hover ul{
+                display: flex;
+            }
+            .menu-lv1:hover .pages-menu{
+                display: flex;
+            }
+            .menu-lv1:hover .home-menu{
+                display: flex;
+            }
+            .menu-lv1 li{
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                text-align: left;
+            }
+            .menu-lv1 li a{
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .menu-lv1 li a:first-child{
+                color:var(--green);
+            }
+            .shop-menu a:first-child::after,
+            .featured-menu a:first-child::after,
+            .element-menu a:first-child::after{
+                content: '';
+                display:block;
+                width: 80px;
+                height: 2px;
+                background-color: var(--green);
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .shop-menu{
+                width: 400px;
+            }
+            .featured-menu{
+                width: 800px;
+            }
+            .featured-menu img{
+                width:200px;
+            }
+            .element-menu{
+                width: 600px;
+                background-image: url(./banner-menu2.png);
+            }
+            .pages-menu{
+                right: 0px;
+                width: 150px;
+                flex-direction: column;   
+            }
+            .pages-menu a{
+                line-height: 2;
+            }
+            .home-menu{
+                width: 900px;
+                justify-content: flex-start;
+            }
+            .home-menu .col{
+                padding: 0px 10px;
+                box-sizing: border-box;
+                width: 33.3333%;
+                color:var(--green);
+                letter-spacing: 2px;
+                text-align: left;
+            }
+            .home-menu img{
+                width: 100%;
+                transition: 0.3s;
+            }
+            .home-menu .col:hover img{
+                box-shadow: 0px 0px 3px #000;
+            }
+            .featured,.element{
+                position: relative;
+            }
+            .featured::after,.element::after{
+                content:'NEW';
+                background-color: var(--blue);
+                color:#fff;
+                width: 60px;
+                height: 18px;
+                line-height: 18px;
+                font-size: 13px;
+                position: absolute;
+                top: -20px;
+                right:-10px;
+            }
+            .shop-menu :nth-child(2) :nth-child(3n+2){position: relative;}
+            .shop-menu :nth-child(2) :nth-child(3n+2)::after{
+                content:'HOT';
+                background-color: var(--red);
+                color:#fff;
+                width: 60px;
+                height: 18px;
+                line-height: 18px;
+                font-size: 13px;
+                position: absolute;
+                top: -10px;
+                right:-10px;
+                text-align: center;
+            }
+            .main-view-text h2{
+                font-size: 60px;
+            }
+            .intro h2{
+                font-size: 36px;
+            }
+            .intro-content{
+                flex-direction: row;
+            }
+            .intro-content-text{
+                text-align: right;
+                margin-left: 0px;
+            }
+            .intro .intro-content-text:nth-child(3){
+                text-align: left;
+            }
+            .intro-content a{
+                display: flex;
+                text-align: center;
+                align-items: center;
+            }
+            .intro-content img{
+                width: 100%;
+                margin: auto;
+            }
+            .product-text{
+                padding-left: 20%;
+                padding-right: 2.5%;
+            }
+            .product h2{
+                font-size: 35px;
+            }
+            .product-iframe{
+                margin-left: 0px;
+                margin-top: 0px;
+                width: 70%;
+            }
+            .product-video iframe{
+                width: 50%;
+                height: 50%;
+            }
+            .social-link .col:nth-child(4){
+                display: flex;
+            }
+        }
+
+
+
+        
+        
+
+
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="video-switch">
+    <input type="checkbox" id="main-nav-switch">
+    <input type="checkbox" id="mobile-subhome-switch">
+    <input type="checkbox" id="mobile-subshop-switch">
+    <input type="checkbox" id="mobile-subfeatured-switch">
+    <input type="checkbox" id="mobile-subpages-switch">
+    <input type="checkbox" id="mobile-subelement-switch">
+    <input type="checkbox" id="search-switch">
+    <input type="checkbox" id="cart-switch">
+    <input type="checkbox" id="user-switch">
+
+    <div class="gotop">
+        <a href="#" class="fa-solid fa-angle-up"></a>
+    </div>
+    <div class="search-block">
+        <p>Start typing and hit Enter</p>
+        <div class="search-box">
+            <input class="search-input" type="text" placeholder="Search anything">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <label for="search-switch" class="fa-solid fa-xmark"></label>
+    </div>
+    <div class="cart-page-bg"></div>
+    <div class="cart-block">
+        <div class="cart-block-nav">
+            <label for="cart-switch" class="fa-solid fa-xmark"></label>
+            <p>SHOPPING CART</p>
+            <div class="cart-info">0</div>
+        </div>
+        <p class="cart-msg">Your shopping bag is empty</p>
+        <a href="#" class="shop-link">
+            GO TO THE SHOP
+        </a>
+    </div>
+    <div class="user-page">
+        <div class="user-block">
+            <label for="user-switch" class="user-block-close fa-solid fa-xmark"></label>
+            <img src="./logo.webp" alt="sunplant">
+            <p>Great to have you back!</p>
+            <input type="text" placeholder="Email address" id="">
+            <input type="text" placeholder="Password" id="">
+            <a href="#">Forgot your password?</a>
+            <a href="#" class="login">LOG IN</a>
+            <div class="register">
+                Don't have an accourt?
+                <a href="#">Register now <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+    <header>
+        <div class="container">
+            <div class="row row-cols-3 row-cols-md-3">
+                <nav class="main-nav col">
+                    <ul class="row row-cols-md-5">
+                        <div class="mobile-banner">
+                            <div class="mobile-menu">
+                                <a href="#">
+                                    <div class="mobile-menu-icon">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    MENU
+                                </a>
+                            </div>
+                            <label for="user-switch" class="mobile-login">
+                                <i  class="fa-solid fa-circle-user"></i>
+                                LOGIN
+                            </label>
+                        </div>
+                        
+                        <li class="home menu-lv1 col">
+                            <a href="#">HOME</a>
+                            <label for="mobile-subhome-switch" class="fa-solid fa-angle-right"></label>
+                            <div class="home-menu row-cols-md-3">
+                                <a href="#" class="col">
+                                    <img src="./1.jpg" alt="sunplant">
+                                    <p>Home 1</p>
+                                </a href="#">
+                                <a href="#" class="col">
+                                    <img src="./2.jpg" alt="sunplant">
+                                    <p>Home 2</p>
+                                </a href="#">
+                                <a href="#" class="col">
+                                    <img src="./3.jpg" alt="sunplant">
+                                    <p>Home 3</p>
+                                </a href="#">
+                                <a href="#" class="col">
+                                    <img src="./4.jpg" alt="sunplant">
+                                    <p>Home 4</p>
+                                </a href="#">
+                                <a href="#" class="col">
+                                    <img src="./5.jpg" alt="sunplant">
+                                    <p>Home 5</p>
+                                </a href="#">
+                        </li>
+                        <li class="shop menu-lv1 col">
+                            <a href="#">SHOP</a>
+                            <label for="mobile-subshop-switch" class="fa-solid fa-angle-right"></label>
+                            <ul class="shop-menu menu-lv2">
+                                <li>
+                                    <a href="#">SHOP FILTER</a>
+                                    <a href="#">Filter Push Left</a>
+                                    <a href="#">Filter Colappse</a>
+                                </li>
+                                <li>
+                                    <a href="#">SHOP LAYOUT</a>
+                                    <a href="#">Full width</a>
+                                    <a href="#">Side Bar Left</a>
+                                    <a href="#">Side Bar Right</a>
+                                    <a href="#">Infinity Scroll</a>
+                                    <a href="#">Product List</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="featured menu-lv1 col">
+                            <a href="#">FEATURED</a>
+                            <label for="mobile-subfeatured-switch" class="fa-solid fa-angle-right"></label>
+                            <ul class="featured-menu menu-lv2">
+                                <li>
+                                    <a href="#">BLOG LAYOUTS</a>
+                                    <a href="#">Blog Standar No Sidebar</a>
+                                    <a href="#">Blog Standar Sidebar Left</a>
+                                    <a href="#">Blog Standar Sidebar Right</a>
+                                    <a href="#">Blog Grid No Sidebar</a>
+                                    <a href="#">Blog Grid Sidebar</a>
+                                </li>
+                                <li>
+                                    <a href="#">PRODUCT LAYOUT</a>
+                                    <a href="#">Product Large Images</a>
+                                    <a href="#">Product Extended</a>
+                                    <a href="#">Product Gallery</a>
+                                    <a href="#">Product Sticky</a>
+                                    <a href="#">Product Sidebar</a>
+                                </li>
+                                <li>
+                                    <a href="#">PRODUCT TYPES</a>
+                                    <a href="#">Variable</a>
+                                    <a href="#">Video</a>
+                                    <a href="#">360 Degree</a>
+                                    <a href="#">Affiliate</a>
+                                    <a href="#">Simple</a>
+                                    <a href="#">Out of stock</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="pages menu-lv1 col">
+                            <a href="#">PAGES</a>
+                            <label for="mobile-subpages-switch" class="fa-solid fa-angle-right"></label>
+                            <ul class="pages-menu">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                            </ul>
+                        </li>
+                        <li class="element menu-lv1 col">
+                            <a href="#">ELEMENT</a>
+                            <label for="mobile-subelement-switch" class="fa-solid fa-angle-right"></label>
+                            <ul class="element-menu menu-lv2">
+                                <li>
+                                    <a href="#">MAIN STYLE</a>
+                                    <a href="#">No Sidebar</a>
+                                    <a href="#">Default – Menu right</a>
+                                    <a href="#">Minimal</a>
+                                    <a href="#">Classic</a>
+                                    <a href="#">Modren</a>
+                                </li>
+                                <li>
+                                    <a href="#">POST FOMAT</a>
+                                    <a href="#">Elementor</a>
+                                    <a href="#">Logo on menu</a>
+                                    <a href="#">Default – Menu Left</a>
+                                    <a href="#">Logo in menu</a>
+                                </li>
+                                <li></li>
+                            </ul>
+                        </li>
+                        <label class="mobile-close" for="main-nav-switch">
+                            <i class="fa-solid fa-xmark"></i>
+                            CLOSE
+                        </label>
+                    </ul>
+                </nav>
+                
+                <div class="logo col">
+                    <a href="#">
+                        <h1>SUN PLANT</h1>
+                        <img src="./logo.webp" alt="SunPlant">
+                    </a>
+                </div>
+                <div class="func-nav col">
+                    <label class="func-nav search fa-solid fa-magnifying-glass" for="search-switch"></label>
+                    <label class="func-nav login fa-solid fa-circle-user" for="user-switch"></label>
+                    <label class="func-nav cart fa-solid fa-basket-shopping" for="cart-switch">
+                        <div class="cart-info">0</div>
+                    </label>
+                </div>
+                <label for="main-nav-switch" class="hb col">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="main-view row-cols-2 row">           
+            <div class="main-view-text col">
+                <h2>Collection New<br>Beautiful</h2>
+                <p>from $69</p>
+                <a  class="shop-link" href="#">SHOP NOW</a>
+                
+            </div>
+            <div class="main-view-pic col">
+                <img src="./slidesho10-small-1.webp" alt="Collection New Beautiful">
+
+            </div>
+        </div>
+        <section class="intro container">
+            <h2>The important benefits of<br>
+                greenery for the environment and health</h2>
+            <span>Trees have always been considered as "lungs" of the earth. Planting lots of trees helps provide a great deal of oxygen for us to breathe.<br>
+            On average, one tree can provide enough oxygen for four people. At the same time they also absorb C02, ammonia, S02, .. in the world!</span>
+            <div class="row row-cols-md-3 intro-content">
+                <div class="col row row-cols-3  intro-content-text">
+                    <div>
+                        <h3>Reducing environmental pollution</h3>
+                        <p>Trees have always been considered as "lungs" of the earth.</p>
+                    </div>
+                    <div>
+                        <h3>Save water and reduce soil erosion</h3>
+                        <p>Trees can slow down the evaporation of water, increasing air humidity.</p>
+                    </div>
+                    <div>
+                        <h3>Reduce street temperatures</h3>
+                        <p>Planting more trees in densely populated areas will not only make the air there more fresh</p>
+                    </div>
+                </div>
+                <a href="#" class="col">
+                    <img src="./info-v2.webp" alt="benefits of
+                    greenery">
+                </a>
+                <div class="col row row-cols-3 intro-content-text">
+                    <div>
+                        <h3>Energy conservation</h3>
+                        <p>One tree can cool down, cool down 10 rooms</p>
+                    </div>
+                    <div>
+                        <h3>Prevent ultraviolet influence</h3>
+                        <p>Green trees become shade to block the sunlight from the road</p>
+                    </div>
+                    <div>
+                        <h3>Improve human health</h3>
+                        <p>Living in a quiet, cool, clean and fresh environment will make your health better</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="shoplist container">
+            <h2>Staff.Pick</h2>
+            <ul class="row row-cols-2 row-cols-md-3  shoplist-block">
+                <li class="col item">
+                    <a href="#">
+                        <img src="./1-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./1-2.jpg" alt="Sapien Libero">
+                        <div class="white"></div>                        
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Sapien Libero</a>
+                    <span>$150.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./2-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./2-2.jpg" alt="Sapien Libero">
+                        <div class="white"></div>
+                        <div class="tag-sale">SALE</div>
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Fringilla Augue 360</a>
+                    <span>$150.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./3-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./3-2.jpg" alt="Sapien Libero">
+                        <div class="white"></div>
+                        <div class="tag-sale">SALE</div>
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Faded Short Sleeves Variable</a>
+                    <span>$150.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./4-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./4-2.jpg" alt="Sapien Libero">
+                        <div class="white"></div>                        
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Purple Flowers</a>
+                    <span>$180.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./5-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./5-2.jpg" alt="Sapien Libero">
+                        <div class="white"></div>
+                        <div class="tag-soldout">SOLD OUT</div>
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Adipiscing Cursus Out Of Stock</a>
+                    <span>$450.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./6-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./6-2.jpg" alt="Sapien Libero">
+                        <div class="white"></div>
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Fringilla Augue</a>
+                    <span>$320.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./1-2.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./4-2.jpg" alt="Sapien Libero">
+                        <div class="white"></div>
+                        <div class="tag-sale">SALE</div>
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Purple Flowers</a>
+                    <span>$150.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./1-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./4-1.jpg" alt="Sapien Libero">
+                        <div class="white"></div>
+                        <div class="tag-sale">SALE</div>
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Plant</a>
+                    <span>$150.00</span>
+                </li>
+                <li class="col item">
+                    <a href="#">
+                        <img src="./9-1.jpg" alt="Sapien Libero">
+                        <img class="detail"   src="./3-1.jpg" alt="Sapien Libero">
+                        <div class="white"></div>
+                    </a>
+                    <div class="item-func">
+                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    </div>
+                    <a class="item-title"  href="#">Plant Beautiful</a>
+                    <span>$150.00</span>
+                </li>
+            </ul>
+        </div>
+        <div class="row row-cols-md-2  product">   
+            <div class="col product-text">
+                <h2>A Number Of Our Products</h2>
+                <p>Pick up all you need to keep your board in optimum condition with Decathlon’s set of surfboard accessories.
+                </p>
+                <a class="shop-link" href="">SHOP NOW
+                </a>
+            </div>
+            <div class="col product-iframe-block">
+                <div class="product-iframe">
+                    <img src="./video1.webp" alt="A Number Of Our Products">
+                <label class="tag-play" for="video-switch"><i class="fa-solid fa-play"></i></ㄠ>
+                </div>
+            </div>
+            <div class="product-video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/nkhpGC10OVw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <label class="close" for="video-switch"><i class="fa-solid fa-xmark"></i></label>
+            </div>
+        </div>
+        <div class="social container">
+            <i class="fa-brands fa-instagram"></i>
+            <span>SHOP INSTAGRAM</span>
+            <div class="row row-cols-3 row-cols-md-4 social-link">
+                <div class="col">
+                    <a href="#">
+                        <img src="./instagram1.jpg" alt="instagram">
+                        <div class="social-bg"></div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#">
+                        <img src="./instagram2.jpg" alt="instagram">
+                        <div class="social-bg"></div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#">
+                        <img src="./instagram3.jpg" alt="instagram">
+                        <div class="social-bg"></div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#">
+                        <img src="./instagram4.jpg" alt="instagram">
+                        <div class="social-bg"></div>
+                    </a>
+                </div>
+            </div> 
+
+        </div>
+    </main>
+
+    <footer>
+        <a class="logo">
+            <img src="./logo.webp" alt="sunplant">
+        </a>
+        <div class="contact">
+            <a href="#">ABOUT US</a>
+            <a href="">COSTOMER SERVICE</a>
+            <a href="#">SUBSCRIPTION</a>
+        </div>
+        <div class="row row-cols-4 footer-social">
+            <a class="col"><i class="fa-brands fa-twitter"></i></a>
+            <a class="col"><i class="fa-brands fa-dribbble"></i></a>
+            <a class="col"><i class="fa-brands fa-behance"></i></a>
+            <a class="col"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <div class="copyright">Website by ShopiLaunch . Copyright SunplantShop</div>
+        
+    </footer>
+    
+</body>
+</html>
