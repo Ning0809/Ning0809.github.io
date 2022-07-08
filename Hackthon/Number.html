@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number</title>
+    <style>
+        .container{
+            min-width: 300px;
+            position: relative;
+            margin-top: 60px;
+        }
+        button:hover{cursor: pointer;}
+        input{
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .show{
+            background-color: #0003;
+        }
+        .guess{
+            background-color: rgba(255, 170, 170, 0.5);
+        }
+        .getrandom{
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: auto;
+            background-color:rgba(70, 131, 180, 0.5);
+            border:2px solid steelblue;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .keyboard{
+            margin: auto;
+            width: 162px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .number,.check,.clean{
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            color:#fff;
+            border-radius: 20%;
+            margin: 2px;
+            font-size: 36px;
+        }
+        .check{color:rgb(81, 201, 81)}
+        .clean{color:crimson}
+        .block{
+            width: 60%;
+            min-width: 300px;
+            background-color:rgba(23, 45, 62, 0.9);
+            position: absolute;
+            top: 60px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 20px;
+            color:#fff;
+            text-align: center;
+            padding-top: 60px;
+            font-size: 50px;            
+        }
+        #start{display: none;}
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="start">
+    <div class="container">
+        <button class="getrandom">開始遊戲</button>
+        <input class="show" placeholder="提示區" type="text">
+        <input class="guess" placeholder="請輸入0~100的整數" type="text">
+
+            <div class="keyboard">
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+            <button class="number">0</button>
+            <button class="check">O</button>
+            <button class="clean">X</button>
+        </div>
+        <div class="block">請按上方<br>開始遊戲</div>
+    </div>
+    
+    
+    <script>
+
+        let btn = document.querySelectorAll('.number')
+        let random = document.querySelector('.getrandom')
+        let clean = document.querySelector('.clean')
+        let check = document.querySelector('.check')
+        let guess = document.querySelector('.guess')
+        let show = document.querySelector('.show')
+        let block = document.querySelector('.block')
+        let guessnumber='';
+        let randomnumber,minnum,maxnum
+
+        window.onload= function(){
+
+
+
+            //輸入數字
+            btn.forEach(item=>{
+                item.addEventListener('click',()=>{
+                    btnNumber(event)
+                    guessnumber= parseInt(guessnumber)
+                    guess.value=guessnumber
+                })
+            })
+
+            //random時初始化遊戲
+            random.addEventListener('click',()=>{
+                startgame()
+                randomnumber=getRandomNum()
+                // console.log(randomnumber)
+                block.style.display='none'
+            })
+            
+            //清除guess數字
+            clean.addEventListener('click',()=>{
+                guess.value=''
+            })
+            
+            //check觸發比對>產生提示
+            check.addEventListener('click',()=>{
+                if(guessnumber>maxnum || guessnumber<minnum){
+                    alert(`請輸入範圍內的整數`)
+                }
+                else{
+                    compare(guessnumber,randomnumber)
+                }
+                guess.value=''
+                guessnumber=0
+            })
+        }
+
+        
+
+        function compare(guess,random){
+            if(guess-random==0){
+                alert(`猜對了`)
+                startgame()
+                show.value=''
+                block.style.display='block'
+            }
+            else if(guess-random>0){
+                maxnum=guess
+                show.value=`${minnum}~${maxnum}`
+            }
+            else if(guess-random<0){
+                minnum=guess
+                show.value=`${minnum}~${maxnum}`
+            }
+        }
+
+
+        function btnNumber(event){
+            let value = event.target.innerText
+            guessnumber +=value
+            return guessnumber 
+        }
+
+        function getRandomNum(){
+            return Math.floor(Math.random()*100)
+        }
+
+        function startgame(){
+            randomnumber=0
+            minnum=0
+            maxnum=99
+            guessnumber=''
+            guess.value=guessnumber
+        }
+
+
+
+        
+
+    </script>
+</body>
+</html>

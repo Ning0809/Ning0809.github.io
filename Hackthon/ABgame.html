@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AB-Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+      .container{
+        max-width: 600px;
+        min-width: 200px;
+        margin: auto;
+      }
+      .nav,.log,.guess-func{
+        margin-top: 30px;
+      }
+      .guesslog{
+        margin-left: 10px;
+        font-size: 16px;
+      }
+      .log{
+        height: 300px;
+        overflow: auto;
+        border: 1px solid gray;
+        border-radius: 20px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="container mt-5">
+
+      <div class="d-flex btn-group nav" role="group" aria-label="Basic mixed styles example">
+        <button type="button" class="btn btn-success start">開始遊戲</button>
+        <button type="button" class="btn btn-warning restart">放棄重來</button>
+        <button type="button" class="btn btn-danger lookanswer">查看答案</button>
+      </div>
+      <div class="log">
+        <ul class="list-group log-ul"></ul>
+      </div>
+      
+      <div class="mb-3 guess-func">
+        <div class="input-group">
+          <div class="input-group-text">猜答案</div>
+          <input type="text" class="form-control" id="autoSizingInputGroup" >
+          <button class="btn btn-primary check">送出</button>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+
+      window.onload=function(){
+
+        let start = document.querySelector('.start')
+        let restart = document.querySelector('.restart')
+        let lookanswer = document.querySelector('.lookanswer')
+        let input = document.querySelector('input')
+        let check = document.querySelector('.check')
+        let logul = document.querySelector('.log-ul')
+        let random =[]
+        let guess =[]
+              
+        function init(){
+          restart.disabled='true'
+          lookanswer.disabled='true'
+          check.disabled='true'
+          input.disabled='true'
+        }
+        
+        init()
+
+        //取隨機碼
+        start.addEventListener('click',()=>{
+          random= getNumber()
+          restart.removeAttribute('disabled')
+          lookanswer.removeAttribute('disabled')
+          check.removeAttribute('disabled')
+          input.removeAttribute('disabled')
+          cleanlog(logul)
+        })
+
+        //清空log、input、亂數
+        restart.addEventListener('click',()=>{
+          alert(`答案是${random.join('')}`)
+          input.value=''
+          random=[]
+          guess=[]
+          cleanlog(logul)
+          init()
+        })
+
+        //查看答案
+        lookanswer.addEventListener('click',()=>{
+          alert(`答案是${random.join('')}`)
+        })
+
+        //送出=推送guess、檢查、輸出
+        //如果win則重新遊戲
+        check.addEventListener('click',()=>{
+          let inputnumber = input.value
+          guess=Array.from(inputnumber)
+          if(errorinput(guess)>0){alert('輸入錯誤，請重新輸入')}
+          else{
+            let result =compare(random,guess)
+            logul.append(creatlog(result,inputnumber))
+            input.value=''
+          }
+        })
+      }
+
+        function getNumber(){
+          let array=[]
+          let number = Math.floor(Math.random()*10)
+          array.push(number)
+            
+          for(i=1;array.length<4;i++){
+              let number3 = Math.floor(Math.random()*10)
+              let noreapt=0;
+              array.map((x)=>{ if(x !=number3){ noreapt++} })
+              if(noreapt==array.length){array.push(number3)}
+          }
+          return array
+        }
+
+
+        function compare(random,guess){
+          let a=0,b=0,c=0
+          random.map((randomnum,index)=>{
+            if(randomnum==guess[index]){a++}
+            guess.map((num)=>{ if(num==randomnum){c++}})
+            if(c>=a){b=c-a}
+          })
+          return [a,b]
+        }
+
+        function creatlog(result,guessstr){
+          let li = document.createElement('li')
+          li.className='list-group-item log-li'
+          let tag = document.createElement('span')
+          tag.className='badge text-bg-danger'
+          let text= document.createElement('span')
+          text.className='guesslog'
+          tag.innerText=`${result[0]}A${result[1]}B`
+          text.innerText=guessstr
+          li.append(tag,text)
+          if(result[0]==4){
+            tag.className='badge text-bg-success'
+            alert('猜對了')}
+          return li
+        }
+
+        function cleanlog(logul){
+          let licount= document.querySelectorAll('li')
+          for(i=0;i<licount.length;i++){
+            let li = document.querySelector('li')
+            logul.removeChild(li)
+          }
+        }
+
+        //輸入超過4個數字or重複數字報錯
+        function errorinput(input){
+          let warning=0
+          newinput = new Set(input)
+          if(newinput.size<4 || input.length>4){warning=1}
+          return warning
+        }
+
+      
+    </script>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
