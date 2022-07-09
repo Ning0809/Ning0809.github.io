@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number</title>
+    <link rel="stylesheet" href="../grid.css">
     <style>
         .container{
-            min-width: 300px;
+            width: 300px;
             position: relative;
             margin-top: 60px;
+            padding: 20px;
         }
         button:hover{cursor: pointer;}
         input{
@@ -52,24 +54,21 @@
             flex-wrap: wrap;
         }
         .number,.check,.clean{
-            width: 30%;
             height: 50px;
             line-height: 50px;
             background-color: black;
             color:#fff;
-            border-radius: 20%;
-            margin: 2px;
+            border-radius: 10px;
+            border: 2px solid #fff;
             font-size: 36px;
             text-align: center;
         }
         .check{color:rgb(81, 201, 81)}
         .clean{color:crimson}
         .block{
-            width: 60%;
-            min-width: 300px;
             background-color:rgba(23, 45, 62, 0.9);
             position: absolute;
-            top: 60px;
+            top: 80px;
             bottom: 0;
             left: 0;
             right: 0;
@@ -85,24 +84,24 @@
 </head>
 <body>
     <input type="checkbox" id="start">
-    <div class="container">
-        <button class="getrandom">開始遊戲</button>
-        <input class="show" placeholder="提示區" type="text">
-        <input class="guess" placeholder="請輸入0~100的整數" type="text">
+    <div class="container row-cols-1">
+        <button class="getrandom col">開始遊戲</button>
+        <input class="show col" placeholder="提示區" type="text">
+        <input class="guess col" placeholder="請輸入0~100的整數" type="text">
 
-            <div class="keyboard">
-            <button class="number">1</button>
-            <button class="number">2</button>
-            <button class="number">3</button>
-            <button class="number">4</button>
-            <button class="number">5</button>
-            <button class="number">6</button>
-            <button class="number">7</button>
-            <button class="number">8</button>
-            <button class="number">9</button>
-            <button class="number">0</button>
-            <button class="check">O</button>
-            <button class="clean">X</button>
+            <div class="keyboard row-cols-3 col">
+            <button class="number col">1</button>
+            <button class="number col">2</button>
+            <button class="number col">3</button>
+            <button class="number col">4</button>
+            <button class="number col">5</button>
+            <button class="number col">6</button>
+            <button class="number col">7</button>
+            <button class="number col">8</button>
+            <button class="number col">9</button>
+            <button class="number col">0</button>
+            <button class="check col">O</button>
+            <button class="clean col">X</button>
         </div>
         <div class="block">請按上方<br>開始遊戲</div>
     </div>
