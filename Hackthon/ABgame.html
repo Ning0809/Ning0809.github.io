@@ -108,6 +108,7 @@
         //如果win則重新遊戲
         check.addEventListener('click',()=>{
           let inputnumber = input.value
+          guess = Array.from(inputnumber)
 
           if(inputnumber.length!=4||isNaN(inputnumber)||inputnumber.includes('.')|| new Set(input.value).size!=4)
           {alert('輸入錯誤，請重新輸入')}
