@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../grid.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/81c2f83ad1.js" crossorigin="anonymous"></script>
+    <style>
+        :root{
+            width: 100%;
+            font-family: 'Open Sans', sans-serif;
+            --nav-bgc:rgba(0,0,0,0.8);
+            --text-color:rgba(255,255,255,0.92);
+            --border-color:rgba(255,255,255,0.24);
+            --nav-height:44px;
+        }
+        a{text-decoration: none;}
+        ul{list-style: none;margin: 0;padding: 0;}
+        label,input,button{border: none;cursor: pointer;}
+        .container{
+            max-width: 980px;
+        }
+        nav{
+            background-color: var(--nav-bgc);
+            height: var(--nav-height);
+            color:#f5f5f7;
+        }
+        .logo-text{
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .nav-ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        .nav-item{
+            
+        }
+        .nav-item a,.nav-item button,.nav-item label{
+            vertical-align: top;
+            display: inline-block;
+            color:#f5f5f7;
+            font-size: 12px;
+            height: var(--nav-height);
+            line-height: var(--nav-height);
+        }
+        .nav-item a{font-weight: 300;}
+        .logo a{font-size: 18px;}
+        .nav-item button,.nav-item label{font-size: 16px;}
+        .btn-cart{background-color:rgba(0,0,0,0);}
+
+        
+        
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul class="container nav-ul">
+            <li class="nav-item logo">
+                <a href="" class="fa-brands fa-apple">
+                    <h1 class="logo-text">Apple Store</h1>
+                </a>
+            </li>
+            <li class="nav-item shop">
+                <a href="">商店</a>
+            </li>
+            <li class="nav-item mac">
+                <a href="">Mac</a>
+            </li>
+            <li class="nav-item ipad">
+                <a href="">iPad</a>
+            </li>
+            <li class="nav-item iphone">
+                <a href="">iPhone</a>
+            </li>
+            <li class="nav-item watch">
+                <a href="">Watch</a>
+            </li>
+            <li class="nav-item airpods">
+                <a href="">AirPods</a>
+            </li>
+            <li class="nav-item tvfamily">
+                <a href="">TV和家庭</a>
+            </li>
+            <li class="nav-item appleonly">
+                <a href="">Apple獨家</a>
+            </li>
+            <li class="nav-item accessories">
+                <a href="">配件</a>
+            </li>
+            <li class="nav-item support">
+                <a href="">支援服務</a>
+            </li>
+            <li class="nav-item search">
+                <label class="label-search nav-item fa-solid fa-magnifying-glass"></label>
+            </li>
+            <li class="nav-item cart">
+                <button class="btn-cart fa-solid fa-bag-shopping"></button>
+            </li>
+
+        </ul>
+        
+        
+        
+        
+        
+        
+    </nav>
+    
+</body>
+</html>

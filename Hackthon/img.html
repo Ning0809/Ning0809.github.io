@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{position: relative;}
+    </style>
+    
+</head>
+<body>
+    <button class="addimg">BTN</button>
+    
+
+    <script>
+        document.querySelector('.addimg').addEventListener('click',addpic)
+        
+
+
+        function addpic(){
+            
+            let img = document.createElement('img')
+            img.src = '../87251.png'
+            img.style.position='absolute'
+            img.style.width=`${getRandomNum(300,50)}px`
+            img.style.top=`${getRandomNum(300,20)}px`
+            img.style.left=`${getRandomNum(100,0)}%`
+            img.style.transform=`rotate(${getRandomNum(90,1)}deg)`
+            
+            console.dir(img)
+            document.querySelector('body').append(img)
+            
+
+        }
+
+        function getRandomNum(max,min){
+            return Math.floor(Math.random()*(max - min) + min)
+        }
+
+    </script>
+    
+</body>
+</html>
