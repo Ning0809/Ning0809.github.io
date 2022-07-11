@@ -108,7 +108,7 @@
         //如果win則重新遊戲
         check.addEventListener('click',()=>{
           let inputnumber = input.value
-          if(inputnumber.length!=4||isNaN(inputnumber)||inputnumber.includes('.'))
+          if(inputnumber.length!=4||isNaN(inputnumber)||inputnumber.includes('.')||new Set(inputnumber).length!=4)
           {alert('輸入錯誤，請重新輸入')}
           
           else{
