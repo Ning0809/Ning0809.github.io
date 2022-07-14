@@ -60,24 +60,18 @@
 
     <script>
 
+      let start = document.querySelector('.start')
+      let restart = document.querySelector('.restart')
+      let lookanswer = document.querySelector('.lookanswer')
+      let input = document.querySelector('input')
+      let check = document.querySelector('.check')
+      let logul = document.querySelector('.log-ul')
+      let random =[]
+      let guess =[]
+
       window.onload=function(){
 
-        let start = document.querySelector('.start')
-        let restart = document.querySelector('.restart')
-        let lookanswer = document.querySelector('.lookanswer')
-        let input = document.querySelector('input')
-        let check = document.querySelector('.check')
-        let logul = document.querySelector('.log-ul')
-        let random =[]
-        let guess =[]
-              
-        function init(){
-          restart.disabled=true
-          lookanswer.disabled=true
-          check.disabled=true
-          input.disabled=true
-        }
-        
+
         init()
 
         //取隨機碼
@@ -111,8 +105,10 @@
           let inputnumber = input.value
           guess = Array.from(inputnumber)
 
-          if(inputnumber.length!=4||isNaN(inputnumber)||inputnumber.includes('.')|| new Set(input.value).size!=4)
-          {alert('輸入錯誤，請重新輸入')}
+          // if(inputnumber.length!=4||isNaN(inputnumber)||inputnumber.includes('.')|| new Set(input.value).size!=4)
+          // {alert('輸入錯誤，請重新輸入')}
+          let numberRegExp= /^[0-9]{4}$/
+          if(!numberRegExp.test(inputnumber)|| new Set(input.value).size!=4){alert('輸入錯誤，請重新輸入')}
           
           else{
             let result =compare(random,guess)
@@ -121,70 +117,75 @@
           input.value=''
         })
       }
+      
+      function init(){
+        restart.disabled=true
+        lookanswer.disabled=true
+        check.disabled=true
+        input.disabled=true
+      }
 
-        function getNumber(){
-          let array=[]
-          let number = Math.floor(Math.random()*10)
-          array.push(number)
-            
-          for(i=1;array.length<4;i++){
-              let number3 = Math.floor(Math.random()*10)
-              let noreapt=0;
-              array.map((x)=>{ if(x !=number3){ noreapt++} })
-              if(noreapt==array.length){array.push(number3)}
-          }
-          return array
+      function getNumber(){
+        let array=[]
+        let number = Math.floor(Math.random()*10)
+        array.push(number)
+        for(i=1;array.length<4;i++){
+            let number3 = Math.floor(Math.random()*10)
+            let noreapt=0;
+            array.map((x)=>{ if(x !=number3){ noreapt++} })
+            if(noreapt==array.length){array.push(number3)}
         }
+        return array
+      }
 
-        function compare(random,guess){
-          let a=0,b=0,c=0
-          random.map((randomnum,index)=>{
-            if(randomnum==guess[index]){a++}
-            guess.map((num)=>{ if(num==randomnum){c++}})
-            if(c>=a){b=c-a}
-          })
-          return [a,b]
-        }
+      function compare(random,guess){
+        let a=0,b=0,c=0
+        random.map((randomnum,index)=>{
+          if(randomnum==guess[index]){a++}
+          guess.map((num)=>{ if(num==randomnum){c++}})
+          if(c>=a){b=c-a}
+        })
+        return [a,b]
+      }
 
-        function creatlog(result,guessstr){
-          let li = document.createElement('li')
-          li.className='list-group-item log-li'
-          let tag = document.createElement('span')
-          tag.className='badge text-bg-danger'
-          let text= document.createElement('span')
-          text.className='guesslog'
-          tag.innerText=`${result[0]}A${result[1]}B`
-          text.innerText=guessstr
-          li.append(tag,text)
-          if(result[0]==4){
-            tag.className='badge text-bg-success'
-            alert('猜對了')}
-          else{addpic()}
-          return li
-        }
+      function creatlog(result,guessstr){
+        let li = document.createElement('li')
+        li.className='list-group-item log-li'
+        let tag = document.createElement('span')
+        tag.className='badge text-bg-danger'
+        let text= document.createElement('span')
+        text.className='guesslog'
+        tag.innerText=`${result[0]}A${result[1]}B`
+        text.innerText=guessstr
+        li.append(tag,text)
+        if(result[0]==4){
+          tag.className='badge text-bg-success'
+          alert('猜對了')}
+        else{addpic()}
+        return li
+      }
 
-        function cleanlog(logul){
-          let licount= document.querySelectorAll('li')
-          for(i=0;i<licount.length;i++){
-            let li = document.querySelector('li')
-            logul.removeChild(li)
-          }
+      function cleanlog(logul){
+        let licount= document.querySelectorAll('li')
+        for(i=0;i<licount.length;i++){
+          let li = document.querySelector('li')
+          logul.removeChild(li)
         }
+      }
 
-        function addpic(){
-            let img = document.createElement('img')
-            img.src = '../yellow.png'
-            img.style.position='absolute'
-            img.style.width=`${getimgNum(300,50)}px`
-            img.style.top=`${getimgNum(600,10)}px`
-            img.style.left=`${getimgNum(100,0)}%`
-            img.style.transform=`rotate(${getimgNum(90,0)}deg)`
-            document.querySelector('body').append(img)
-        }
-
-        function getimgNum(max,min){
-            return Math.floor(Math.random()*(max - min) + min)
-        }
+      function addpic(){
+          let img = document.createElement('img')
+          img.src = '../yellow.png'
+          img.style.position='absolute'
+          img.style.width=`${getimgNum(300,50)}px`
+          img.style.top=`${getimgNum(600,10)}px`
+          img.style.left=`${getimgNum(100,0)}%`
+          img.style.transform=`rotate(${getimgNum(90,0)}deg)`
+          document.querySelector('body').append(img)
+      }
+      function getimgNum(max,min){
+          return Math.floor(Math.random()*(max - min) + min)
+      }
     </script>
 
 
