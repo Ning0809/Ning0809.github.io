@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple</title>
+    <link rel="stylesheet" href="../grid.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/81c2f83ad1.js" crossorigin="anonymous"></script>
+    <style>
+        :root{
+            width: 100%;
+            font-family: 'Open Sans', sans-serif;
+            --nav-bgc:rgba(0,0,0,0.8);
+            --text-color:rgba(255,255,255,0.92);
+            --border-color:rgba(255,255,255,0.24);
+            --nav-height:44px;
+        }
+        #hb-nav-ctrl{display: none;}
+        a{text-decoration: none;}
+        ul{list-style: none;margin: 0;padding: 0;}
+        label,input,button{border: none;cursor: pointer;}
+        .container{
+            max-width: 980px;
+            box-sizing: border-box;
+        }
+        nav{
+            background-color: var(--nav-bgc);
+            height: var(--nav-height);
+            color:#f5f5f7;
+        }
+        .nav-ul{
+            display: flex;
+            flex-direction: row;
+            padding: 0px 15px 0px 15px;
+        }
+        .nav-item a,.nav-item button,.search{
+            vertical-align: top;
+            display: inline-block;
+            color:#f5f5f7;
+            font-size: 12px;
+            height: var(--nav-height);
+            line-height: var(--nav-height);
+        }
+        .logo,.cart{
+            text-align: center;
+        }
+        .logo{
+            margin: auto;
+        }
+        .nav-menu{
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        .nav-item a{font-weight: 300;}
+        .logo a{font-size: 18px;}
+        .nav-item button,.search{font-size: 16px;}
+        .btn-cart{background-color:rgba(0,0,0,0);}
+        .logo-text{
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        header{
+            width: 100%;            
+        }
+        .header-producr{
+            padding-left: 15px;
+            padding-right: 15px;
+            height: 49px;
+            line-height: 49px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .product-name{
+            font-size: 21px;
+            font-weight: 700;
+        }
+        .product-price{
+            font-size: 17px;
+            font-weight: 500;
+            color:#1D1E1F
+        }
+        .header-installment{
+            width: 100%;
+            background-color: #f5f5f7;
+            height: 52px;
+            line-height: 52px;
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid rgba(100, 100, 100,0.3);
+            font-size: 14px;
+        }
+        .installment-text{
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0;
+            padding: 0;
+            color:#1D1E1F;
+        }
+        .installment-link,.contact-online p a,.changeiphone a{
+            color:#0066CC;
+        }
+        .installment-link:hover,.contact-online p a:hover,.changeiphone a:hover{
+            text-decoration: underline;
+        }
+        .mainpic{
+            width: 100%;
+        }
+        .product-service{
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .product-service p{margin: 0;}
+        .service{
+            width: 50%;
+            padding: 20px 0px 20px 0px;
+        }
+        .contact-online{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-top: 1px solid rgba(100, 100, 100,0.3);
+        }
+        .contact-online p{
+            text-align: left;
+            margin: 0px 0px 0px 5px;
+        }
+        .product-option{
+            display: flex;
+            flex-direction: column;
+        }
+        .product-title{
+            margin: 50px 0px 20px 0px;
+            color:#1D1E1F;
+            font-size: 40px;
+            font-weight: 700;
+            position: relative;
+        }
+        .product-title::before{
+            content: '全新';
+            color:#BF4800;
+            font-size: 17px;
+            position: absolute;
+            top:-20px;
+        }
+        .changeiphone p {
+            margin: 0px 0px 10px;
+            line-height: 1.5;
+        }
+        .select-p{
+            width: 100%;
+            margin: 30px 0px 20px;
+            font-weight: 700;
+        }
+        .select{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        .btn-select{
+            width: 48%;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 20px;
+            margin: 1%;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .btn-select:focus{
+            border: 1px solid  #0071e3;
+            box-shadow: 0px 0px 8px 3px #0066CC;
+        }
+        .type-info,.type-name,.type-size,.type-price,.color-name,.capacity-name,.capacity-price{
+            margin: 0;
+            font-size: 17px;
+        }
+        .type-info{
+            text-align: left;
+        }
+        .type-size,.color-name,.capacity-price{font-size: 12px;}
+        .btn-select-color{
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        .color-preview{
+            width: 32px;
+            height: 32px;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px 20px rgba(0, 0, 0, 0.3) inset;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .color-img{
+            width: 35px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left:0;
+            right: 0;
+            margin: auto;
+        }
+        .capacity-name{font-size: 29px;font-weight: 600;}
+        .capacity-name::after{
+            content: 'GB';
+            font-size: 19px;
+            font-weight: 600;
+        }
+        .capacity-tb::after{
+            content: 'TB';
+        }
+        .capacity-price{
+            margin-top: 5px;
+        }
+        .checkout-info{
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #fbfbfd;;
+        }
+        .checkout-info p{margin: 0;}
+        .price-info{
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+        .price-info .product-price{
+            font-size: 40px;
+            font-weight: 700;
+        }
+        .installment-price{
+            display: flex;
+            align-items: center;
+            padding: 10px 0px;
+            color: #0066CC;
+        }
+        .installment-price i{margin-right: 10px;}
+        .pickup-info{
+            margin-top: 30px;
+        }
+        .pickup-info svg{
+            margin-right: 10px;
+            position: relative;
+        }
+        .self-pickup,.delivery-pickup{
+            margin: 40px 0px 20px;
+        }
+        .self-pickup-date,.delivery-pickup-date{
+            font-weight: 700;
+            display: inline-block;
+            width: 80%;
+            position: relative;
+        }
+        .self-pickup-date::after,.delivery-pickup-date::after{
+            content: '立即訂購。店內取貨：';
+            position: absolute;
+            font-weight: normal;;
+            top:-20px;
+            left: 0;
+        }
+        .delivery-pickup-date::after{
+            content: '今天訂購。';
+        }
+        .addtocart{
+            width: 100%;
+            background-color: #0066CC;
+            color:#fff;
+            height: 40px;
+            font-weight: 600;
+            border-radius: 10px;
+        }
+        .product-detail{
+            width: 100%;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .product-detail h3{
+            width: 100%;
+            font-size: 40px;
+            font-weight: 600;
+            margin-top: 80px;
+        }
+        .content-img,.content-text{
+            display: flex;
+            flex-direction: row;
+            background-color: #FBFBFD;;
+            justify-content: center;
+        }
+        .content-img img{margin:0px 5%;}
+        .content-text p{
+            font-size: 14px;
+        }
+        .content-text p:first-child{
+            padding-left: 15%;
+            padding-right: 10%;
+        }
+        .content-text p:nth-child(2){
+            padding-left: 8%;
+            padding-right: 5%;
+        }
+        .content-intro{
+            background-color: #FBFBFD;
+            margin: 50px 20px;
+            padding: 20px;
+            font-size: 12px;
+            color:#6e6e73;
+        }
+        .content-intro p:first-child{
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+        }
+        .content-intro-item{
+            display: flex;
+            flex-direction: row;
+        }
+        .intro-item{
+            text-align: left;
+            padding: 10px;
+        }
+        .intro-item img{
+            width: 50px;
+        }
+        .intro-item span{
+            margin-top: 10px;
+            display: inline-block;
+            width: 100%;
+            font-size: 16px;
+            font-size: 600;
+        }
+        .intro-item p{
+            font-size: 12px;
+        }
+        .intro-item:last-child span{
+            margin-top: 20px;
+        }
+        .btn-detail{
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            transition: 0.3s;
+        }
+        .btn-detail:hover{
+            transform: scale(1.1);
+        }
+       
+        footer{
+            background-color: #f5f5f7;;
+            color:#6e6e73;
+            font-size: 14px;
+        }
+        footer .container{
+            padding: 20px;
+        }
+        .foot-nav{
+            margin: 20px 0px;
+            display: flex;
+        }
+        .foot-nav-item:first-child{
+            font-size: 14px;font-weight: 700;
+        }
+        .foot-nav-item{
+            height: 30px;
+            line-height: 30px;
+            padding: 10px 0px;
+        }
+        .foot-nav-item a{color:#6e6e73;}
+        .foot-nav-item a:hover{
+            text-decoration: underline;
+        }
+        .copyright{
+            font-weight: 600;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        .foot-text{
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .foot-text li{
+            margin-left: 10px;
+            list-style:decimal;
+        }
+
+
+        @media screen and (max-width:767.85px) {
+            
+            .nav-ul,.header-producr,.header-installment,.container{min-width: 400px;}
+            .hb{margin-left: 15px;}
+            .hb-ctrl{
+                width: 30px;
+                height: var(--nav-height);
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+            .hb-line{
+                position: absolute;
+                top: 18px;
+                width: 50%;
+                height: 1px;
+                background-color: #f5f5f7;  
+                transition: top 0.3s 0.1s,transform 0.3s ;
+            }
+            .hb-line:nth-child(2){
+                top:24px;
+            }
+            .nav-ul{
+                padding: 0;
+            }
+            .cart{
+                text-align: right;
+                margin-right: 15px;
+                transition: 0.1s 0.3s;
+            }
+            .nav-item.nav-menu{
+                overflow: hidden;
+                height: 0%;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top:var(--nav-height);
+                background-color:#1D1E1F;
+                transition:0.5s;
+            }
+            .nav-item{transition:0s;}
+            .nav-menu-item{
+                margin-left: 40px;
+                width: 80%;
+                height: 50px;
+                line-height: 50px;
+                border-bottom:1px solid rgba(255,255,255,0.3) ;
+            }
+            .nav-menu-item a{width: 100%;font-size: 17px;}
+            .support{
+                border: none;
+                flex-grow: 1;  
+            }
+            .search{
+                order: -1;
+                position: relative;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+                margin-bottom: 10px;
+            }
+            .label-search{
+                position: absolute;
+                top:25px;
+                left: 10px;
+                z-index: 1;
+                font-size: 14px;
+                opacity: 0.5;
+            }
+            #search-bar{
+                width: 90%;
+                height: 40px;
+                line-height: 40px;
+                top:10px;
+                padding-left: 35px;
+                display: block;
+                background-color: rgba(40, 40, 40,0.8);
+                position: absolute;
+                color:#6e6e73;
+                border-radius: 8px;
+            }
+            #hb-nav-ctrl:checked ~ nav .nav-menu{
+                transition: 0.5s;
+                height: 100%;
+                background-color: #000;
+            }
+            #hb-nav-ctrl:checked ~ nav .cart{
+                opacity: 0;
+                z-index: -1;
+            }
+            #hb-nav-ctrl:checked ~ nav .hb-line{
+                top:21px;
+                transform: rotate(-45deg);
+                transition: top 0.3s,transform 0.3s 0.1s;
+            }
+            #hb-nav-ctrl:checked ~ nav .hb-line:nth-child(2){
+                top:21px;
+                transform: rotate(45deg);
+            }
+            #hb-nav-ctrl:checked ~ nav .nav-ul{
+                background-color: black;
+            }
+            .product{
+                display: flex;
+                flex-direction: column;
+            }
+            .product-view,.product-option{
+                width: 100%;
+            }
+            .product-option{
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .foot-nav{
+                margin-top: 20px;
+                flex-direction: column;
+            }
+            .foot-nav-item{
+                padding: 5px;
+            }
+            
+            
+        }
+
+        @media screen and (min-width:768px) {
+            .col.logo,.col.cart{width: 5%;}
+            .hb{display: none;}
+            #search-bar{display: none;}
+            .product{
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .product-view,.product-option{
+                width: 50%;
+            }
+            .product-option{
+                overflow: auto;
+            }
+            .product-view{
+                box-sizing: border-box;
+                padding-right: 50px;
+                padding-top: 50px;
+                height: 800px;
+                position: sticky;
+                top:0;
+            }           
+            .foot-nav{ 
+                flex-direction: row;
+                justify-content: space-evenly;
+            }   
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="hb-nav-ctrl">
+    <nav class="nav">
+        <ul class="container row-cols-3 nav-ul">
+            <li class="nav-item col hb">
+                <label class="hb-ctrl" for="hb-nav-ctrl">
+                    <span class="hb-line"></span>
+                    <span class="hb-line"></span>
+                </label>
+            </li>
+            <li class="nav-item col logo">
+                <a href="" class="fa-brands fa-apple">
+                    <h1 class="logo-text">Apple Store</h1>
+                </a>
+            </li>
+            <ul class="nav-item nav-menu">
+                <li class="nav-menu-item shop">
+                    <a href="">商店</a>
+                </li>
+                <li class="nav-menu-item mac">
+                    <a href="./fakeapple_mac.html">Mac</a>
+                </li>
+                <li class="nav-menu-item ipad">
+                    <a href="./fakeapple_ipad.html">iPad</a>
+                </li>
+                <li class="nav-menu-item iphone">
+                    <a href="./fakeapple_iphone.html">iPhone</a>
+                </li>
+                <li class="nav-menu-item watch">
+                    <a href="">Watch</a>
+                </li>
+                <li class="nav-menu-item airpods">
+                    <a href="">AirPods</a>
+                </li>
+                <li class="nav-menu-item tvfamily">
+                    <a href="">TV和家庭</a>
+                </li>
+                <li class="nav-menu-item appleonly">
+                    <a href="">Apple獨家</a>
+                </li>
+                <li class="nav-menu-item accessories">
+                    <a href="">配件</a>
+                </li>
+                <li class="nav-menu-item support">
+                    <a href="">支援服務</a>
+                </li>
+                <li class="nav-menu-item search">
+                    <label class="label-search fa-solid fa-magnifying-glass"></label>
+                    <input type="text" id="search-bar" placeholder="搜尋 apple.com">
+                </li>
+            </ul>
+            <li class="nav-item col cart">
+                <button class="btn-cart fa-solid fa-bag-shopping"></button>
+            </li>
+        </ul>
+        
+        
+        
+        
+        
+        
+    </nav>    
+    <header>
+        <div class="container header-producr">
+            <span class="product-name">MacBook Air</span>
+            <span class="product-price">NT$37900 起</span>
+        </div>
+        <div class="header-installment">
+            <p class="installment-text">可申請最長達 12 個月的零利率分期付款。 </p>
+            <a class="installment-link" href="">進一步了解
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        </div>
+    </header>
+    <main class="container product">     
+        <section class="product-view">
+            <div class="product-img">
+                <img class="mainpic" src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-spacegray-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303733" alt="MacBook Air">
+            </div>
+            <ul class="product-service">
+                <li class="service">
+                    <svg viewBox="0 0 35 35" class="svg-icon" role="img" aria-hidden="true" width="35px" height="35px">
+                        <path fill="none" d="M0 0h35v35H0z"></path>
+                        <path d="M27.687 10.547l-9-4.852a2.5 2.5 0 00-2.373 0l-9 4.852A2.5 2.5 0 006 12.748v9.471a2.494 2.494 0 001.313 2.2l9 4.852a2.5 2.5 0 002.373 0l9-4.852a2.5 2.5 0 001.314-2.2v-9.471a2.5 2.5 0 00-1.313-2.201zm-10.9-3.971a1.5 1.5 0 011.424 0l9 4.852c.041.022.072.055.11.081l-4.41 2.507-9.628-5.55zm-4.538 2.446l9.651 5.566-4.4 2.5-9.823-5.58c.038-.026.07-.059.111-.081zM7.788 23.539A1.5 1.5 0 017 22.219v-9.471a1.494 1.494 0 01.069-.436L17 17.957v10.516a1.494 1.494 0 01-.212-.082zM28 22.219a1.5 1.5 0 01-.788 1.32l-9 4.851a1.481 1.481 0 01-.212.082V17.957l9.931-5.646a1.5 1.5 0 01.069.436z"></path>
+                        </svg>
+                    <p>快速且免額外付費的運送服務</p>
+
+                </li>
+                <li class="service">
+                    <svg viewBox="0 0 35 35" class="svg-icon" role="img" aria-hidden="true" width="35px" height="35px">
+                        <path fill="none" d="M0 0h35v35H0z"></path>
+                        <path d="M12.249 9.022l-4.461 2.4c-.041.022-.073.055-.111.081l9.823 5.588 4.4-2.5zM27.322 11.507c-.038-.025-.069-.058-.11-.081l-9-4.852a1.5 1.5 0 00-1.424 0l-3.5 1.889 9.628 5.55zM10.8 18.5a.5.5 0 01-.5.5H7v3.219a1.5 1.5 0 00.788 1.32l9 4.852a1.494 1.494 0 00.212.082V17.957l-9.931-5.645a1.494 1.494 0 00-.069.436V18h3.3a.5.5 0 01.5.5zM18 17.957v10.515a1.481 1.481 0 00.212-.082l9-4.851a1.5 1.5 0 00.788-1.32v-9.471a1.5 1.5 0 00-.069-.436z" fill="none"></path><path d="M27.687 10.547l-9-4.852a2.5 2.5 0 00-2.373 0l-9 4.852A2.5 2.5 0 006 12.748V17h1v-4.252a1.494 1.494 0 01.069-.436L17 17.957v10.516a1.494 1.494 0 01-.212-.082l-9-4.852A1.5 1.5 0 017 22.219V20H6v2.219a2.494 2.494 0 001.313 2.2l9 4.852a2.5 2.5 0 002.373 0l9-4.852a2.5 2.5 0 001.314-2.2v-9.471a2.5 2.5 0 00-1.313-2.201zm-10.9-3.971a1.5 1.5 0 011.424 0l9 4.852c.041.022.072.055.11.081l-4.41 2.507-9.628-5.55zm-9.11 4.932c.038-.026.07-.059.111-.081l4.461-2.4 9.651 5.561-4.4 2.5zM28 22.219a1.5 1.5 0 01-.788 1.32l-9 4.851a1.481 1.481 0 01-.212.082V17.957l9.931-5.646a1.5 1.5 0 01.069.436z"></path>
+                        <path d="M2.507 18l1.646-1.646a.5.5 0 00-.707-.707l-2.5 2.5a.5.5 0 000 .707l2.5 2.5a.5.5 0 10.707-.707L2.507 19H6v-1zM10.3 19a.5.5 0 000-1H7v1zM6 18h1v1H6z"></path>
+                    </svg>
+                    <p>免額外付費輕鬆退貨</p>
+                    
+                </li>
+                <li class="service contact-online">
+                    <svg viewBox="0 0 35 35" class="svg-icon" role="img" aria-hidden="true" width="35px" height="35px"> 			<path fill="none" d="M0 .213h35v35H0z"></path> 			<path d="M14.4 21.048a13.284 13.284 0 01-1.344.076q-.411 0-.829-.025l-.334-.02-.279.185a15.461 15.461 0 01-4.388 2.109 16.182 16.182 0 001.365-2.054l.484-.923-.941-.446a7.127 7.127 0 01-4.384-6.276c0-4.114 4.274-7.461 9.529-7.461s9.529 3.347 9.529 7.461c0 .059-.009.116-.011.174.33-.029.664-.046 1-.046 0-.043.008-.085.008-.128 0-4.677-4.67-8.461-10.529-8.461S2.75 9 2.75 13.674a8.1 8.1 0 004.95 7.181 18.048 18.048 0 01-1.573 2.305c-.481.6-.236 1.28.613 1.28 1.17 0 3.557-1.1 5.425-2.343q.448.027.888.027c.455 0 .9-.028 1.34-.069-.011-.157-.029-.312-.029-.472 0-.183.018-.357.036-.535z"></path> 			<path d="M32.25 21.583c0-3.749-3.745-6.782-8.443-6.782h-.1c-.351 0-.694.027-1.032.063-3.876.413-6.886 2.906-7.269 6.036a5.584 5.584 0 00-.042.678c0 .117.015.23.021.345.222 3.737 3.994 6.428 8.6 6.428.235 0 .473-.007.712-.021a10.723 10.723 0 004.35 1.878c.681 0 .878-.543.492-1.026a14.459 14.459 0 01-1.263-1.848 6.5 6.5 0 003.974-5.751zm-4.4 4.852l-.942.446.484.923a10.673 10.673 0 00.759 1.2 14.28 14.28 0 01-2.9-1.5l-.279-.185-.334.02c-.219.013-.437.019-.653.019-4.21 0-7.515-2.462-7.614-5.629 0-.048-.009-.1-.009-.144a4.521 4.521 0 01.1-.922c.5-2.386 2.87-4.288 5.908-4.75a9.506 9.506 0 011.092-.1c.113 0 .225-.013.339-.013 4.1 0 7.443 2.594 7.443 5.782a5.517 5.517 0 01-3.394 4.853z"></path> 		</svg>
+                    <p>有任何關於購買 iPhone 的問題嗎？<br>
+                        <a href="">與 iPhone 專員線上交談</a>
+                    </p>
+                </li>
+            </ul>
+
+        </section>
+        <section class="product-option">
+            <p class="product-title">購買MacBook Air</p>
+            
+            <div class="select select-color">
+                <p class="select-p">選擇外觀。</p>
+                <!-- DOM產生btn -->
+            </div>
+            <div class="select select-capacity">
+                <p class="select-p">選擇儲存容量。</p>
+                <!-- DOM產生btn -->
+            </div>
+            <div class="checkout-info">
+                <div class="price-info">
+                    <p class="product-price">NT$37900</p>
+                    <p class="installment-price"><i class="fa-solid fa-circle-info"></i>0 利率分期付款，每月NT$1292 起，共12個月</p>
+                </div>
+                <div class="pickup-info">
+                    <div class="self-pickup">
+                        <svg viewBox="0 0 25 25" class="as-svgicon as-svgicon-applestorepickup as-svgicon-reduced as-svgicon-applestorepickupreduced" role="img" aria-hidden="true" width="25px" height="25px"><path fill="none" d="M0 0h25v25H0z"></path><path d="M18.5 5h-1.775a4.231 4.231 0 00-8.45 0H6.5A2.5 2.5 0 004 7.5v11A2.5 2.5 0 006.5 21h12a2.5 2.5 0 002.5-2.5v-11A2.5 2.5 0 0018.5 5zm-6-3a3.245 3.245 0 013.225 3h-6.45A3.245 3.245 0 0112.5 2zM20 18.5a1.5 1.5 0 01-1.5 1.5h-12A1.5 1.5 0 015 18.5v-11A1.5 1.5 0 016.5 6h12A1.5 1.5 0 0120 7.5z"></path><path d="M14.4 12.448a1.592 1.592 0 01.738-1.328 1.607 1.607 0 00-1.37-.687c-.52 0-.941.317-1.22.317s-.663-.3-1.129-.3a1.861 1.861 0 00-1.739 2.068 4.32 4.32 0 00.723 2.3c.346.491.648.883 1.084.883s.617-.287 1.144-.287c.55 0 .663.279 1.137.279s.791-.43 1.084-.853a3.24 3.24 0 00.474-.989 1.516 1.516 0 01-.926-1.403zM12.583 10.357a1.346 1.346 0 00.941-.5 1.594 1.594 0 00.361-.974.731.731 0 00-.008-.136 1.5 1.5 0 00-1.016.528 1.547 1.547 0 00-.384.943c0 .053.008.106.008.128.03.004.06.011.098.011z"></path></svg>
+                        <p class="self-pickup-date">明天</p>
+                    </div>
+                    <div class="delivery-pickup">
+                        <svg viewBox="0 0 25 25" class="as-svgicon as-svgicon-shipping as-svgicon-reduced as-svgicon-shippingreduced" role="img" aria-hidden="true" width="25px" height="25px"><path fill="none" d="M0 0h25v25H0z"></path><path d="M19.69 7.154l-6-3.245a2.5 2.5 0 00-2.38 0l-6 3.245A2.5 2.5 0 004 9.354v6.269a2.5 2.5 0 001.311 2.2l6 3.245a2.5 2.5 0 002.379 0l6-3.245a2.5 2.5 0 001.31-2.2V9.354a2.5 2.5 0 00-1.31-2.2zm-7.9-2.365a1.492 1.492 0 011.427 0l6 3.244a1.454 1.454 0 01.151.11l-2.931 1.665-6.743-3.886zM8.661 6.48l6.768 3.9-2.929 1.666-6.864-3.9a1.456 1.456 0 01.151-.11zM5.787 16.941A1.5 1.5 0 015 15.622V9.354a1.5 1.5 0 01.053-.39L12 12.912v7.358a1.463 1.463 0 01-.213-.083zM20 15.622a1.5 1.5 0 01-.786 1.319l-6 3.245a1.5 1.5 0 01-.214.084v-7.358l6.947-3.949a1.508 1.508 0 01.053.391z"></path></svg>
+                        <p class="delivery-pickup-date">週四 2022/07/14-免額外付費</p>
+                    </div>
+                </div>
+                <button class="addtocart">加入購物袋</button>
+            </div>
+            
+            
+
+        </section>
+    </main>
+    <div class="container">
+        <section class="product-detail">
+            <button class="btn-detail">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-1?wid=203&hei=120&fmt=jpeg&qlt=95&.v=1645071595417" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-2?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645071595443" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-3?wid=203&hei=120&fmt=jpeg&qlt=95&.v=1645071595433" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-4_GEO_TW?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645884753343" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-5_GEO_TW?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645886256446" alt="iphone-detail-img">
+            </button>
+            <div class="container product-content">
+                <h3>包裝盒內容</h3>
+                <div class="content-img">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-witb-20220606?wid=471&hei=392&fmt=p-jpg&qlt=95&.v=1653080321554" alt="包裝盒-主體">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-cable-witb-20220606?wid=85&hei=392&fmt=p-jpg&qlt=95&.v=1653080321311" alt="包裝盒-配件">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-power-witb-20220606?wid=132&hei=392&fmt=p-jpg&qlt=95&.v=1653080321315" alt="包裝盒-配件">
+                </div>
+                <div class="content-text">
+                    <p>MacBook Air 配備 M2 晶片</p>
+                    <p>USB-C 對 MagSafe 3 連接線 (2 公尺)</p>
+                    <p>USB-C 電源轉接器</p>
+                </div>
+                <div class="content-intro">
+                    <p>選購 MacBook Air 時的考慮重點。</p>
+                    <p>你可在下一個步驟選配你的版本。</p>
+                    <div class="content-intro-item row-cols-3">
+                        <div class="intro-item col">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/apple-m2-icon-mac-202206?wid=72&hei=72&fmt=png-alpha&.v=1652975333733" alt="Apple M2 晶片">
+                            <span>Apple M2 晶片</span>
+                            <p>M2 開創了 Apple 晶片的新世代，8 核心 CPU 讓你能快速完成文件、簡報製作等日常工作，也能處理更繁重的工作流程，例如在 Xcode 中進行開發或在 Logic Pro 混合音軌。<br>
+                                M2 具備最多達 10 核心 GPU，可大幅提升繪圖處理效能。它的媒體引擎可讓你播放和剪輯最多達 11 道 4K 影片串流和最多達 2 道 8K ProRes 影片串流²。</p>
+                        </div>
+                        <div class="intro-item col">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/unified-memory-icon-mac-202203?wid=72&hei=70&fmt=png-alpha&.v=1645118529697" alt="統一記憶體">
+                            <span>統一記憶體</span>
+                            <p>選擇配置的統一記憶體 (RAM) 越多，你可同時執行的 app 就越多，效能也越快速。<br>
+                                配備 M2 晶片的 MacBook Air 可選配最多達 24GB，讓多工處理更加流暢，並能輕鬆處理大型檔案。</p>
+                        </div>
+                        <div class="intro-item col">
+                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/storage-icon-mac-202203?wid=72&hei=52&fmt=png-alpha&.v=1645118529687" alt="儲存裝置">
+                            <span>儲存裝置</span>
+                            <p>固態硬碟 (SSD) 儲存空間，是你的 MacBook Air 可用來儲存文件、照片、音樂、影片和其它檔案的容量。<br>
+                                在 Mac 上開機、啟動 app 或瀏覽照片時，你將能感受它所帶來的顯著效能與速度提升。</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <footer>
+        <div class="container">
+            <ul class="foot-text">
+                <p>價格皆含稅與運送費用。<br>   
+                    * 上述費用為近似值，可能會隨時間變動。
+                    ** 實際換購估價視你折抵換購裝置的狀況、推出年份與機型而有所差異。並非所有裝置均符合折抵條件。你必須至少年滿 20 歲，才有折抵換購的資格，以獲享折抵優惠或取得 Apple Store 禮品卡。你現有裝置的價值，可能適用於購買新 Apple 裝置。實際獲得的換購價值，是根據收到符合條件的裝置，是否吻合你在估價時所提供的描述而定。可能須按照新裝置的全額售價繳納加值型營業稅。Apple 直營店據點不提供電腦換購。Apple 或 Apple 的換購合作夥伴保留以任何理由拒絕或限制接受任何裝置 (及其數量) 參與本優惠的權利。更多詳情可自 Apple 的換購合作夥伴取得，以了解符合換購及回收條件的裝置。須遵守 Apple 或 Apple 的換購合作夥伴所訂立的其他條款。請參閱 apple.com/tw/trade-in，以取得進一步資訊。<br>
+                    † 免費試用結束後，每月 NT$170。每個「家人共享」群組僅需一個訂閱方案。優惠須在符合條件裝置啟用後的 3 個月內訂閱。訂閱方案將自動續訂直到取消為止。須受限制與其他條款約束。<br>
+                    13.6 吋 MacBook Air 的顯示器頂端採用圓角設計。以標準矩形量測時，螢幕的對角線長度為 13.6 吋 (實際可視區較小)。</p>
+                
+                <li>1GB = 10 億位元組，1TB = 1 兆位元組；格式化後的實際容量可能較少。</li>
+                <li>測試由 Apple 於 2022 年 5 月使用配備 Apple M2、8 核心 CPU、10 核心 GPU 與 24GB RAM 的預量產 MacBook Air 系統進行。測試使用 Final Cut Pro 10.6.2，以一段 1 分鐘的子母畫面計畫案進行，內容包含 4 道 8192x4320 解析度、每秒 30 影格的 Apple ProRes 422 影片串流；以及一段 1 分鐘的子母畫面計畫案進行，內容包含 20 道 3840x2160 解析度、每秒 29.97 影格的 Apple ProRes 422 影片串流。效能測試使用特定電腦系統進行，可反映 MacBook Air 約略效能。</li>
+                <p>†† 我們會透過你的網際網路 IP 位址所對應的地理區域，或你上次瀏覽 Apple 網站輸入的位置資訊，估計你的約略位置。</p>
+            </ul>
+            <ul class="foot-nav">
+                <li class="foot-nav-item">關於Apple</li>
+                <li class="foot-nav-item"><a href="">Newsroom</a></li>
+                <li class="foot-nav-item"><a href="">Apple領導團隊</a></li>
+                <li class="foot-nav-item"><a href="">工作機會</a></li>
+                <li class="foot-nav-item"><a href="">商業倫理與法規遵循</a></li>
+                <li class="foot-nav-item"><a href="">活動</a></li>
+                <li class="foot-nav-item"><a href="">聯絡Apple</a></li>
+            </ul>
+            <div class="copyright">
+                Copyright © 2022 Apple Inc. 保留一切權利。
+            </div>
+
+        </div>
+    </footer>
+    
+    <script>
+
+        
+        const products={
+            "iphone":{
+                "iphone13pro":[
+                    {"id":"ph01","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"松嶺青色","capacity":"128","cptype":"GB","price":"32900"},
+                    {"id":"ph02","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"銀色","capacity":"128","cptype":"GB","price":"32900"},
+                    {"id":"ph03","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"金色","capacity":"128","cptype":"GB","price":"32900"},
+                    {"id":"ph04","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"石墨色","capacity":"128","cptype":"GB","price":"32900"},
+                    {"id":"ph05","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"天峰藍色","capacity":"128","cptype":"GB","price":"32900"},
+                    {"id":"ph06","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"松嶺青色","capacity":"256","cptype":"GB","price":"36400"},
+                    {"id":"ph07","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"銀色","capacity":"256","cptype":"GB","price":"36400"},
+                    {"id":"ph08","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"金色","capacity":"256","cptype":"GB","price":"36400"},
+                    {"id":"ph09","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"石墨色","capacity":"256","cptype":"GB","price":"36400"},
+                    {"id":"ph10","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"天峰藍色","capacity":"256","cptype":"GB","price":"36400"},
+                    {"id":"ph11","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"松嶺青色","capacity":"512","cptype":"GB","price":"43400"},
+                    {"id":"ph12","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"銀色","capacity":"512","cptype":"GB","price":"43400"},
+                    {"id":"ph13","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"金色","capacity":"512","cptype":"GB","price":"43400"},
+                    {"id":"ph14","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"石墨色","capacity":"512","cptype":"GB","price":"43400"},
+                    {"id":"ph15","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"天峰藍色","capacity":"512","cptype":"GB","price":"43400"},
+                    {"id":"ph16","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"松嶺青色","capacity":"1","cptype":"TB","price":"50400"},
+                    {"id":"ph17","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"銀色","capacity":"1","cptype":"TB","price":"50400"},
+                    {"id":"ph18","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"金色","capacity":"1","cptype":"TB","price":"50400"},
+                    {"id":"ph19","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"石墨色","capacity":"1","cptype":"TB","price":"50400"},
+                    {"id":"ph20","name":"iPhone 13 Pro","size":"6.1吋顯示器","color":"天峰藍色","capacity":"1","cptype":"TB","price":"50400"}
+                ],
+                "iphone13promax":[
+                    {"id":"phmax01","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"松嶺青色","capacity":"128","cptype":"GB","price":"36900"},
+                    {"id":"phmax02","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"銀色","capacity":"128","cptype":"GB","price":"36900"},
+                    {"id":"phmax03","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"金色","capacity":"128","cptype":"GB","price":"36900"},
+                    {"id":"phmax04","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"石墨色","capacity":"128","cptype":"GB","price":"36900"},
+                    {"id":"phmax05","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"天峰藍色","capacity":"128","cptype":"GB","price":"36900"},
+                    {"id":"phmax06","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"松嶺青色","capacity":"256","cptype":"GB","price":"40400"},
+                    {"id":"phmax07","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"銀色","capacity":"256","cptype":"GB","price":"40400"},
+                    {"id":"phmax08","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"金色","capacity":"256","cptype":"GB","price":"40400"},
+                    {"id":"phmax09","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"石墨色","capacity":"256","cptype":"GB","price":"40400"},
+                    {"id":"phmax10","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"天峰藍色","capacity":"256","cptype":"GB","price":"40400"},
+                    {"id":"phmax11","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"松嶺青色","capacity":"512","cptype":"GB","price":"47400"},
+                    {"id":"phmax12","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"銀色","capacity":"512","cptype":"GB","price":"47400"},
+                    {"id":"phmax13","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"金色","capacity":"512","cptype":"GB","price":"47400"},
+                    {"id":"phmax14","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"石墨色","capacity":"512","cptype":"GB","price":"47400"},
+                    {"id":"phmax15","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"天峰藍色","capacity":"512","cptype":"GB","price":"47400"},
+                    {"id":"phmax16","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"松嶺青色","capacity":"1","cptype":"TB","price":"54400"},
+                    {"id":"phmax17","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"銀色","capacity":"1","cptype":"TB","price":"54400"},
+                    {"id":"phmax18","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"金色","capacity":"1","cptype":"TB","price":"54400"},
+                    {"id":"phmax19","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"石墨色","capacity":"1","cptype":"TB","price":"54400"},
+                    {"id":"phmax20","name":"iPhone 13 Pro Max","size":"6.7吋顯示器","color":"天峰藍色","capacity":"1","cptype":"TB","price":"54400"}
+                ]
+            },
+            "ipad":{
+                "ipadair":[
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"}
+                ]
+            },
+            "mac":{
+                "macbookair":[
+                    {"id":"mac01","name":"MacBook Air","color":"午夜色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"星光色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"太空灰色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"銀色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"午夜色","capacity":"512","cptype":"GB","price":"46900"},
+                    {"id":"mac01","name":"MacBook Air","color":"星光色","capacity":"512","cptype":"GB","price":"46900"},
+                    {"id":"mac01","name":"MacBook Air","color":"太空灰色","capacity":"512","cptype":"GB","price":"46900"},
+                    {"id":"mac01","name":"MacBook Air","color":"銀色","capacity":"512","cptype":"GB","price":"46900"}
+                ]
+            }
+        }
+        const productimg={
+            "iphone":{
+                "iphone13pro":[
+                    {"name":"iPhone 13 Pro","color":"松嶺青色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-green-select?wid=470&hei=556&fmt=png-alpha&.v=1644969385505"},
+                    {"name":"iPhone 13 Pro","color":"銀色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-silver-select?wid=470&hei=556&fmt=png-alpha&.v=1645552345849"},
+                    {"name":"iPhone 13 Pro","color":"金色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-gold-select?wid=470&hei=556&fmt=png-alpha&.v=1645552345862"},
+                    {"name":"iPhone 13 Pro","color":"石墨色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=470&hei=556&fmt=png-alpha&.v=1645552346276"},
+                    {"name":"iPhone 13 Pro","color":"天峰藍色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-blue-select?wid=470&hei=556&fmt=png-alpha&.v=1645552346275"}
+                ],
+                "iphone13promax":[
+                    {"name":"iPhone 13 Pro Max","color":"松嶺青色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-max-green-select?wid=470&hei=556&fmt=png-alpha&.v=1644969385495"},
+                    {"name":"iPhone 13 Pro Max","color":"銀色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-max-silver-select?wid=470&hei=556&fmt=png-alpha&.v=1645552346280"},
+                    {"name":"iPhone 13 Pro Max","color":"金色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-max-gold-select?wid=470&hei=556&fmt=png-alpha&.v=1645552346295"},
+                    {"name":"iPhone 13 Pro Max","color":"石墨色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-max-graphite-select?wid=470&hei=556&fmt=png-alpha&.v=1645552346288"},
+                    {"name":"iPhone 13 Pro Max","color":"天峰藍色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-max-blue-select?wid=470&hei=556&fmt=png-alpha&.v=1645552346295"}
+                ],
+                "iphonepreview":[
+                    {"color":'松嶺青色',"url":'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-finish-green-202203?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645149891269'},
+                    {"color":'銀色',"url":'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-silver-2021?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1629940690000'},
+                    {"color":'金色',"url":'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-gold-2021?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1629940690000'},
+                    {"color":'石墨色',"url":'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-graphite-2021?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1629940690000'},
+                    {"color":'天峰藍色',"url":'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-blue-2021?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1629940690000'}
+                ]       
+            }, 
+            
+            "ipad":{
+                "ipadair":[
+                    {"color":"太空灰色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-spacegray-202203?wid=470&hei=556&fmt=png-alpha&.v=1645066742664"},
+                    {"color":"粉紅色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-pink-202203?wid=470&hei=556&fmt=png-alpha&.v=1645066399526"},
+                    {"color":"紫色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-purple-202203?wid=470&hei=556&fmt=png-alpha&.v=1645066730601"},
+                    {"color":"藍色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=470&hei=556&fmt=png-alpha&.v=1645065732688"},
+                    {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-starlight-202203?wid=470&hei=556&fmt=png-alpha&.v=1645895139236"}
+                ],
+                "ipadairpreview":[
+                    {"color":"太空灰色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-spacegray-202203?wid=208&amp;hei=208&amp;fmt=png-alpha&amp;.v=1645072286860"},
+                    {"color":"粉紅色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-pink-202203?wid=208&amp;hei=208&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645072286848"},
+                    {"color":"紫色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-purple-202203?wid=208&amp;hei=208&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645072286861"},
+                    {"color":"藍色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-blue-202203?wid=208&amp;hei=208&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645072286826"},
+                    {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-starlight-202203?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645049661304"}
+                ]
+            },      
+            "mac":{
+                "macbookair":[
+                    {"color":"午夜色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303665"},
+                    {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-starlight-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303732"},
+                    {"color":"太空灰色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-spacegray-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303733"},
+                    {"color":"銀色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-silver-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303678"}
+                ],
+                "macbookairpreview":[
+                    {"color":"午夜色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-midnight-select-20220606_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903807"},
+                    {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-starlight-select-20220606_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903808"},
+                    {"color":"太空灰色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-spacegray-select-20220606_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903803"},
+                    {"color":"銀色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-silver-select-201810_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903776"}
+                ]             
+            }       
+        }
+        
+        //生成預設按鈕(color.capacity)
+        let colorpreview = productimg.mac.macbookairpreview
+        colorpreview.forEach(x=>{
+             let select = document.querySelector('.select-color')
+             let btn =document.createElement('button')
+             btn.className='btn-select btn-select-color'
+             btn.id=x.color
+             btn.name='colortype'
+             let preview = document.createElement('div')
+             preview.className='color-preview'
+             let img = document.createElement('img')
+             img.className='color-img'
+             img.src=x.url
+             img.alt=x.color
+             let name = document.createElement('p')
+             name.className='color-name'
+             name.innerText=x.color
+
+             preview.append(img)
+             btn.append(preview,name)
+             select.append(btn)
+        })
+        
+        const options = Object.values(products.mac)[0]
+        let capacities = new Set(options.map(x=>x.capacity))
+       
+        capacities.forEach(x=>{
+             let select = document.querySelector('.select-capacity')
+             let btn =document.createElement('button')
+             btn.className='btn-select btn-select-capacity'
+             btn.id=x
+             btn.name='capacitytype'
+             let type = document.createElement('p')
+             type.className='capacity-name'
+             type.innerText=x
+             let price = document.createElement('p')
+             price.className='capacity-price'
+             
+             let parent= options.find(y=>{
+                if(y.capacity==x) return y
+             })
+            price.innerText=`NT$${parent.price}`
+            if(parent.cptype=='TB'){type.className='capacity-name capacity-tb'}
+
+             btn.append(type,price)
+             select.append(btn)
+        })
+
+        
+        window.onload=function(){
+            const btns = document.querySelectorAll('.btn-select')
+            const btncolor = document.querySelectorAll('.btn-select-color')
+            const btncp= document.querySelectorAll('.btn-select-capacity')
+
+            btns.forEach(x=>{
+                x.addEventListener('click',()=>{
+                    selectbtn(event)
+                    count(products)
+                    getdate()
+                })
+            })
+            btncolor.forEach(x=>{
+                x.addEventListener('click',()=>{changeimg(productimg)})
+            })
+            
+        }
+
+        //select屬性
+        function selectbtn(btn){
+            let options = btn.target.parentElement.querySelectorAll('.btn-select')
+            options.forEach((option)=>{
+                option.classList.remove('nowselect')
+            })
+            btn.target.classList.add('nowselect')
+        }
+        //換色
+        function changeimg(productimg){
+            let img = Object.values(productimg.mac)[0]            
+            let mainpic = document.querySelector('.mainpic')
+            let selectcolor = document.querySelector('.btn-select-color.nowselect')
+            if(selectcolor!=null){
+                img.map(x=>{
+                if(x.color==selectcolor.id){mainpic.src=x.url}})
+
+            }
+        }
+        //價格 
+        function count(products){
+            let selectcp = document.querySelector('.btn-select-capacity.nowselect')
+            let price= document.querySelectorAll('.product-price')
+            let installment = document.querySelector('.installment-price')
+            let product = Object.values(products.mac.macbookair)
+            
+            if(selectcp!=null){
+                product.map(x=>{
+                    if(x.capacity==selectcp.id){
+                        price.forEach(item=>item.innerText=`NT$${x.price} 起`)
+                        installment.innerText=`0 利率分期付款，每月NT$${Math.ceil((x.price)/12)}起，共12個月`}
+                })
+            }
+        }
+        //取貨時間
+        function getdate(){
+            let delivery = document.querySelector('.delivery-pickup-date')
+            let date = new Date
+            let day 
+            if(date.getDay()==1){day='週一'}
+            else if(date.getDay()==2){day='週二'}
+            else if(date.getDay()==3){day='週三'}
+            else if(date.getDay()==4){day='週四'}
+            else if(date.getDay()==5){day='週五'}
+            else if(date.getDay()==6){day='週六'}
+            else if(date.getDay()==0){day='週日'}
+
+            let pickday = `${day} ${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()+2}`
+            delivery.innerText=`${pickday}-免額外付費`
+        }
+
+    </script>
+   
+</body>
+</html>

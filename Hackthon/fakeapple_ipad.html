@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Apple</title>
     <link rel="stylesheet" href="../grid.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,19 +187,14 @@
             border: 1px solid  #0071e3;
             box-shadow: 0px 0px 8px 3px #0066CC;
         }
-        .btn-select-type{
-            width: 100%;
-            justify-content: space-between;
-            flex-direction: row;
-        }
-        .type-info,.type-name,.type-size,.type-price,.color-name,.capacity-name,.capacity-price{
+        .type-info,.type-name,.type-size,.type-price,.color-name,.capacity-name,.capacity-price,.network-name,.network-price{
             margin: 0;
             font-size: 17px;
         }
         .type-info{
             text-align: left;
         }
-        .type-size,.color-name,.capacity-price{font-size: 12px;}
+        .type-size,.color-name,.capacity-price,.network-price{font-size: 12px;}
         .btn-select-color{
             padding-top: 25px;
             padding-bottom: 25px;
@@ -223,6 +218,7 @@
             margin: auto;
         }
         .capacity-name{font-size: 29px;font-weight: 600;}
+        .network-name{font-size: 24px;font-weight: 600;}
         .capacity-name::after{
             content: 'GB';
             font-size: 19px;
@@ -231,7 +227,7 @@
         .capacity-tb::after{
             content: 'TB';
         }
-        .capacity-price{
+        .capacity-price,.network-price{
             margin-top: 5px;
         }
         .checkout-info{
@@ -305,21 +301,39 @@
             background-color: #FBFBFD;;
             justify-content: space-evenly;
         }
+        .content-text{justify-content: center;}
         .content-text p{
             width: 50%;
         }
         .content-text p:first-child{
-            text-align: right;
-            padding-right: 20%;
+            padding-left: 15%;
+        }
+        .content-text p:nth-child(2){
+            padding-left: 8%;
         }
         .content-text p:last-child{
-            padding-right: 10%;
+            padding-right: 6%;
         }
         .content-intro{
             margin: 50px 20px;
             font-size: 12px;
             color:#6e6e73;
         }
+        .content-intro p,.content-intro a{
+            margin: 0px;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .content-intro p:first-child{
+            font-size: 40px;
+            font-weight: 600;
+            color: #000;
+        }
+        .content-intro a{
+            display: inline-block;
+            color:#0066CC;
+        }
+        .content-intro a i {margin-left: 10px;}
         .btn-detail{
             width: 100%;
             background-color: #fff;
@@ -383,7 +397,7 @@
             padding: 10px 0px;
         }
         .foot-nav-item a{color:#6e6e73;}
-        .foot-nav-item a:hover{
+        .foot-nav-item a:hover,.content-intro a:hover{
             text-decoration: underline;
         }
         .copyright{
@@ -540,6 +554,9 @@
                 overflow: auto;
             }
             .product-view{
+                box-sizing: border-box;
+                padding-right: 50px;
+                padding-top: 50px;
                 height: 800px;
                 position: sticky;
                 top:0;
@@ -574,13 +591,13 @@
                     <a href="">商店</a>
                 </li>
                 <li class="nav-menu-item mac">
-                    <a href="">Mac</a>
+                    <a href="./fakeapple_mac.html">Mac</a>
                 </li>
                 <li class="nav-menu-item ipad">
-                    <a href="">iPad</a>
+                    <a href="./fakeapple_ipad.html">iPad</a>
                 </li>
                 <li class="nav-menu-item iphone">
-                    <a href="">iPhone</a>
+                    <a href="./fakeapple_iphone.html">iPhone</a>
                 </li>
                 <li class="nav-menu-item watch">
                     <a href="">Watch</a>
@@ -618,8 +635,8 @@
     </nav>    
     <header>
         <div class="container header-producr">
-            <span class="product-name">iPhone 13 Pro</span>
-            <span class="product-price">NT$32,900 起</span>
+            <span class="product-name">iPad Air</span>
+            <span class="product-price">NT$17900 起</span>
         </div>
         <div class="header-installment">
             <p class="installment-text">可申請最長達 12 個月的零利率分期付款。 </p>
@@ -631,7 +648,7 @@
     <main class="container product">     
         <section class="product-view">
             <div class="product-img">
-                <img class="mainpic" src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-family-hero?wid=940&hei=1112&fmt=png-alpha&.v=1644969385433" alt="iPhone 13 Pro">
+                <img class="mainpic" src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-202203?wid=1765&hei=2000&fmt=jpeg&qlt=95&.v=1645665079887" alt="iPad Air">
             </div>
             <ul class="product-service">
                 <li class="service">
@@ -661,15 +678,8 @@
 
         </section>
         <section class="product-option">
-            <p class="product-title">購買iPhone 13 Pro</p>
-            <div class="changeiphone">
-                <p>以 iPhone 8 或後續機型換購，獲享最高達 NT$2,700 – NT$18,200 折抵優惠**</p>
-                <a href="">了解「Apple Trade In 換購方案」的運作方式</a>
-            </div>
-            <div class="select select-type">
-                <p class="select-p">選擇機型。</p>
-                <!-- DOM產生btn -->
-            </div>
+            <p class="product-title">購買iPad Air</p>
+            
             <div class="select select-color">
                 <p class="select-p">選擇外觀。</p>
                 <!-- DOM產生btn -->
@@ -678,10 +688,14 @@
                 <p class="select-p">選擇儲存容量。</p>
                 <!-- DOM產生btn -->
             </div>
+            <div class="select select-network">
+                <p class="select-p">選擇連線能力。</p>
+                <!-- DOM產生btn -->
+            </div>
             <div class="checkout-info">
                 <div class="price-info">
-                    <p class="product-price">NT$32,900</p>
-                    <p class="installment-price"><i class="fa-solid fa-circle-info"></i>0 利率分期付款，每月NT$2,741 起，共12個月</p>
+                    <p class="product-price">NT$17900</p>
+                    <p class="installment-price"><i class="fa-solid fa-circle-info"></i>0 利率分期付款，每月NT$1292 起，共12個月</p>
                 </div>
                 <div class="pickup-info">
                     <div class="self-pickup">
@@ -703,26 +717,28 @@
     <div class="container">
         <section class="product-detail">
             <button class="btn-detail">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-2022-gallery-1-thumb?wid=203&hei=120&fmt=jpeg&qlt=95&.v=1645123518142" alt="iphone-detail-img">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-2022-gallery-2-thumb?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645123566666" alt="iphone-detail-img">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-2022-gallery-3-thumb?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645810642565" alt="iphone-detail-img">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-2022-gallery-4-thumb?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645123517070" alt="iphone-detail-img">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-2022-gallery-5-thumb?wid=203&hei=120&fmt=jpeg&qlt=95&.v=1645810642215" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-1?wid=203&hei=120&fmt=jpeg&qlt=95&.v=1645071595417" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-2?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645071595443" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-3?wid=203&hei=120&fmt=jpeg&qlt=95&.v=1645071595433" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-4_GEO_TW?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645884753343" alt="iphone-detail-img">
+                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-202203-thumb-5_GEO_TW?wid=141&hei=120&fmt=jpeg&qlt=95&.v=1645886256446" alt="iphone-detail-img">
             </button>
-            <div class="product-content">
+            <div class="container product-content">
                 <h3>包裝盒內容</h3>
                 <div class="content-img">
-                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-green-witb-202203?wid=172&hei=392&fmt=jpeg&qlt=95&.v=1644965775338" alt="包裝盒-主體">
-                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pro-cable-witb-202203?wid=92&hei=392&fmt=jpeg&qlt=95&.v=1644966142839" alt="包裝盒-配件">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-witb-purple-wifi-202203?wid=315&hei=339&fmt=jpeg&qlt=95&.v=1645646567514" alt="包裝盒-主體">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-witb-cable-202203?wid=78&hei=339&fmt=jpeg&qlt=95&.v=1645646555755" alt="包裝盒-配件">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-witb-adapter-202203?wid=151&hei=339&fmt=jpeg&qlt=95&.v=1645646555146" alt="包裝盒-配件">
                 </div>
                 <div class="content-text">
-                    <p>iPhone</p>
-                    <p>USB-C 對 Lightning 連接線</p>
+                    <p>iPad Air</p>
+                    <p>USB-C 充電連接線</p>
+                    <p>20W USB-C 電源轉接器</p>
                 </div>
                 <div class="content-intro">
-                    <p>為實現我們的環保目標，iPhone 13 與 iPhone 13 mini 不隨附電源轉接器和 EarPods。包裝盒內隨附的是一條支援快速充電的 USB‑C 對 Lightning 連接線，並可與 USB‑C 電源轉接器及電腦連接埠相容。
-                    </p>
-                    <p>我們鼓勵重複使用你現有的電源轉接器及耳機，這些配件都能與這些 iPhone 機型相容。但如果你需要任何新的 Apple 電源轉接器或耳機，也可以隨時購買。</p>
+                    <p>更多精彩，待你探索。</p>
+                    <p>娛樂、遊戲，都在你的 iPad Air。</p>
+                    <a href="">看看 Apple 獨家服務<i class="fa-solid fa-angle-right"></i></a>
                 </div>
             </div>
 
@@ -731,24 +747,19 @@
             <h3>常見問題</h3>
             <li class="qa-item">
                 <input type="checkbox" class="qa-ctrl"  id="qa-ctrl-1">
-                <label for="qa-ctrl-1" class="question">為什麼要在 apple.com購買不含SIM卡的 iPhone?</label>
-                <p class="answer">自 apple.com 購買的未連接電信業者網路方案的 iPhone 都已解鎖，因此你不必受限於單一網路供應商或多年的服務合約。你可以選擇適合自己的網路及資費方案。你的全新 iPhone 啟用後會保持解鎖狀態，這表示你可以使用任何為 iPhone 提供服務的網路。</p>
+                <label for="qa-ctrl-1" class="question">哪一款Apple Pencil適用於這款iPad?</label>
+                <p class="answer">Apple Pencil (第 2 代)，以磁力吸附，方便無線配對及充電。</p>
             </li>
             <li class="qa-item">
                 <input type="checkbox"  class="qa-ctrl" id="qa-ctrl-2">
-                <label for="qa-ctrl-2" class="question">我的運送選項有哪些，什麼時候可以收到商品?</label>
-                <p class="answer">所有的預估時間皆根據商品供貨狀況以及你所選擇的運送選項而定。下達訂單後，你將會看見最終預估日期。
-
-                    訂購任何現貨商品，可享有免額外付費的隔日運送服務。
-                    
-                    依據你所在的位置，你的訂單可能符合於 Apple 直營店取貨的條件。只要在結帳時選擇當地 Apple 直營店提取商品即可。
-                    
-                    透過 apple.com 所下達的訂單，僅能運送至該筆購買所在的國家或地區。只要前往產品須送抵之國家或地區的當地線上商店購買即可。</p>
+                <label for="qa-ctrl-2" class="question">哪一款鍵盤適用於這款iPad?</label>
+                <p class="answer">巧控鍵盤與鍵盤式聰穎雙面夾相容於這款 iPad，還相容於 11 吋 iPad Pro (第 1 代、第 2 代與第 3 代)。另可使用其他第三方鍵盤。</p>
             </li>
             <li class="qa-item">
                 <input type="checkbox"  class="qa-ctrl" id="qa-ctrl-3">
-                <label  for="qa-ctrl-3" class="question">我可以將 iPhone 退貨嗎?</label>
-                <p class="answer">可以。如果你改變心意，不想再保留 iPhone，可以選擇退貨給我們。iPhone 退回時必須狀況良好，置於原始包裝內，原始包裝須包含所有配件、使用手冊和說明。退貨須遵守 Apple 的銷售及退款政策。<a href="">進一步了解退貨、退款與換貨</a></p>
+                <label  for="qa-ctrl-3" class="question">線上換購流程需要多久時間'?</label>
+                <p class="answer">線上換購通常費時 2 至 3 週。但是你越早將裝置寄送給我們，我們就能越早檢驗其狀況，並為你辦理折抵優惠或禮品卡。<br>
+                    若要回收裝置，你將會收到電子郵件，說明如何安排收取裝置的詳細資訊。此流程通常需要約 1 週時間。</p>
             </li>
         </ul>
 
@@ -757,13 +768,12 @@
         <div class="container">
             <ul class="foot-text">
                 <p>價格皆含稅與運送費用。<br>
-                    * 上述費用為近似值，可能會隨時間變動。<br> 
-                    ** 實際換購估價視你折抵換購裝置的狀況、推出年份與機型而有所差異。並非所有裝置均符合折抵條件。你必須至少年滿 20 歲，才有折抵換購的資格，以獲享折抵優惠或取得 Apple Store 禮品卡。你現有裝置的價值，可能適用於購買新 Apple 裝置。實際獲得的換購價值，是根據收到符合條件的裝置，是否吻合你在估價時所提供的描述而定。可能須按照新裝置的全額售價繳納加值型營業稅。店內換購須出示政府核發的有效照片證件，才能享有此項優惠 (當地法律可能要求保存這份資訊)。優惠可能無法在所有直營店提供，線上和店內折抵換購的估價可能會有所不同。部分直營店可能會有額外的要求。Apple 或 Apple 的換購合作夥伴保留以任何理由拒絕或限制接受任何裝置 (及其數量) 參與本優惠的權利。更多詳情可自 Apple 的換購合作夥伴取得，以了解符合換購及回收條件的裝置。須遵守 Apple 或 Apple 的換購合作夥伴所訂立的其他條款。請參閱 apple.com/tw/trade-in，以取得進一步資訊。</p>
+                    * 上述費用為近似值，可能會隨時間變動。</p>
                 
-                <li>顯示器的圓角具有優美的曲線設計，並呈現在一個標準矩形之內。以標準矩形量測時，螢幕的對角線長度為 5.42 吋 (iPhone 13 mini、iPhone 12 mini)、6.06 吋 (iPhone 13、iPhone 13 Pro、iPhone 12) 或 6.68 吋 (iPhone 13 Pro Max)。實際可視區較小。</li>
-                <li>可用空間會隨著多項因素而減少並有所差異。標準配置會視乎型號和設定，取用約 12GB 至 17GB 的空間，包括 iOS 15 和其最新功能，以及可刪除的各款 Apple app。可刪除的各款 Apple app 約佔 4.5GB 空間，你可隨時從 App Store 重新下載這些 app。儲存空間會視乎軟件版本、設定和 iPhone 型號而改變。</li>
-                <li>須使用數據方案。5G 僅於特定地區並透過特定電信業者提供。連線速度會因所在地情況及電信業者而異。如需 5G 支援的詳細資訊，請洽詢你的電信業者並參閱 apple.com/tw/iphone/cellular。</li>
-                <li>所列舉的電池效能因受網路配置與許多其他因素影響；實際結果可能有所差異。電池的充電循環次數有限，最終仍可能須由 Apple 服務供應商更換。電池使用時間與充電次數視使用情況及設定狀態而異。請參閱 apple.com/tw/batteries 與 apple.com/tw/iphone/battery.html，以取得進一步資訊。</li>
+                <li>可用儲存空間會隨著眾多因素而減少並有所差異。標準配置會使用約 12GB 至 17GB 的空間，包括 iPadOS 15 與其最新功能，以及可刪除的各款 Apple app。可刪除的各款 Apple app 約會佔用 4.5GB 的空間，你可隨時從 App Store 再次下載這些 app。儲存容量會隨軟體版本、設定與 iPad 機型而有所變動。</li>
+                <li>顯示器採用圓角設計。以矩形量測時，iPad Pro 12.9 吋螢幕的對角線長度為 12.9 吋；iPad Pro 11 吋螢幕的對角線長度為 11 吋；iPad Air 螢幕的對角線長度為 10.86 吋；iPad mini 螢幕的對角線長度為 8.3 吋。實際可視區較小。</li>
+                <li>須使用數據方案。5G、Gigabit LTE、Gigabit 等級 LTE、4G LTE Advanced、4G LTE 和 Wi-Fi 通話服務僅於特定地區並透過特定電信業者提供。連線速度是依據理論傳輸值，並會因所在地情況及電信業者而異。如需 5G 與 LTE 支援的詳細資訊，請洽詢你的電信業者並參閱 apple.com/ipad/cellular/。</li>
+                <li>使用 Apple TV+ 與 Apple Arcade 須訂閱服務。</li>
             </ul>
             <ul class="foot-nav">
                 <li class="foot-nav-item">關於Apple</li>
@@ -833,38 +843,38 @@
             },
             "ipad":{
                 "ipadair":[
-                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"64GB","internet":"Wi-Fi","price":"17900"},
-                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"64GB","internet":"Wi-Fi","price":"17900"},
-                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"64GB","internet":"Wi-Fi","price":"17900"},
-                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"64GB","internet":"Wi-Fi","price":"17900"},
-                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"64GB","internet":"Wi-Fi","price":"17900"},
-                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"64GB","internet":"Wi-Fi+行動網路","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"64GB","internet":"Wi-Fi+行動網路","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"64GB","internet":"Wi-Fi+行動網路","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"64GB","internet":"Wi-Fi+行動網路","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"64GB","internet":"Wi-Fi+行動網路","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"256GB","internet":"Wi-Fi","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"256GB","internet":"Wi-Fi","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"256GB","internet":"Wi-Fi","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"256GB","internet":"Wi-Fi","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"256GB","internet":"Wi-Fi","price":"22900"},
-                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"256GB","internet":"Wi-Fi+行動網路","price":"27900"},
-                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"256GB","internet":"Wi-Fi+行動網路","price":"27900"},
-                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"256GB","internet":"Wi-Fi+行動網路","price":"27900"},
-                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"256GB","internet":"Wi-Fi+行動網路","price":"27900"},
-                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"256GB","internet":"Wi-Fi+行動網路","price":"27900"}
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"64","cptype":"GB","internet":"Wi-Fi","price":"17900"},
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"64","cptype":"GB","internet":"Wi-Fi+行動網路","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"256","cptype":"GB","internet":"Wi-Fi","price":"22900"},
+                    {"id":"pa01","name":"iPad Air","color":"太空灰色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"粉紅色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"紫色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"藍色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"},
+                    {"id":"pa01","name":"iPad Air","color":"星光色","capacity":"256","cptype":"GB","internet":"Wi-Fi+行動網路","price":"27900"}
                 ]
             },
             "mac":{
                 "macbook air":[
-                    {"id":"mac01","name":"MacBook Air","color":"午夜色","capacity":"256GB","price":"37900"},
-                    {"id":"mac01","name":"MacBook Air","color":"星光色","capacity":"256GB","price":"37900"},
-                    {"id":"mac01","name":"MacBook Air","color":"太空灰色","capacity":"256GB","price":"37900"},
-                    {"id":"mac01","name":"MacBook Air","color":"銀色","capacity":"256GB","price":"37900"},
-                    {"id":"mac01","name":"MacBook Air","color":"午夜色","capacity":"512GB","price":"46900"},
-                    {"id":"mac01","name":"MacBook Air","color":"星光色","capacity":"512GB","price":"46900"},
-                    {"id":"mac01","name":"MacBook Air","color":"太空灰色","capacity":"512GB","price":"46900"},
-                    {"id":"mac01","name":"MacBook Air","color":"銀色","capacity":"512GB","price":"46900"}
+                    {"id":"mac01","name":"MacBook Air","color":"午夜色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"星光色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"太空灰色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"銀色","capacity":"256","cptype":"GB","price":"37900"},
+                    {"id":"mac01","name":"MacBook Air","color":"午夜色","capacity":"512","cptype":"GB","price":"46900"},
+                    {"id":"mac01","name":"MacBook Air","color":"星光色","capacity":"512","cptype":"GB","price":"46900"},
+                    {"id":"mac01","name":"MacBook Air","color":"太空灰色","capacity":"512","cptype":"GB","price":"46900"},
+                    {"id":"mac01","name":"MacBook Air","color":"銀色","capacity":"512","cptype":"GB","price":"46900"}
                 ]
             }
         }
@@ -900,6 +910,13 @@
                     {"color":"紫色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-purple-202203?wid=470&hei=556&fmt=png-alpha&.v=1645066730601"},
                     {"color":"藍色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-blue-202203?wid=470&hei=556&fmt=png-alpha&.v=1645065732688"},
                     {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-wifi-starlight-202203?wid=470&hei=556&fmt=png-alpha&.v=1645895139236"}
+                ],
+                "ipadairpreview":[
+                    {"color":"太空灰色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-spacegray-202203?wid=208&amp;hei=208&amp;fmt=png-alpha&amp;.v=1645072286860"},
+                    {"color":"粉紅色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-pink-202203?wid=208&amp;hei=208&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645072286848"},
+                    {"color":"紫色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-purple-202203?wid=208&amp;hei=208&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645072286861"},
+                    {"color":"藍色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-blue-202203?wid=208&amp;hei=208&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645072286826"},
+                    {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-starlight-202203?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645049661304"}
                 ]
             },      
             "mac":{
@@ -908,59 +925,18 @@
                     {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-starlight-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303732"},
                     {"color":"太空灰色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-spacegray-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303733"},
                     {"color":"銀色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-silver-select-20220606?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1653084303678"}
-                ]       
+                ],
+                "macbook air preview":[
+                    {"color":"午夜色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-midnight-select-20220606_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903807"},
+                    {"color":"星光色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-starlight-select-20220606_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903808"},
+                    {"color":"太空灰色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-spacegray-select-20220606_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903803"},
+                    {"color":"銀色","url":"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-silver-select-201810_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903776"}
+                ]             
             }       
         }
         
-        // let productj={}
-        // let productimgf={}
-        // const producturl ="https://raw.githubusercontent.com/Ning0809/FileStorage/main/Product.json"
-        // const productimgurl="https://raw.githubusercontent.com/Ning0809/FileStorage/main/Productimg.json"
-
-        // //JSON
-        // let xhr = new XMLHttpRequest()
-        
-        // function requestJSON(){
-        //     xhr.onload=function(){  
-        //        productj = this.response
-               
-        //     }
-        //     xhr.open("GET",producturl)
-        //     xhr.responseType="json"    
-        //     xhr.send()             
-        // }
-
-        // console.log(productj)
-
-
-        //生成預設btn(type)
-        const types = Object.values(products.iphone)
-        types.forEach(x=>{
-            let select = document.querySelector('.select-type')
-            let btn =document.createElement('button')
-            btn.className='btn-select btn-select-type'
-            btn.id=x[0].name
-            btn.name='producttype'
-            let typeinfo = document.createElement('div')
-            typeinfo.className='type-info'
-            let typeprice = document.createElement('p')
-            typeprice.className='type-price'
-
-            let h2=document.createElement('h2')
-            h2.innerText=x[0].name
-            h2.className='type-name'
-            let span = document.createElement('span')
-            span.innerText=x[0].size
-            span.className='type-size'
-            typeinfo.append(h2,span)
-            typeprice.innerText=`NT$${x[0].price} 起`
-
-            btn.append(typeinfo,typeprice)
-            select.append(btn)
-        })
-
         //生成預設按鈕(color.capacity)
-        let colorpreview = productimg.iphone.iphonepreview
+        let colorpreview = productimg.ipad.ipadairpreview
         colorpreview.forEach(x=>{
              let select = document.querySelector('.select-color')
              let btn =document.createElement('button')
@@ -982,7 +958,7 @@
              select.append(btn)
         })
         
-        const options = Object.values(products.iphone)[0]
+        const options = Object.values(products.ipad)[0]
         let capacities = new Set(options.map(x=>x.capacity))
        
         capacities.forEach(x=>{
@@ -1000,41 +976,51 @@
              let parent= options.find(y=>{
                 if(y.capacity==x) return y
              })
-            price.innerText=`+ NT$${parent.price}`
+            price.innerText=`NT$${parent.price}`
             if(parent.cptype=='TB'){type.className='capacity-name capacity-tb'}
 
              btn.append(type,price)
              select.append(btn)
         })
 
+        let networks = new Set(options.map(x=>x.internet))
+        networks.forEach(x=>{
+             let select = document.querySelector('.select-network')
+             let btn =document.createElement('button')
+             btn.className='btn-select btn-select-network'
+             btn.id=x
+             btn.name='networktype'
+             let type = document.createElement('p')
+             type.className='network-name'
+             type.innerText=x
+             let price = document.createElement('p')
+             price.className='network-price'
+             
+             let parent= options.find(y=>{
+                if(y.internet==x) return y
+             })
+            price.innerText=`NT$${parent.price}`
+
+             btn.append(type,price)
+             select.append(btn)
+        })
         
         
         window.onload=function(){
             const btns = document.querySelectorAll('.btn-select')
-            const btntype = document.querySelectorAll('.btn-select-type')
             const btncolor = document.querySelectorAll('.btn-select-color')
             const btncp= document.querySelectorAll('.btn-select-capacity')
+            const btnnet= document.querySelectorAll('.btn-select-network')
 
-            //未選擇type前不給選
-            btncolor.forEach(x=>x.disabled=true)
-            btncp.forEach(x=>x.disabled=true)
-
-            //開啟後方color可選
-            btntype.forEach(x=>{
-                x.addEventListener('click',()=>{
-                    btncolor.forEach(x=>x.disabled=false)
-                    btncp.forEach(x=>x.disabled=false)
-                })
-            })
-            
-            //換色
             btns.forEach(x=>{
                 x.addEventListener('click',()=>{
                     selectbtn(event)
-                    changeimg(productimg)
                     count(products)
                     getdate()
                 })
+            })
+            btncolor.forEach(x=>{
+                x.addEventListener('click',()=>{changeimg(productimg)})
             })
             
         }
@@ -1049,36 +1035,30 @@
         }
         //換色
         function changeimg(productimg){
-            let selected = document.querySelectorAll('.nowselect')
+            let img = Object.values(productimg.ipad)[0]            
             let mainpic = document.querySelector('.mainpic')
-            
-            let type =selected[0].id
-            let color =selected[1].id
+            let selectcolor = document.querySelector('.btn-select-color.nowselect')
+            if(selectcolor!=null){
+                img.map(x=>{
+                if(x.color==selectcolor.id){mainpic.src=x.url}})
 
-            let img = Object.values(productimg.iphone)
-            let imgs = img.reduce((a,b)=>a.concat(b),[])
-            
-            imgs.map(x=>{
-                if(x.name==type && x.color==color){
-                    mainpic.src = x.url
-                }
-            })
+            }
         }
         //價格 
         function count(products){
-            let selected = document.querySelectorAll('.nowselect')
+            let selectcp = document.querySelector('.btn-select-capacity.nowselect')
+            let selectnet = document.querySelector('.btn-select-network.nowselect')
             let price= document.querySelectorAll('.product-price')
-            let type =selected[0].id
-            let cp = selected[2].id
+            let installment = document.querySelector('.installment-price')
+            let product = Object.values(products.ipad.ipadair)
             
-            let product = Object.values(products.iphone)
-            let producttype = product.reduce((a,b)=>a.concat(b),[])
-            producttype.find(x=>{
-                if(x.name==type && x.capacity==cp){
-                    console.log(x)
-                    price.forEach(item=>item.innerText=`NT$${x.price} 起`)
-                }
-            })
+            if(selectcp!=null && selectnet!=null){
+                product.map(x=>{
+                    if(x.capacity==selectcp.id && x.internet==selectnet.id){
+                        price.forEach(item=>item.innerText=`NT$${x.price} 起`)
+                        installment.innerText=`0 利率分期付款，每月NT$${Math.ceil((x.price)/12)}起，共12個月`}
+                })
+            }
         }
         //取貨時間
         function getdate(){
