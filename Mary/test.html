@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .pigwalk{
+        width: 600px;
+        height: 600px;
+        background-color: black;
+        z-index: 3;
+      }
+      .pig{
+        width: 60px;
+        position: absolute;
+      }
+    </style>
+</head>
+<body>
+    <div class="pigwalk">
+        <img class="pig" src="./skzoo/footprint.jpg" alt="">
+    </div>
+    <button>TEST</button>
+
+    <script>
+        let btn = document.querySelector('button')
+
+        btn.addEventListener('click',()=>{
+            move()
+        })
+
+
+        function move(){
+
+            let div =document.querySelector('.pigwalk')
+            let body = document.querySelector('body')
+            body.removeChild(div)
+        }
+
+
+        function random(min,max){
+         return Math.floor(Math.random()*(max-min+1)+min)
+    }
+
+        
+        
+    </script>
+</body>
+</html>
