@@ -243,6 +243,7 @@
         width: 60%;
       }
       .startpage{
+        background-color: rgba(0, 0, 0, 0.8);
         width: 100%;
         position: fixed;
         z-index: 10;
@@ -282,6 +283,41 @@
       }
       #start:checked ~ .startpage{
         display: none;
+      }
+
+      @media screen and (max-width:992px) {
+        body{width: 800px;}
+        .time-box{width: 100%;}
+        .timebar{width: 600px;}
+        .container{width: 800px;
+          flex-wrap: nowrap;
+        }
+        .card-box{width:450px;margin: 0;}
+        .card{
+          width: 50px;
+          height: 50px;
+        }
+        .btn-box{
+          width: 140px;
+          padding: 0;
+        }
+        .btn{
+          width: 120px;
+          height: 50px;
+          margin: 10px;
+        }
+        .btn span,.btn a{
+          height: 40px;
+          line-height: 40px; 
+          font-size: 20px;}
+        .btn-pic{
+          width: 30px;
+          height: 30px;
+        }
+        
+
+
+        
       }
     </style>
   </head>
@@ -333,37 +369,37 @@
   <script>
 
     const cards = [
-      { id:"1",num:"",card:"A1", url:"./skzoo/A1.jpg"},
+      { id:"1",num:"",card:"A1", url:"./skzoo/A3.jpg"},
       { id:"2",num:"",card:"A2", url:"./skzoo/A2.jpg"},
-      { id:"3",num:"",card:"B1", url:"./skzoo/B1.jpg"},
+      { id:"3",num:"",card:"B1", url:"./skzoo/B3.jpg"},
       { id:"4",num:"",card:"B2", url:"./skzoo/B2.jpg"},
-      { id:"5",num:"",card:"C1", url:"./skzoo/C1.jpg"},
+      { id:"5",num:"",card:"C1", url:"./skzoo/C3.jpg"},
       { id:"6",num:"",card:"C2", url:"./skzoo/C2.jpg"},
-      { id:"7",num:"",card:"D1", url:"./skzoo/D1.jpg"},
+      { id:"7",num:"",card:"D1", url:"./skzoo/D3.jpg"},
       { id:"8",num:"",card:"D2", url:"./skzoo/D2.jpg"},
-      { id:"9",num:"",card:"E1", url:"./skzoo/E1.jpg"},
+      { id:"9",num:"",card:"E1", url:"./skzoo/E3.jpg"},
       { id:"10",num:"",card:"E2", url:"./skzoo/E2.jpg"},
-      { id:"11",num:"",card:"F1", url:"./skzoo/F1.jpeg"},
+      { id:"11",num:"",card:"F1", url:"./skzoo/F3.jpg"},
       { id:"12",num:"",card:"F2", url:"./skzoo/F2.jpg"},
-      { id:"13",num:"",card:"G1", url:"./skzoo/G1.jpg"},
+      { id:"13",num:"",card:"G1", url:"./skzoo/G3.jpg"},
       { id:"14",num:"",card:"G2", url:"./skzoo/G2.jpg"},
-      { id:"15",num:"",card:"H1", url:"./skzoo/H1.jpg"},
+      { id:"15",num:"",card:"H1", url:"./skzoo/H3.jpg"},
       { id:"16",num:"",card:"H2", url:"./skzoo/H2.jpg"},
-      { id:"17",num:"",card:"A1", url:"./skzoo/A1.jpg"},
+      { id:"17",num:"",card:"A1", url:"./skzoo/A3.jpg"},
       { id:"18",num:"",card:"A2", url:"./skzoo/A2.jpg"},
-      { id:"19",num:"",card:"B1", url:"./skzoo/B1.jpg"},
+      { id:"19",num:"",card:"B1", url:"./skzoo/B3.jpg"},
       { id:"20",num:"",card:"B2", url:"./skzoo/B2.jpg"},
-      { id:"21",num:"",card:"C1", url:"./skzoo/C1.jpg"},
+      { id:"21",num:"",card:"C1", url:"./skzoo/C3.jpg"},
       { id:"22",num:"",card:"C2", url:"./skzoo/C2.jpg"},
-      { id:"23",num:"",card:"D1", url:"./skzoo/D1.jpg"},
+      { id:"23",num:"",card:"D1", url:"./skzoo/D3.jpg"},
       { id:"24",num:"",card:"D2", url:"./skzoo/D2.jpg"},
-      { id:"25",num:"",card:"E1", url:"./skzoo/E1.jpg"},
+      { id:"25",num:"",card:"E1", url:"./skzoo/E3.jpg"},
       { id:"26",num:"",card:"E2", url:"./skzoo/E2.jpg"},
-      { id:"27",num:"",card:"F1", url:"./skzoo/F1.jpeg"},
+      { id:"27",num:"",card:"F1", url:"./skzoo/F3.jpg"},
       { id:"28",num:"",card:"F2", url:"./skzoo/F2.jpg"},
-      { id:"29",num:"",card:"G1", url:"./skzoo/G1.jpg"},
+      { id:"29",num:"",card:"G1", url:"./skzoo/G3.jpg"},
       { id:"30",num:"",card:"G2", url:"./skzoo/G2.jpg"},
-      { id:"31",num:"",card:"H1", url:"./skzoo/H1.jpg"},
+      { id:"31",num:"",card:"H1", url:"./skzoo/H3.jpg"},
       { id:"32",num:"",card:"H2", url:"./skzoo/H2.jpg"}
     ]
     
@@ -623,7 +659,7 @@
     function countandturn(target,sec){
       setTimeout(function(){
         autooverturn(target)
-      },sec*1000)
+      },sec*500)
     }
     //倒數畫面
     function showcount(sec,msg){
