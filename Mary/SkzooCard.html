@@ -489,7 +489,7 @@
         
         //計時器+檢查結果
         setTimeout(function(){
-          timebar(60,true)},20000)
+          timebar(60,true)},15000)
       })
 
       
@@ -529,7 +529,7 @@
 
         //計時器+檢查結果
         setTimeout(function(){
-          timebar(60,true)},20000)
+          timebar(60,true)},15000)
       })
       
 
@@ -544,7 +544,7 @@
         changeorder(true)
         //倒數3秒給看牌
         showcount(3,msgmemory)
-        changeorder(false)
+        // changeorder(false)
       
         //延遲4秒後開始遊戲
         setTimeout(function(){
@@ -553,7 +553,7 @@
           imgback.forEach(item=>{countandturn(item,0)})
           //豬豬出現
           showpig(10)
-          changeorder(true)
+          // changeorder(true)
           //10秒翻回
           timebar(10,false)
           const img = document.querySelectorAll('.img')
@@ -561,7 +561,7 @@
 
           //兔寶寶出現
           setTimeout(function(){rabit()},8000)
-          setTimeout(function(){changeorder(fa)},10000)
+          setTimeout(function(){changeorder(false)},10000)
 
 
           //Ready?
@@ -571,7 +571,7 @@
           showcount(3,msgstart)
           cardbtn.forEach(btn=>{
             btn.disabled=false
-          })},16000)
+          })},13000)
         },4000)
 
         //再會豬腳印
@@ -581,7 +581,7 @@
 
         //計時器+檢查結果
         setTimeout(function(){
-          timebar(60,true)},24000)
+          timebar(60,true)},17000)
       })
 
 
