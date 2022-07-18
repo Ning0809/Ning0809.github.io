@@ -234,6 +234,7 @@
         height: 400px;
         z-index: 3;
         transition: 2s;
+        opacity: 0;
       }
       .leebitimg{
         vertical-align: top;
@@ -278,7 +279,7 @@
         display: inline-block;
         vertical-align: middle;
         height: 100%;
-        line-height: 80%;
+        /* line-height: 80%; */
       }
       .btn-start:hover{
         transform: scale(1.1);
@@ -540,11 +541,13 @@
 
         //開始鍵>生成隨機卡牌
         createCard(cards)
+        changeorder(true)
         //倒數3秒給看牌
         showcount(3,msgmemory)
       
         //延遲4秒後開始遊戲
         setTimeout(function(){
+          
           //翻轉看卡
           imgback.forEach(item=>{countandturn(item,0)})
           //豬豬出現
@@ -556,7 +559,7 @@
 
           //兔寶寶出現
           setTimeout(function(){rabit()},8000)
-          setTimeout(function(){changeorder()},12000)
+          setTimeout(function(){changeorder(fa)},12000)
 
 
           //Ready?
@@ -564,7 +567,9 @@
           //倒數3秒開始+開放卡片可以點選
           setTimeout(function(){
           showcount(3,msgstart)
-          cardbtn.forEach(btn=>{btn.disabled=false})},16000)
+          cardbtn.forEach(btn=>{
+            btn.disabled=false
+          })},16000)
         },4000)
 
         //再會豬腳印
@@ -660,7 +665,7 @@
         }
       }
     //自動翻卡
-    function autooverturn(turnimg){
+    function autooverturn(turnimg,type){
         
         let card = turnimg.parentElement
         let imgs = card.childNodes
@@ -887,7 +892,7 @@
       let cardbox = document.querySelector('.card-box')
       let leebit = document.createElement('div')
       leebit.className='leebit'
-      leebit.style.left='-1000px'
+      leebit.style.left='-1500px'
       let leebitimg = document.createElement('img')
       leebitimg.className='leebitimg'
         leebitimg.src='./skzoo/leebit.png'
@@ -896,6 +901,7 @@
 
         setTimeout(()=>{
           leebit.style.left='0px'
+          leebit.style.opacity='1'
         },1000)
 
         setTimeout(()=>{
@@ -906,7 +912,7 @@
   }
   
     //調換左右
-    function changeorder(){
+    function changeorder(type){
       let cards = document.querySelectorAll('.card')
       console.log(cards)
       let even=[],odd=[]
@@ -915,16 +921,28 @@
         if((index+1)%2==0){odd.push(card)}
         else{even.push(card)}
       })
-      setTimeout(()=>{
+      if(type==true){
+        setTimeout(()=>{
         odd.forEach(item=>{
         item.style.transform='translateX(-106%)'
-      })
+        })
        even.forEach(item=>{
         item.style.transform='translateX(106%)'
        })
+        },1000)}
+      else{
+        setTimeout(()=>{
+        odd.forEach(item=>{
+        item.style.transform='translateX(0%)'
+        })
+       even.forEach(item=>{
+        item.style.transform='translateX(0%)'
+       })
+        },1000)}
 
-      },1000)
-    }
+      }
+      
+    
   
   </script>
 </html>
