@@ -8,20 +8,15 @@
     <style>
         
         .pigwalk{
-        width: 600px;
-        height: 600px;
+        width: 300px;
+        height: 300px;
         background-color: black;
         z-index: 3;
-      }
-      .pig{
-        width: 60px;
-        position: absolute;
       }
     </style>
 </head>
 <body>
     <div class="pigwalk">
-        <img class="pig" src="./skzoo/footprint.jpg" alt="">
     </div>
     <button>TEST</button>
 
@@ -34,18 +29,13 @@
 
 
         function move(){
+            let pig = document.querySelector('.pigwalk')
+            pig.style.transform='translateX(100%)'
 
-            let div =document.querySelector('.pigwalk')
-            let body = document.querySelector('body')
-            body.removeChild(div)
+            
         }
 
 
-        function random(min,max){
-         return Math.floor(Math.random()*(max-min+1)+min)
-    }
-
-        
         
     </script>
 </body>

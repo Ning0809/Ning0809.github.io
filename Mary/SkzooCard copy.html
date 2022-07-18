@@ -456,40 +456,44 @@
 
 
       //尚未選擇難度前不可翻卡排
-      cardbtn.forEach(btn=>{btn.disabled=true})
+      // cardbtn.forEach(btn=>{btn.disabled=true})
 
       //開始鍵
       easy.addEventListener('click',()=>{
         
         //其他難度鎖定不給選
-        startbtn.forEach(btn=>btn.disabled=true)
-        reset.disabled=false
+        // startbtn.forEach(btn=>btn.disabled=true)
+        // reset.disabled=false
 
         //開始鍵>生成隨機卡牌
         createCard(cards)
-        //倒數3秒給看牌
-        showcount(3,msgmemory)
+        imgback.forEach(item=>{countandturn(item,0)})
+      //   imgback.forEach(item=>{countandturn(item,0)})
+      //   //倒數3秒給看牌
+      //   // showcount(3,msgmemory)
       
-        //延遲4秒後開始遊戲
-        setTimeout(function(){
-          //翻轉看卡
-          imgback.forEach(item=>{countandturn(item,0)})
-          //10秒翻回
-          timebar(10,false)
-          const img = document.querySelectorAll('.img')
-          img.forEach(item=>{countandturn(item,10)})
-          //Ready?
-          setTimeout(function(){showcount(0,msgready)},11000)
-          //倒數3秒開始+開放卡片可以點選
-          setTimeout(function(){
-          showcount(3,msgstart)
-          cardbtn.forEach(btn=>{btn.disabled=false})},12000)
-        },4000)
+      //   //延遲4秒後開始遊戲
+      //   setTimeout(function(){
+      //     //翻轉看卡
+      //     imgback.forEach(item=>{countandturn(item,0)})
+      //     //10秒翻回
+      //     timebar(10,false)
+      //     const img = document.querySelectorAll('.img')
+      //     img.forEach(item=>{countandturn(item,10)})
+      //     //Ready?
+      //     setTimeout(function(){showcount(0,msgready)},11000)
+      //     //倒數3秒開始+開放卡片可以點選
+      //     setTimeout(function(){
+      //     showcount(3,msgstart)
+      //     cardbtn.forEach(btn=>{btn.disabled=false})},12000)
+      //   },4000)
         
-        //計時器+檢查結果
-        setTimeout(function(){
-          timebar(60,true)},20000)
-      })
+      //   //計時器+檢查結果
+      //   setTimeout(function(){
+      //     timebar(60,true)},20000)
+      // 
+    }
+      )
 
       
       normal.addEventListener('click',()=>{
@@ -582,12 +586,16 @@
       //點2次=上限+compare，一致的推入屬性'done'，不一樣的翻回
       cardbtn.forEach(btn=>{
         btn.addEventListener('click',()=>{
-          if(event.path[0].className=='imgback'){
-            clickoverturn(event)
-            pickcard(event)
-          }
+          autooverturn(event.target)
+          
+          if(event.path[0].className=='img'){pickcard(event)}
+          
         })
       })
+
+      
+
+
 
 
     }
@@ -636,6 +644,9 @@
     }
     //點擊翻卡
     function clickoverturn(event){
+        event.stopPropagation()
+        if(event.path[0].className=='img'){
+        console.log(event.path[0].className)
         
         let turnimg = event.target
         let card = turnimg.parentElement
@@ -657,6 +668,9 @@
           otherimg.style.zIndex='1'
           otherimg.setAttribute('turn',false)
           card.style.transform = 'rotateY(360deg)'
+        }}
+        else{
+          return false 
         }
       }
     //自動翻卡
@@ -728,6 +742,7 @@
 
         //比對
         let result = compare(selectarr)
+        console.log(result)
         //如果結果為true，推入屬性done
         if(result){
           selectarr.forEach(item=>{
