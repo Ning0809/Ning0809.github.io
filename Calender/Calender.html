@@ -5,77 +5,250 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Calender</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/81c2f83ad1.js" crossorigin="anonymous"></script>
     <style>
-        .container{
-            width: 1080px;
-            margin: auto;
-        }
-        th,td{
-            width: 120px;
-            height: 30px;
-            background-color: #faa;
+        :root{
+            --var-red:#8B5861;
+            --ver-blue:#8C94AB;
+            --var-dark:#696367;
+            --var-yellow:#FCECD5;
+            --var-pink:#ECD1D8;
+            --var-green:#7E8C75;
             text-align: center;
-            display: inline-block;
         }
-        td{
+        .container{
+            max-width: 900px;
+        }
+        header{
+            max-width: 900px;
+            position: relative;
+        }
+        h1{height: 1px;width: 1px;overflow: hidden;}
+        h2{
+            font-size: 40px;
+            font-family: 'Permanent Marker', cursive;
+            color:var(--var-green);
+        }
+        .left,.right{
+            border: none;
+            background-color: #fff;
+            width: 50px;
+            transition: 0.3s;
+            position: absolute;
+            top:40px;
+        }
+        .left:hover,.right:hover{transform: scale(1.3);}
+        .left{left: 30px;}
+        .right{right: 30px;}
+        i{color:#696367;font-size: 36px;}
+        .row{
+            min-width: 600px;
+            text-align: center;
+        }
+        .col{
+            width: 10%;
+            height: 30px;
+            background-color:#7E8C75;
+            color:#F1EBED;
+            font-weight: 600;
+            box-sizing: border-box;
+        }
+        .head-col{line-height: 30px;}
+        .body-col{
             height: 80px;
-            background-color: rgba(255, 170, 170, 0.484);
+            background-color: #B9C4B6;
+            transition: 0.1s;
+            cursor: pointer;
         }
+        .body-col:hover{
+            transform: scale(1.05);
+            outline: 2px solid var(--var-dark);
+        }
+        .othercol{
+            height: 80px;
+            background-color:#E3E5E4;
+        }
+        .selectmonth{
+            position: fixed;
+            top: 5%;
+            right: 10%;
+            color: #7E8C75;
+            font-size: 40px;
+            transition: 0.5s;
+        }
+        .selectmonth:hover{
+            cursor: pointer;
+            transform: scale(1.5);
+        }
+        .modal-content,#inputmonth{background-color: #B9C4B6;}
+        .modal-title{font-weight: 600; color:var(--var-dark)}
+        #inputmonth{border: 5px solid #E3E5E4;; color:var(--var-dark)}
+
+        @media screen and (max-width:768px) {
+            .head-col{font-size: 12px;}
+            .selectmonth{
+                right: 20%;
+            }
+        }
+        
     </style>
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
+    <header class="container mt-3">
+        <div class="banner">
+            <h1>Calender</h1>
+        </div>
+        <button class="left" onclick="premonth()"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="right" onclick="nextmonth()"><i class="fa-solid fa-chevron-right"></i></button>
+        <i class="selectmonth fa-solid fa-calendar-day" data-bs-toggle="modal" data-bs-target="#selctmodal"></i>
+    </header>
+
     <div class="container mt-5">
-        <table>
-            <thead>
-                <tr class="border border-3 border-dark rounded-3 m-2">
-                    <th class="border border-2 border-secondary rounded-3 m-2">Sunday</th>
-                    <th class="border border-2 border-secondary rounded-3 m-2">Monday</th>
-                    <th class="border border-2 border-secondary rounded-3 m-2">Tuesday</th>
-                    <th class="border border-2 border-secondary rounded-3 m-2">Wednesdey</th>
-                    <th class="border border-2 border-secondary rounded-3 m-2">Thursday</th>
-                    <th class="border border-2 border-secondary rounded-3 m-2">Friday</th>
-                    <th class="border border-2 border-secondary rounded-3 m-2">Saturday</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border border-3 border-dark rounded-3 m-2">
-                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
-                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
-                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
-                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
-                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
-                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
-                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="head">
+            <div class="head-row row">
+                <div class="head-col col border border-1 border-secondary rounded-1 m-1 ">Sunday</div>
+                <div class="head-col col border border-1 border-secondary rounded-1 m-1 ">Monday</div>
+                <div class="head-col col border border-1 border-secondary rounded-1 m-1 ">Tuesday</div>
+                <div class="head-col col border border-1 border-secondary rounded-1 m-1 ">Wednesday</div>
+                <div class="head-col col border border-1 border-secondary rounded-1 m-1 ">Thursday</div>
+                <div class="head-col col border border-1 border-secondary rounded-1 m-1 ">Friday</div>
+                <div class="head-col col border border-1 border-secondary rounded-1 m-1 ">Saturday</div>
+            </div>
+        </div>
+        
+        <div class="body"></div>
+
     </div>
+
+
+
+      <div class="modal" id ="selctmodal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">選擇年月</h5>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body">
+                <input type="month" id="inputmonth">
+            </div>
+            <div class="modal-footer">
+                
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" onclick="changemonth()"  data-bs-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     <script>
 
-        let today = new Date
+        const today = new Date
         let year = today.getFullYear()
-        let month = today.getMonth()+1
-        let date = today.getDate() 
-        let day = today.getDay()
-        let days = (new Date(year,month,0)).getDate()
+        let month = today.getMonth()
+        let thedate = today.getDate()
 
+        const banner = document.querySelector('.banner')
+        const body = document.querySelector('.body')
+        const selectmodal = document.querySelector('#selectmodal')
 
-        function createtable(){
+        window.onload=function(){
+            init()
+        }
+        //初始化
+        function init(){
+            let title = document.createElement('h2')
+            title.innerText=`${year}/${month}`
+            banner.append(title)
 
-            //判斷day從第幾格開始
-            //day=位置 (0~6)
+            let firstday = new Date(year,month,1).getDay() //1號星期幾
+            let days = new Date(year,month+1,0).getDate() //天數
+            let day=1
+            let rows = Math.ceil( (firstday+days) / 7) 
 
-            //判斷要多少tr
-            //天數除7的商數+餘數
-
-            //判斷date是否為上個月
-            //
+            //判斷day從第幾格開始 (0~6)
+            //判斷要多少row
+            for(r=0;r<rows;r++){
+                let row = document.createElement('div')
+                row.className='body-row row'
+                for(c=0;c<7;c++){
+                    //第一排 firstday-0的部分=上個月
+                    //最後一排 day>days的部分=下個月
+                    
+                    let col = document.createElement('div')
+                    let date = day-firstday
+                    
+                    if(r==0 &&  c<firstday)
+                    {col.className='col othercol rounded-1 m-1'}
+                    else if(r==rows-1 && date>days)
+                    {col.className='col othercol rounded-1 m-1'}
+                    else{
+                        col.className='body-col col rounded-1 m-1'
+                        col.innerText=date
+                    }
+                    day++
+                    row.append(col)    
+                }
+                body.append(row)
+                
+            }
+            tagthedate()
+        }
+        //上月按鈕
+        function premonth(){
+            month--
+            if(month==-1){
+                month=12
+                year--
+            }
+            clean()
+            init()
+        }
+        //下月按鈕
+        function nextmonth(){
+            month++
+            if(month==13){
+                month=1
+                year++
+            }
+            clean()
+            init()
+        }
+        //清除格子
+        function clean(){
+            banner.innerHTML=''
+            let rows = document.querySelectorAll('.body-row')
             
-
+            for(i=0;i<rows.length;i++){
+                let row = document.querySelector('.body-row')
+                body.removeChild(row)
+            }
+        }
+        //標示當日
+        function tagthedate(){
+            let col = document.querySelectorAll('.body-col')
+            let thecol = Array.from(col).find(x=>x.innerText==thedate)
+            thecol.style.outline='3px solid var(--var-green)'
+            thecol.style.boxShadow ='0px 0px 5px 3px inset'
+        }
+        //用input變換年月
+        function changemonth(){
+            let selectdate = document.querySelector('#inputmonth').value.split('-')
+            
+            console.log(selectdate)
+            if(selectdate!=''){
+                year = selectdate[0]
+                month = parseInt(selectdate[1])
+                clean()
+                init()
+                
+            }
         }
         
 
