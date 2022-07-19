@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calender</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .container{
+            width: 1080px;
+            margin: auto;
+        }
+        th,td{
+            width: 120px;
+            height: 30px;
+            background-color: #faa;
+            text-align: center;
+            display: inline-block;
+        }
+        td{
+            height: 80px;
+            background-color: rgba(255, 170, 170, 0.484);
+        }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <div class="container mt-5">
+        <table>
+            <thead>
+                <tr class="border border-3 border-dark rounded-3 m-2">
+                    <th class="border border-2 border-secondary rounded-3 m-2">Sunday</th>
+                    <th class="border border-2 border-secondary rounded-3 m-2">Monday</th>
+                    <th class="border border-2 border-secondary rounded-3 m-2">Tuesday</th>
+                    <th class="border border-2 border-secondary rounded-3 m-2">Wednesdey</th>
+                    <th class="border border-2 border-secondary rounded-3 m-2">Thursday</th>
+                    <th class="border border-2 border-secondary rounded-3 m-2">Friday</th>
+                    <th class="border border-2 border-secondary rounded-3 m-2">Saturday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border border-3 border-dark rounded-3 m-2">
+                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
+                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
+                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
+                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
+                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
+                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
+                    <td class="border border-2 border-secondary rounded-3 m-2"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+
+        let today = new Date
+        let year = today.getFullYear()
+        let month = today.getMonth()+1
+        let date = today.getDate() 
+        let day = today.getDay()
+        let days = (new Date(year,month,0)).getDate()
+
+
+        function createtable(){
+
+            //判斷day從第幾格開始
+            //day=位置 (0~6)
+
+            //判斷要多少tr
+            //天數除7的商數+餘數
+
+            //判斷date是否為上個月
+            //
+            
+
+        }
+        
+
+
+
+
+    </script>
+
+  </body>
+</html>

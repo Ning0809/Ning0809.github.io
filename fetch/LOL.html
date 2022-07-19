@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        header{
+            font-size: 40px;
+            text-align: center;
+            color:#fff;
+            height: 100px;
+            line-height: 100px;
+        }
+        .modal-img{width: 100%;}
+        .modal-frame-body{aspect-ratio: 560/315;}
+        iframe{
+          width: 100%;
+          height: 100%;
+          vertical-align: middle;}
+
+        
+    </style>
+  </head>
+  <body>
+    
+
+    <header class="bg-dark mb-4">
+        <div class="container">英雄聯盟卡牌</div>
+    </header>
+
+    <!-- Card -->
+    <div class="container">
+        <div class="cardbox row d-flex flex-row m-4">
+        
+        </div>
+    </div>
+    
+
+    <template class="col">
+        <div class="card m-2 p-3 border border-success border-3 rounded-4" style="width: 18rem;">
+            <img src="" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-dark fw-bolder"></h5>
+              <p class="card-text text-secondary"></p>
+              <button type="button" class="btn btn-secondary btn-intro" data-bs-toggle="modal" data-bs-target="#modal">詳細</button>
+              <button type="button" class="btn btn-danger btn-frame" data-bs-toggle="modal" data-bs-target="#modalframe">影片</button>
+            </div>
+        </div>
+    </template>
+
+    
+
+    <div class="modal"  id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <img class="modal-img" src="">
+                  <p class="modal-info"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+    </div>
+
+    <div class="modal"  id="modalframe" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-frame-body">
+                  <iframe class="modalframe-frame" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+    </div>
+    
+    
+   
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script>
+        
+
+        let url = 'https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json'
+        
+        let heroObj={}
+        let cardArray=[]
+        let cardInfo=[]
+        let cardbox,cardTemplate
+        
+
+
+
+    </script>
+
+    <script type='module'>
+        import{$g} from './helpers.js'
+
+        cardbox = $g('.cardbox')
+        cardTemplate = $g('.col')
+             
+
+        window.onload=function(){
+            //id.name.blurb.info.tags
+            fetch(url)
+                .then(respone=>respone.json())
+                .then(result=>{
+                    heroObj = result.data  //物件
+                    let heroArray = Object.keys(heroObj) //陣列
+
+                    heroArray.forEach((heroname,index) => {
+                        cardArray.push({ "id":heroObj[heroname].id,"name":heroObj[heroname].name,"description":heroObj[heroname].blurb,info:{"attack":heroObj[heroname].info.attack,"defense":heroObj[heroname].info.defense,"magic":heroObj[heroname].info.magic,"tags":heroObj[heroname].tags}})
+                    });
+
+                    cardArray.forEach(card=>{
+                        // setModal(card.id,card.name,card.info) 
+                        cardbox.append(getCard(card.id,card.name,card.description,card.info))
+                    })
+                })
+                .catch()
+                .finally()
+
+        }
+
+        function getCard(id,name,description,info){
+            let cardclone = cardTemplate.content.cloneNode(true)
+            cardclone.querySelector('.card-title').innerText = `${id}-${name}`
+            cardclone.querySelector('.card-text').innerText=description.substring(0,45)+'...more'
+            cardclone.querySelector('img').src = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${id}_0.jpg`
+            let btn = cardclone.querySelector('.btn-intro')
+            btn.onclick=()=>{setModal(id,name,info)}
+
+            return cardclone
+        }
+
+        function setModal(idname,name,info){
+            let modal = $g('#modal')
+            modal.querySelector('.modal-title').innerText = `${idname}-${name}`
+            modal.querySelector('.modal-img').src = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${idname}_0.jpg`
+            let infovalues = Object.values(info)
+            modal.querySelector('.modal-info').innerText = 
+            `Attacks:${infovalues[0]}\nDefense:${infovalues[1]}\nMagic:${infovalues[2]}\nTags:${infovalues[3]}`
+
+            let modalframe = $g('#modalframe')
+            modalframe.querySelector('.modal-title').innerText = `${idname}-${name}`
+            modalframe.querySelector('.modalframe-frame').src = 'https://www.youtube.com/embed/iGHwACpwckY'
+
+        }
+
+
+    </script>
+
+
+
+
+
+
+  </body>
+
+</html>
