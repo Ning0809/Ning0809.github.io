@@ -485,7 +485,7 @@
           setTimeout(function(){
           showcount(3,msgstart)
           setTimeout(()=>{cardbtn.forEach(btn=>{btn.disabled=false})},3000)
-          },12000)
+          },13000)
         },4000)
         
         //計時器+檢查結果
@@ -521,7 +521,7 @@
           setTimeout(function(){
           showcount(3,msgstart)
           setTimeout(()=>{cardbtn.forEach(btn=>{btn.disabled=false})},3000)
-          },12000)
+          },13000)
         },4000)
 
         //再會豬腳印
@@ -572,7 +572,7 @@
           setTimeout(function(){
           showcount(3,msgstart)
           setTimeout(()=>{cardbtn.forEach(btn=>{btn.disabled=false})},3000)
-          },12000)
+          },13000)
         },4000)
 
         //再會豬腳印
@@ -769,19 +769,19 @@
       //若done=32 win
       if(imgs.length==32){
         setTimeout(function(){
-          cleartimebar()
-        timebarline.style.background='linear-gradient(to top right, #198754 0%, #fff 300%)';
-        timebar.className='timebar border border-5 border-success rounded-5 shadow'
-        timebar.style.transform='scale(1.0)'
         showcount(0,msgwin)
-        setTimeout(()=>{resultbox(true)},1000) 
+        resultbox(true)
+        // timebarline.style.background='linear-gradient(to top right, #198754 0%, #fff 300%)';
+        // timebar.className='timebar border border-5 border-success rounded-5 shadow'
+        // timebar.style.transform='scale(1.0)'
+        cleartimebar()
       },1000)
       }
       //若倒數=0而done!=32 lose
       else if(time==0 && imgs.length!=32){
         setTimeout(function(){
         showcount(0,msglose)
-        setTimeout(()=>{resultbox(false)},1000) 
+        resultbox(false)
       },1000)
       }
       
@@ -790,7 +790,6 @@
     //結束畫面
     function resultbox(result){
       let cardbox = document.querySelector('.card-box')
-      console.log(cardbox)
       let resultbox = document.createElement('div')
       let resultimg = document.createElement('img')
       resultbox.className='resultbox'
@@ -849,6 +848,10 @@
     //停止timebar
     function cleartimebar(){
       clearInterval(timebartrue)
+      let timebarline = document.querySelector('.timebarline')
+      timebarline.style.background='linear-gradient(to top right, #198754 0%, #fff 300%)';
+      timebar.className='timebar border border-5 border-success rounded-5 shadow'
+      timebar.style.transform='scale(1.0)'
     }
 
     //豬腳印
