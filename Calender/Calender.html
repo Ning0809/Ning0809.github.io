@@ -12,7 +12,7 @@
     <style>
         :root{
             --var-red:#8B5861;
-            --ver-blue:#8C94AB;
+            --var-blue:#8C94AB;
             --var-dark:#696367;
             --var-yellow:#FCECD5;
             --var-pink:#ECD1D8;
@@ -62,6 +62,10 @@
             background-color: #B9C4B6;
             transition: 0.1s;
             cursor: pointer;
+            padding: 5px 8px;
+        }
+        h2{font-size: 18px;
+            margin: 0;
         }
         .body-col:hover{
             transform: scale(1.05);
@@ -70,6 +74,7 @@
         .othercol{
             height: 80px;
             background-color:#E3E5E4;
+            padding: 5px 8px;
         }
         .selectmonth{
             position: fixed;
@@ -83,9 +88,46 @@
             cursor: pointer;
             transform: scale(1.5);
         }
-        .modal-content,#inputmonth{background-color: #B9C4B6;}
+        .modal-content{background-color: #B9C4B6;}
         .modal-title{font-weight: 600; color:var(--var-dark)}
-        #inputmonth{border: 5px solid #E3E5E4;; color:var(--var-dark)}
+        #inputmonth,#createtime,#createtodo{
+            background-color: #B9C4B6;
+            border: 5px solid #E3E5E4;
+            color:var(--var-dark)}
+        .color-box{
+            width: 150px;
+        }
+        .color{
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .color:hover{
+            box-shadow: 0px 0px 2px 3px #E3E5E4;
+            transform: scale(1.2);
+        }
+        [selected]{
+            border:  2px solid var(--var-dark);
+        }
+        #blue{background-color: var(--var-blue);}
+        #pink{background-color: var(--var-pink); color:#000;} 
+        #yellow{background-color: var(--var-yellow); color:#000;}
+        #red{background-color: var(--var-red);}
+        ul{list-style: none; padding: 0;font-size: 12px;margin: 0;}
+        li{display: flex;}
+        .colortag{
+            background-color: #8B5861;
+            border-radius: 5px;
+            width: 40px;
+            margin-right: 5px;
+        }
+        .text{
+            color:#000;
+        }
+        
 
         @media screen and (max-width:768px) {
             .head-col{font-size: 12px;}
@@ -126,25 +168,71 @@
     </div>
 
 
-
-      <div class="modal" id ="selctmodal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">選擇年月</h5>
-              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-            </div>
-            <div class="modal-body">
-                <input type="month" id="inputmonth">
-            </div>
-            <div class="modal-footer">
-                
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success" onclick="changemonth()"  data-bs-dismiss="modal">OK</button>
-            </div>
+    <!-- 切換月份 modal -->
+    <div class="modal" id ="selctmodal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">選擇年月</h5>
+          </div>
+          <div class="modal-body">
+              <input type="month" id="inputmonth">
+          </div>
+          <div class="modal-footer">
+              
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" onclick="changemonth()"  data-bs-dismiss="modal">OK</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <!--新增事項 modal-->
+    <div class="modal" id ="createmodal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">新增事項</h5>
+            </div>
+            <div class="modal-body">
+                <input type="datetime-local" id="createtime">
+                <input type="text" id="createtodo">            
+
+            </div>
+            <div class="modal-footer">
+                <div class="color-box m-auto d-flex flex-wrap  justify-content-center">
+                    <div onclick="selectcolor()" class="color m-1" id="blue"></div>
+                    <div onclick="selectcolor()" class="color m-1" id="pink"></div>
+                    <div onclick="selectcolor()" class="color m-1" id="red"></div>
+                    <div onclick="selectcolor()" class="color m-1" id="yellow"></div>
+                </div>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success"  data-bs-dismiss="modal" onclick="createlog()">OK</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!--編輯、刪除事項 modal-->
+    <div class="modal" id ="editmodal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">編輯事項</h5>
+            </div>
+            <div class="modal-body">
+                <input type="datetime-local" id="createtime">
+                <input type="text" id="createtodo"> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">刪除</button>
+              <button type="button" class="btn btn-success"  data-bs-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    
 
 
     <script>
@@ -154,9 +242,15 @@
         let month = today.getMonth()
         let thedate = today.getDate()
 
+
         const banner = document.querySelector('.banner')
         const body = document.querySelector('.body')
         const selectmodal = document.querySelector('#selectmodal')
+        const createmodal = document.querySelector('#createmodal')
+        const inputtime = createmodal.querySelector('#createtime')
+        const inputtodo = createmodal.querySelector('#createtodo')
+        const editmoal = document.querySelector('#editmodal')
+        
 
         window.onload=function(){
             init()
@@ -164,7 +258,7 @@
         //初始化
         function init(){
             let title = document.createElement('h2')
-            title.innerText=`${year}/${month}`
+            title.innerText=`${year}/${month+1}`
             banner.append(title)
 
             let firstday = new Date(year,month,1).getDay() //1號星期幾
@@ -190,12 +284,45 @@
                     {col.className='col othercol rounded-1 m-1'}
                     else{
                         col.className='body-col col rounded-1 m-1'
-                        col.innerText=date
+                        
+                        col.setAttribute('data-bs-toggle','modal')
+                        col.setAttribute('data-bs-target','#createmodal')
+                        let title = document.createElement('h2')
+                        title.innerText=date
+                        col.append(title)
+                        
+                        //尋找localstorage是否有key
+                        let key =`${year},${month+1},${date}`
+                        let values =JSON.parse(localStorage.getItem((key))) 
+                        console.log(values)
+                        // console.log(values)    
+                        if(values!=null){
+                            values.forEach(value=>{
+                                let ul = document.createElement('ul')
+                                let li = document.createElement('li')
+                                let colortag = document.createElement('div')
+                                colortag.className='colortag'
+                                colortag.id=`${value.color}`
+                                colortag.innerText=value.time
+                                let text = document.createElement('div')
+                                text.className='text'
+                                text.innerText=value.todo
+                                li.append(colortag,text)
+                                li.addEventListener('click',()=>{
+                                        editlist(key,value)
+                                    })
+                                
+                                ul.append(li)
+                                
+                                col.append(ul)
+                            })
+                        }
                     }
                     day++
                     row.append(col)    
                 }
                 body.append(row)
+                // getlist()
                 
             }
             tagthedate()
@@ -204,7 +331,7 @@
         function premonth(){
             month--
             if(month==-1){
-                month=12
+                month=11
                 year--
             }
             clean()
@@ -213,8 +340,8 @@
         //下月按鈕
         function nextmonth(){
             month++
-            if(month==13){
-                month=1
+            if(month==12){
+                month=0
                 year++
             }
             clean()
@@ -232,27 +359,70 @@
         }
         //標示當日
         function tagthedate(){
-            let col = document.querySelectorAll('.body-col')
-            let thecol = Array.from(col).find(x=>x.innerText==thedate)
-            thecol.style.outline='3px solid var(--var-green)'
-            thecol.style.boxShadow ='0px 0px 5px 3px inset'
+            let h2 = document.querySelectorAll('h2')
+            let theh2 = Array.from(h2).find(x=>x.innerText==thedate)
+            theh2.parentElement.style.outline='3px solid #7E8C75;'
+            theh2.parentElement.style.boxShadow ='0px 0px 5px 3px inset'
         }
         //用input變換年月
         function changemonth(){
             let selectdate = document.querySelector('#inputmonth').value.split('-')
-            
             console.log(selectdate)
             if(selectdate!=''){
                 year = selectdate[0]
-                month = parseInt(selectdate[1])
+                month = parseInt(selectdate[1]) -1
                 clean()
                 init()
                 
             }
         }
-        
+        //選擇顏色
+        function selectcolor(){
+            let color = document.querySelectorAll('.color')
+            color.forEach(x=>{
+                x.removeAttribute('selected')
+            })
+            event.target.setAttribute('selected',true)
+  
+        }
+        //推入localstorage
+        function createlog(){
+            //inputtime、inputtodo、thecolor推入localstorage
+            let input = inputtime.value.split('T')
+            let todo = inputtodo.value
+            let color = document.querySelector('[selected]').id
+            let date = input[0].split('-').map(x=>  parseInt(x))
+            let time = input[1]
+            let key =`${date[0]},${date[1]},${date[2]}`
+            let log = {color,time,todo}
+            let list=[]
+            
+            if(localStorage.getItem(key)==null){
+                list.push(log)
+            }
+            else{
+                list = JSON.parse(localStorage.getItem(date))
+                console.log(list)
+                list.push(log)
+            }
+            localStorage.setItem(key,JSON.stringify(list))
+            init()   
+        }
 
+        function editlist(key,values){
+            
+            //key
+            //color.time.todo
+            //先把li此筆資料刪除再重新推入
+            bootstrap.Modal.getOrCreateInstance(editmodal).show();
+            let data = localStorage.getItem(key) //整筆資料
+            console.log(values)
+            console.log(key)
 
+        }
+
+        //從locolstorage存取推入col
+        //編輯、刪除功能
 
 
     </script>
