@@ -55,6 +55,7 @@
             color:#F1EBED;
             font-weight: 600;
             box-sizing: border-box;
+            overflow:auto;
         }
         .head-col{line-height: 30px;}
         .body-col{
@@ -64,7 +65,7 @@
             cursor: pointer;
             padding: 5px 8px;
         }
-        h2{font-size: 18px;
+        .body-col h2{font-size: 18px;
             margin: 0;
         }
         .body-col:hover{
@@ -89,15 +90,16 @@
             transform: scale(1.5);
         }
         .modal-content{background-color: #B9C4B6;}
-        .modal-title{font-weight: 600; color:var(--var-dark)}
-        #inputmonth,#createtime,#createtodo{
+        .modal-title,.editdate{font-weight: 600; color:var(--var-dark)}
+        .editdate{display:block;font-size: 18px; margin:  0;}
+        #inputmonth,#createtime,#createtodo,#edittime,#edittodo{
             background-color: #B9C4B6;
             border: 5px solid #E3E5E4;
             color:var(--var-dark)}
         .color-box{
             width: 150px;
         }
-        .color{
+        .color,.colorview{
             border: 2px solid #fff;
             border-radius: 50%;
             width: 25px;
@@ -117,7 +119,7 @@
         #yellow{background-color: var(--var-yellow); color:#000;}
         #red{background-color: var(--var-red);}
         ul{list-style: none; padding: 0;font-size: 12px;margin: 0;}
-        li{display: flex;}
+        li{display: flex; } 
         .colortag{
             background-color: #8B5861;
             border-radius: 5px;
@@ -219,14 +221,17 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">編輯事項</h5>
+              <p class="editdate"></p>
+              <div class="colorview"></div>
             </div>
             <div class="modal-body">
-                <input type="datetime-local" id="createtime">
-                <input type="text" id="createtodo"> 
+                <input type="time" id="edittime">
+                <input type="text" id="edittodo"> 
+
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">刪除</button>
-              <button type="button" class="btn btn-success"  data-bs-dismiss="modal">OK</button>
+                <button type="button" id="delete" class="btn btn-danger" onclick="deletelog()">刪除</button>
+                <button type="button" class="btn btn-success"  data-bs-dismiss="modal" onclick="editlog()">OK</button>
             </div>
           </div>
         </div>
@@ -284,9 +289,7 @@
                     {col.className='col othercol rounded-1 m-1'}
                     else{
                         col.className='body-col col rounded-1 m-1'
-                        
-                        col.setAttribute('data-bs-toggle','modal')
-                        col.setAttribute('data-bs-target','#createmodal')
+                        col.onclick=()=>{bootstrap.Modal.getOrCreateInstance(createmodal).show();}
                         let title = document.createElement('h2')
                         title.innerText=date
                         col.append(title)
@@ -294,10 +297,9 @@
                         //尋找localstorage是否有key
                         let key =`${year},${month+1},${date}`
                         let values =JSON.parse(localStorage.getItem((key))) 
-                        console.log(values)
                         // console.log(values)    
                         if(values!=null){
-                            values.forEach(value=>{
+                            values.forEach((value,index)=>{
                                 let ul = document.createElement('ul')
                                 let li = document.createElement('li')
                                 let colortag = document.createElement('div')
@@ -308,11 +310,19 @@
                                 text.className='text'
                                 text.innerText=value.todo
                                 li.append(colortag,text)
-                                li.addEventListener('click',()=>{
-                                        editlist(key,value)
-                                    })
+                                li.onclick=()=>{
+                                    event.stopPropagation()
+                                    bootstrap.Modal.getOrCreateInstance(editmodal).show();
+                                    editmoal.querySelector('.editdate').innerText=key
+                                    editmoal.querySelector('.editdate').setAttribute('index',index)
+                                    editmoal.querySelector('.colorview').id = value.color
+                                    editmoal.querySelector('#edittime').value = value.time
+                                    editmoal.querySelector('#edittodo').value = value.todo
+                                }
+                                
                                 
                                 ul.append(li)
+                                
                                 
                                 col.append(ul)
                             })
@@ -406,22 +416,34 @@
                 list.push(log)
             }
             localStorage.setItem(key,JSON.stringify(list))
-            init()   
+            clean()
+            init()
         }
 
-        function editlist(key,values){
-            
-            //key
-            //color.time.todo
-            //先把li此筆資料刪除再重新推入
-            bootstrap.Modal.getOrCreateInstance(editmodal).show();
-            let data = localStorage.getItem(key) //整筆資料
-            console.log(values)
-            console.log(key)
-
+        function editlog(){
+            let key = editmodal.querySelector('.editdate').innerText
+            let value = JSON.parse(localStorage.getItem(key)) 
+            let time = editmodal.querySelector('#edittime').value
+            let todo = editmodal.querySelector('#edittodo').value
+            let color = editmodal.querySelector('.color').id
+            let index = editmodal.querySelector('.editdate').getAttribute('index')
+            value[index] = {color,time,todo}
+            localStorage.setItem(key,JSON.stringify(value)) 
+            clean()
+            init()
         }
 
-        //從locolstorage存取推入col
+        function deletelog(){
+            let key = editmodal.querySelector('.editdate').innerText
+            let value = JSON.parse(localStorage.getItem(key))
+            let index = editmodal.querySelector('.editdate').getAttribute('index')
+            value.splice(index,1)
+            localStorage.setItem(key,JSON.stringify(value)) 
+            bootstrap.Modal.getOrCreateInstance(editmodal).hide();
+            clean()
+            init()
+        }
+        
         //編輯、刪除功能
 
 
