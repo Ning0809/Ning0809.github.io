@@ -425,7 +425,7 @@
             let value = JSON.parse(localStorage.getItem(key)) 
             let time = editmodal.querySelector('#edittime').value
             let todo = editmodal.querySelector('#edittodo').value
-            let color = editmodal.querySelector('.color').id
+            let color = editmodal.querySelector('.colorview').id
             let index = editmodal.querySelector('.editdate').getAttribute('index')
             value[index] = {color,time,todo}
             localStorage.setItem(key,JSON.stringify(value)) 
