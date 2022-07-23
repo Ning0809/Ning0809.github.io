@@ -65,7 +65,7 @@
     },
     {
         "ID":"KR01",
-        "Title":"樂天世界 롯데월드",
+        "Title":"樂天世界롯데월드",
         "URL":"https://adventure.lotteworld.com/zh-cht/lotteworld/introduce/business/contentsid/591/index.do",
         "Tag":"世界最大室內主題樂園，韓國最大規模的溜冰場",
         "Lat":"37.51136256311829",
@@ -73,7 +73,7 @@
     },
     {
         "ID":"KR02",
-        "Title":"愛寶樂園",
+        "Title":"愛寶樂園Everland",
         "URL":"http://www.everland.com/",
         "Tag":"韓國規模最大、木製雲霄飛車T EXPRESS、野生動物園區",
         "Lat":"37.29481513081257",
@@ -89,7 +89,7 @@
     },
     {
         "ID":"KR04",
-        "Title":"月尾主題樂園",
+        "Title":"月尾My-Land",
         "URL":"http://www.my-land.co.kr/index/",
         "Tag":"仁川月尾島、占地4000坪的主題樂園",
         "Lat":"37.471450281327165",
@@ -97,7 +97,7 @@
     },
     {
         "ID":"KR05",
-        "Title":"大邱E-WORLD樂園",
+        "Title":"大邱E-WORLD",
         "URL":"https://eworld.kr/",
         "Tag":"著名83塔、空中旋轉餐廳、空中走廊",
         "Lat":"35.854424756860745",
@@ -105,7 +105,7 @@
     },
     {
         "ID":"KR06",
-        "Title":"通度Fantasia遊樂園",
+        "Title":"通度Fantasia",
         "URL":"http://www.fantasia.co.kr/",
         "Tag":"來自星星的你重點戲場景-摩天輪",
         "Lat":"35.500213430077935",
@@ -169,7 +169,7 @@
     },
     {
         "ID":"JP07",
-        "Title":"日光江戶村 EDO WONDERLAND",
+        "Title":"日光江戶村EDO WONDERLAND",
         "URL":"http://edowonderland.net/",
         "Tag":"江戶時代主題樂園，忍者機關迷宮、大忍者劇場",
         "Lat":"36.791080909566695",
@@ -177,7 +177,7 @@
     },
     {
         "ID":"JP08",
-        "Title":"親子飯店 夏威夷溫泉渡假村",
+        "Title":"親子飯店-夏威夷溫泉渡假村",
         "URL":"https://www.hawaiians.co.jp/",
         "Tag":"6座天然溫泉主題公園、夏威夷草裙舞",
         "Lat":"36.99383318394891",
@@ -185,7 +185,7 @@
     },
     {
         "ID":"JP09",
-        "Title":"日本樂高樂園 LEGOLAND® JAPAN",
+        "Title":"日本樂高樂園LEGOLAND® JAPAN",
         "URL":"https://www.legoland.jp/",
         "Tag":"日本第一座以樂高積木為主的主題樂園",
         "Lat":"35.0508523874788",
@@ -193,7 +193,7 @@
     },
     {
         "ID":"JP10",
-        "Title":"長島溫泉樂園 Nagashima Spa Land",
+        "Title":"長島溫泉樂園",
         "URL":"https://www.nagashima-onsen.co.jp/",
         "Tag":"STEEL DRAGON 全長2479公尺，世界最長雲霄飛車",
         "Lat":"35.03041066635361",
@@ -201,7 +201,7 @@
     },
     {
         "ID":"JP11",
-        "Title":"豪斯登堡 HUIS TEN BOSCH",
+        "Title":"豪斯登堡",
         "URL":"https://chinese02.huistenbosch.co.jp/",
         "Tag":"荷蘭風情，1300萬顆燈泡打造出「白銀的世界」、海賊王千陽號2nd遊船",
         "Lat":"33.08564764664115",

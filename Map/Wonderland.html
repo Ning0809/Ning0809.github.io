@@ -4,12 +4,505 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonderland</title>
+    <title>Wonderland Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/81c2f83ad1.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>           
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-   integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-   crossorigin=""/>
-</head>
-<body>
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
     
+
+    <style>
+        body{
+            background-image: url(./bgc-2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(0,0,0,0.1);
+            background-blend-mode: multiply;
+        }
+        .banner{
+            background-color:#73AFB0;
+            width: 100%;
+            height: 100px;
+        }
+        h1{
+            font-weight: 600;
+            text-align: center;
+            line-height: 100px;
+            font-size: 60px;
+            font-family: 'Cormorant SC', serif;
+            color:#37373a;
+        }
+        .container{
+            width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .mapbox{
+            height: 400px;
+            border-right: 2px solid #464f5074;
+            align-self: center;
+            margin-right: 30px;
+        }
+        #map { 
+            width: 90%;
+            height: 90%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+        .infobox{
+            height: 500px;
+            position: relative;
+        }
+        #select{ 
+            width: 200px; 
+            display: block; 
+            margin-left: 30px;
+            border: none;
+            background-color: #DEE9ED;
+        }
+        #select:focus{outline: none;}
+        h2{
+            font-weight: 700;
+            padding-left: 30px;
+            color:#37373a;
+        }
+        p{
+            font-size: 14px;
+            margin: auto;
+            padding-left: 30px;
+            color:#464f50;
+            height: 40px;
+        }
+        .imgbox{
+            width: 100%;
+            border: 5px solid #73AFB0;
+            overflow: hidden;
+        }
+        .pic{  width: 100%; }
+        .link{
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            text-decoration: none;
+            color:#37373a;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .link i{margin-left: 5px;}
+        
+    </style>
+    <style>/*
+        Leaflet.BeautifyIcon, a plugin that adds colorful iconic markers for Leaflet by giving full control of style to end user, It has also ability to adjust font awesome
+        and glyphicon icons
+        (c) 2016-2017, Muhammad Arslan Sajid
+        http://leafletjs.com
+      */
+      .beautify-marker {
+          text-align: center;
+          font-weight: 700;
+          font-family: monospace;
+          position:absolute;
+           -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+      
+          .beautify-marker.circle {
+              border-radius: 100%;
+          }
+      
+          .beautify-marker.circle-dot, .beautify-marker.doughnut {
+              border-radius: 100%;
+          }
+      
+          .beautify-marker.marker {
+              border-top-left-radius: 50%;
+              border-top-right-radius: 50% 100%;
+              border-bottom-left-radius: 100% 50%;
+              border-bottom-right-radius: 0%;
+              /* rotating 45deg clockwise to get the corner bottom center */
+              transform: rotate(45deg); 
+              
+          }
+      
+          .beautify-marker.marker > * {
+              /* rotating 45deg counterclock to adjust marker content back to normal */
+              transform: rotate(-45deg);
+          }
+    </style>
+    <script>/*
+            Leaflet.BeautifyIcon, a plugin that adds colorful iconic markers for Leaflet by giving full control of style to end user, It has also ability to adjust font awesome
+            and glyphicon icons
+            (c) 2016-2017, Muhammad Arslan Sajid
+            http://leafletjs.com
+          */
+          
+          /*global L of leaflet*/
+          
+          (function (window, document, undefined) {
+          
+              'use strict';
+          
+              /*
+              * Leaflet.BeautifyIcon assumes that you have already included the Leaflet library.
+              */
+          
+              /*
+              * Default settings for various style markers
+              */
+              var defaults = {
+          
+                  iconColor: '#1EB300',
+          
+                  iconAnchor: {
+                      'marker': [14, 36]
+                      , 'circle': [11, 10]
+                      , 'circle-dot': [5, 5]
+                      , 'rectangle-dot': [5, 6]
+                      , 'doughnut': [8, 8]
+                  },
+          
+                  popupAnchor: {
+                      'marker': [0, -25]
+                      , 'circle': [-3, -76]
+                      , 'circle-dot': [0, -2]
+                      , 'rectangle-dot': [0, -2]
+                      , 'doughnut': [0, -2]
+                  },
+          
+                  innerIconAnchor: {
+                      'marker': [-2, 5]
+                      , 'circle': [0, 2]
+                  },
+          
+                  iconSize: {
+                      'marker': [28, 28]
+                      , 'circle': [22, 22]
+                      , 'circle-dot': [2, 2]
+                      , 'rectangle-dot': [2, 2]
+                      , 'doughnut': [15, 15]
+                  }
+              };
+          
+              L.BeautifyIcon = {
+          
+                  Icon: L.Icon.extend({
+          
+                      options: {
+                          icon: 'leaf'
+                         , iconSize: defaults.iconSize.circle
+                         , iconAnchor: defaults.iconAnchor.circle
+                         , iconShape: 'circle'
+                         , iconStyle: ''
+                         , innerIconAnchor: [0, 3] // circle with fa or glyphicon or marker with text
+                         , innerIconStyle: ''
+                         , isAlphaNumericIcon: false
+                         , text: 1
+                         , borderColor: defaults.iconColor
+                         , borderWidth: 2
+                         , borderStyle: 'solid'
+                         , backgroundColor: 'white'
+                         , textColor: defaults.iconColor
+                         , customClasses: ''
+                         , spin: false
+                         , prefix: 'fa'
+                         , html: ''
+                      },
+          
+                      initialize: function (options) {
+          
+                          this.applyDefaults(options);
+                          this.options = (!options || !options.html)  ? L.Util.setOptions(this, options) : options;
+                      },
+          
+                      applyDefaults: function (options) {
+          
+                          if (options) {
+                              if (!options.iconSize && options.iconShape) {
+                                  options.iconSize = defaults.iconSize[options.iconShape];
+                              }
+          
+                              if (!options.iconAnchor && options.iconShape) {
+                                  options.iconAnchor = defaults.iconAnchor[options.iconShape];
+                              }
+          
+                              if (!options.popupAnchor && options.iconShape) {
+                                  options.popupAnchor = defaults.popupAnchor[options.iconShape];
+                              }
+          
+                              if (!options.innerIconAnchor) {
+                                  // if icon is type of circle or marker
+                                  if (options.iconShape === 'circle' || options.iconShape === 'marker') {
+                                      if (options.iconShape === 'circle' && options.isAlphaNumericIcon) { // if circle with text
+                                          options.innerIconAnchor = [0, -1];
+                                      }
+                                      else if (options.iconShape === 'marker' && !options.isAlphaNumericIcon) {// marker with icon
+                                          options.innerIconAnchor = defaults.innerIconAnchor[options.iconShape];
+                                      }
+                                  }
+                              }
+                          }
+                      },
+          
+                      createIcon: function () {
+          
+                          var iconDiv = document.createElement('div')
+                              , options = this.options;
+          
+                          iconDiv.innerHTML = !options.html ? this.createIconInnerHtml() : options.html;
+                          this._setIconStyles(iconDiv);
+                          
+                          // having a marker requires an extra parent div for rotation correction
+                          if (this.options.iconShape === 'marker') { 
+                              var wrapperDiv = document.createElement('div');
+                              wrapperDiv.className = 'beautify-marker';
+                              wrapperDiv.appendChild(iconDiv);
+                              return wrapperDiv;
+                          }
+          
+                          return iconDiv;
+                      },
+          
+                      createIconInnerHtml: function () {
+          
+                          var options = this.options;
+          
+                          if (options.iconShape === 'circle-dot' || options.iconShape === 'rectangle-dot' || options.iconShape === 'doughnut') {
+                              return '';
+                          }
+          
+                          var innerIconStyle = this.getInnerIconStyle(options);
+                          if (options.isAlphaNumericIcon) {
+                              return '<div style="' + innerIconStyle + '">' + options.text + '</div>';
+                          }
+          
+                          var spinClass = '';
+                          if (options.spin) {
+                              spinClass = ' fa-spin';
+                          }
+          
+                          return '<i class="' + options.prefix + ' ' + options.prefix + '-' + options.icon + spinClass + '" style="' + innerIconStyle + '"></i>';
+                      },
+          
+                      getInnerIconStyle: function (options) {
+          
+                          var innerAnchor = L.point(options.innerIconAnchor)
+                          return 'color:' + options.textColor + ';margin-top:' + innerAnchor.y + 'px; margin-left:' + innerAnchor.x + 'px;' + options.innerIconStyle;
+                      },
+          
+                      _setIconStyles: function (iconDiv) {
+          
+                          var options = this.options
+                              , size = L.point(options.iconSize)
+                              , anchor = L.point(options.iconAnchor);
+          
+                          iconDiv.className = 'beautify-marker ';
+          
+                          if (options.iconShape) {
+                              iconDiv.className += options.iconShape;
+                          }
+          
+                          if (options.customClasses) {
+                              iconDiv.className += ' ' + options.customClasses;
+                          }
+          
+                          iconDiv.style.backgroundColor = options.backgroundColor;
+                          iconDiv.style.color = options.textColor;
+                          iconDiv.style.borderColor = options.borderColor;
+                          iconDiv.style.borderWidth = options.borderWidth + 'px';
+                          iconDiv.style.borderStyle = options.borderStyle;
+          
+                          if (size) {
+                              iconDiv.style.width = size.x + 'px';
+                              iconDiv.style.height = size.y + 'px';
+                          }
+          
+                          if (anchor) {
+                              iconDiv.style.marginLeft = (-anchor.x) + 'px';
+                              iconDiv.style.marginTop = (-anchor.y) + 'px';
+                          }
+          
+                          if (options.iconStyle) {
+                              var cStyle = iconDiv.getAttribute('style');
+                              cStyle += options.iconStyle;
+                              iconDiv.setAttribute('style', cStyle);
+                          }
+                      }
+                  })
+              };
+          
+              L.BeautifyIcon.icon = function (options) {
+                  return new L.BeautifyIcon.Icon(options);
+              }
+          
+          }(this, document));
+    </script> 
+        
+ 
+</head>
+
+<body>
+    <div class="banner"><h1>Wonderland Map</h1></div>
+    <div class="container mt-2">
+        <div class="row m-0 d d-flex flex-wrap justify-content-center align-content-center ">
+            <div class="col mapbox position-relative"><div id="map"></div></div>
+            
+            <div class="col infobox">
+                <div class="selectbar mt-5 mb-4"><select id="select"></select></div>
+                <h2 class="title">遊樂園</h2>
+                <a class="link" >官網<i class="fa-solid fa-right-long"></i></a>
+                <p class="tag mt-1"></p>
+                <div class="imgbox mt-3">
+                    <img class="pic" src="./JP01.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+
+        const dataurl = 'https://raw.githubusercontent.com/Ning0809/Ning0809.github.io/main/Map/Wonderland.json'
+
+        
+        let data 
+
+
+        //初始化地圖
+        var map = L.map('map').setView([25.011526346135327, 121.46245199619518], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        options = {
+            icon: 'bus',
+            iconShape: 'marker'
+        };
+        L.marker([25.011526346135327, 121.46245199619518], {
+            icon: L.BeautifyIcon.icon(options),
+            draggable: true
+        }).addTo(map).bindPopup("popup").bindPopup("You're here!");
+        
+        // options = {
+        //     icon: 'plane',
+        //     borderColor: '#8D208B',
+        //     textColor: '#8D208B',
+        //     backgroundColor: 'transparent'
+        // };
+        // L.marker([25.011526346135327, 121.46245199619518], {
+        //   icon: L.BeautifyIcon.icon(options),
+        //   draggable: true
+        // }).addTo(map).bindPopup("I'm Beautify");
+
+        window.onload=function(){
+
+            const select = document.querySelector('#select')
+            
+
+            //取資料
+            fetch(dataurl)
+                .then(res=>{
+                    return res.json()
+                })
+                .then(res=>{
+                    data = res
+                    console.log(data);
+                    
+                    createoption()
+                    createmarker()
+                    translate()
+
+                    
+                    
+
+                    
+                })
+                .catch(ex=>{
+                    console.log(ex)
+                })
+                .finally()
+
+
+
+        }
+        //下拉選單
+        function createoption(){
+            ['-請選擇遊樂園-']
+                .concat(data.map(x=>x.Title))
+                .map(y=>{
+                    let option = document.createElement('option')
+                    option.innerText = y
+                    option.value= y=='-請選擇遊樂園-' ? ' ' : y
+                    select.append(option)
+                })
+        }
+        //marker
+        function createmarker(){
+            
+            data.map(x=>{
+                if(x.ID.includes('TW')){
+                    options = {
+                    icon: 'bus',
+                    iconShape: 'marker'
+                }}
+                else{options = {
+                    icon: 'plane',
+                    iconShape: 'marker'
+                }}
+
+                let marker = L.marker([x.Lat, x.Lng], {
+                    icon: L.BeautifyIcon.icon(options),
+                    draggable: true
+                }).addTo(map).bindPopup("popup").bindPopup(x.Title);
+
+                const title = document.querySelector('.title')
+                const tag = document.querySelector('.tag')
+                const pic = document.querySelector('.pic')
+                const link = document.querySelector('.link')
+
+                //選單時定位到marker
+                marker.addEventListener('click',()=>{
+                    title.innerText = x.Title
+                    tag.innerText = x.Tag
+                    link.href= x.Url
+                    pic.src = `https://github.com/Ning0809/IMAGE/blob/main/${x.ID}.jpg?raw=true`
+                
+                })
+            })
+        }
+        //切換選單
+        function translate(){
+            select.addEventListener('change',()=>{
+
+                if(event.target.value!=' '){
+                    let target = data.find(x=>x.Title == event.target.value)
+                    map.setView([target.Lat, target.Lng], 9);
+                    }
+                })
+        }
+        
+
+
+        
+
+
+
+
+
+    </script>
 </body>
 </html>
