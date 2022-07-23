@@ -21,91 +21,7 @@
     crossorigin=""></script>
 
 
-    <style>
-        body{
-            background-image: url(./bgc-2.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-color: rgba(0,0,0,0.1);
-            background-blend-mode: multiply;
-        }
-        .banner{
-            background-color:#73AFB0;
-            width: 100%;
-            height: 100px;
-        }
-        h1{
-            font-weight: 600;
-            text-align: center;
-            line-height: 100px;
-            font-size: 60px;
-            font-family: 'Cormorant SC', serif;
-            color:#37373a;
-        }
-        .container{
-            width: 900px;
-            margin: auto;
-            padding: 20px;
-        }
-        .mapbox{
-            height: 400px;
-            border-right: 2px solid #464f5074;
-            align-self: center;
-            margin-right: 30px;
-        }
-        #map { 
-            width: 90%;
-            height: 90%;
-            position: absolute;
-            top:0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
-            border-radius: 20px;
-        }
-        .infobox{
-            height: 500px;
-            position: relative;
-        }
-        #select{ 
-            width: 200px; 
-            display: block; 
-            margin-left: 30px;
-            border: none;
-            background-color: #DEE9ED;
-        }
-        #select:focus{outline: none;}
-        h2{
-            font-weight: 700;
-            padding-left: 30px;
-            color:#37373a;
-        }
-        p{
-            font-size: 14px;
-            margin: auto;
-            padding-left: 30px;
-            color:#464f50;
-            height: 40px;
-        }
-        .imgbox{
-            width: 100%;
-            border: 5px solid #73AFB0;
-            overflow: hidden;
-            border-radius: 20px;
-        }
-        .pic{  width: 100%; }
-        .link{
-            position: absolute;
-            right: 20px;
-            top: 60px;
-            text-decoration: none;
-            color:#37373a;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .link i{margin-left: 5px;}
-        
-    </style>
+    
     <style>/*
         Leaflet.BeautifyIcon, a plugin that adds colorful iconic markers for Leaflet by giving full control of style to end user, It has also ability to adjust font awesome
         and glyphicon icons
@@ -352,11 +268,94 @@
           
           }(this, document));
     </script> 
-    		<link
-			rel="stylesheet"
-			href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
-		/>
-		<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+	<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <style>
+        body{
+            background-image: url(./bgc-2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: rgba(0,0,0,0.1);
+            background-blend-mode: multiply;
+        }
+        .banner{
+            background-color:#73AFB0;
+            width: 100%;
+            height: 100px;
+        }
+        h1{
+            font-weight: 600;
+            text-align: center;
+            line-height: 100px;
+            font-size: 60px;
+            font-family: 'Cormorant SC', serif;
+            color:#37373a;
+        }
+        .container{
+            width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .mapbox{
+            height: 400px;
+            border-right: 2px solid #464f5074;
+            align-self: center;
+            margin-right: 30px;
+        }
+        #map { 
+            width: 90%;
+            height: 90%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            border-radius: 20px;
+        }
+        .infobox{
+            height: 500px;
+            position: relative;
+        }
+        #select{ 
+            width: 200px; 
+            display: block; 
+            margin-left: 30px;
+            border: none;
+            background-color: #DEE9ED;
+        }
+        #select:focus{outline: none;}
+        h2{
+            font-weight: 700;
+            padding-left: 30px;
+            color:#37373a;
+        }
+        p{
+            font-size: 14px;
+            margin: auto;
+            padding-left: 30px;
+            color:#464f50;
+            height: 40px;
+        }
+        .imgbox{
+            width: 100%;
+            border: 5px solid #73AFB0;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .pic{  width: 100%; }
+        .link{
+            position: absolute;
+            right: 20px;
+            top: 60px;
+            text-decoration: none;
+            color:#37373a;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .link i{margin-left: 5px;}
+        
+    </style>
         
  
 </head>
@@ -468,10 +467,10 @@
                     draggable: true
                 }).addTo(map).bindPopup("popup").bindPopup(x.Title);
 
-
-
+                //叢集
                 markers.addLayer(marker);
                 map.addLayer(markers);
+
                 
 
                 const title = document.querySelector('.title')
@@ -479,8 +478,7 @@
                 const pic = document.querySelector('.pic')
                 const link = document.querySelector('.link')
 
-
-                //選單時定位到marker
+                //點marker切換info
                 marker.addEventListener('click',()=>{
                     title.innerText = x.Title
                     tag.innerText = x.Tag
