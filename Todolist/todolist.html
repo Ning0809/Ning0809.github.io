@@ -51,20 +51,22 @@
             console.dir(document.querySelector('.check'))
         }
     
-        
+        //改物件
+        // { text: ,done:   }
+
         //init從localstorage取資料、設定每個事項編號
         function init(){
             listbox.innerHTML=''
             let index = 0
             if(log!=null){
-                log.forEach(x => {
-                let value = x.split('-')                    
+                log.forEach(x => {                
+                    console.log(x)
                 let listtem = document.querySelector('#listtem')
                 let list = listtem.content.cloneNode(true)
                 let input = list.querySelector('.text')
                 list.querySelector('#btn-keep').style.display='none'
-                input.value=value[0]
-                if(value[1]=='1'){list.querySelector('.check').checked=true }
+                input.value=x.Text
+                if(x.Done=='1'){list.querySelector('.check').checked=true }
                 input.disabled=true
                 input.setAttribute('index',index)
                 listbox.append(list)
@@ -77,13 +79,15 @@
         function create(){          
             let done = 0
             if(log!=null){
-                if(inputcreate.value!=''){
-                    log.push(`${inputcreate.value}-${done}`)}
+                if(inputcreate.value.trim()!=''){
+                    let todoObj = { Text: inputcreate.value.trim(),Done:done }
+                    log.push(todoObj)}
                 else{alert(`請輸入事項`)}                
             }
             else{
                 log=[]
-                log.push(`${inputcreate.value}-${done}`)
+                let todoObj = { Text: inputcreate.value.trim(),Done:done }
+                log.push(todoObj)
             }
             localStorage.setItem('todo',JSON.stringify(log)) 
             inputcreate.value=''   
@@ -106,7 +110,7 @@
             let index = input.getAttribute('index')
             let done = event.target.parentElement.querySelector('.check').checked==true ? 1 : 0
             
-            log[index]=`${input.value}-${done}`
+            log[index]={ Text: input.value.trim(),Done:done }
             localStorage.setItem('todo',JSON.stringify(log)) 
             input.disabled=true
             event.target.style.display='none'
@@ -131,7 +135,7 @@
             let index = input.getAttribute('index')
             let done = event.target.checked==true ? 1 : 0
 
-            log[index]=`${input.value}-${done}`
+            log[index]={ Text: input.value.trim(),Done:done }
             localStorage.setItem('todo',JSON.stringify(log)) 
             init()
         }
